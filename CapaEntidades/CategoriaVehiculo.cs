@@ -1,6 +1,4 @@
-﻿using System;
-
-/*
+﻿/*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
  * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
