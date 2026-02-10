@@ -11,7 +11,7 @@
 
 namespace CapaAccesoDatos
 {
-    internal class ClienteDAL
+    public class ClienteDAL
     {
         private Cliente[] clientes;
         private int contador;

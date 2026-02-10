@@ -11,7 +11,7 @@
 
 namespace CapaAccesoDatos
 {
-    internal class VendedorDAL
+    public class VendedorDAL
     {
         private Vendedor[] vendedores;
         private int contador;

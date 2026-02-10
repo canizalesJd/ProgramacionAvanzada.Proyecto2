@@ -11,7 +11,7 @@
 
 namespace CapaAccesoDatos
 {
-    internal class VehiculoDAL
+    public class VehiculoDAL
     {
         private Vehiculo[] vehiculos;
         private int contador;
