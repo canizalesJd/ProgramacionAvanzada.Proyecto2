@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using CapaEntidades;
+using CapaLogicaNegocio;
 
 /*
  * Universidad Estatal a Distancia (UNED)
@@ -15,34 +17,44 @@ namespace CapaPresentacion
 {
     public partial class FrmRegistrarCategoriaVehiculo : Form
     {
+        private CategoriaVehiculoBL categoriaVehiculoBL;
         public FrmRegistrarCategoriaVehiculo()
         {
             InitializeComponent();
+            categoriaVehiculoBL = new CategoriaVehiculoBL();
         }
-
-        private void FrmRegistrarCategoriaVehiculo_Load(object sender, EventArgs e)
+        private void LimpiarCampos()
         {
-
-        }
-
-        private void idCategoria_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void descripcionCategoria_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nombreCategoria_TextChanged(object sender, EventArgs e)
-        {
-
+            idCategoria.Clear();
+            nombreCategoria.Clear();
+            descripcionCategoria.Clear();
         }
 
         private void botonGuardar_Click(object sender, EventArgs e)
         {
+            {
+                try
+                {
+                    if (!int.TryParse(idCategoria.Text, out int id))
+                    {
+                        MessageBox.Show("El ID debe ser numérico.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
+                    string nombre = nombreCategoria.Text.Trim();
+                    string descripcion = descripcionCategoria.Text.Trim();
+
+                    categoriaVehiculoBL.RegistrarCategoria(id, nombre, descripcion);
+
+                    MessageBox.Show("Categoría registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    LimpiarCampos();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

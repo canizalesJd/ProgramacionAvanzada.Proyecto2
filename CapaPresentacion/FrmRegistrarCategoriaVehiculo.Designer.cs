@@ -74,7 +74,7 @@
             this.idCategoria.Size = new System.Drawing.Size(400, 26);
             this.idCategoria.TabIndex = 3;
             this.idCategoria.Tag = "";
-            this.idCategoria.TextChanged += new System.EventHandler(this.idCategoria_TextChanged);
+            // this.idCategoria.TextChanged += new System.EventHandler(this.idCategoria_TextChanged);
             // 
             // idCategoriaLbl
             // 
@@ -114,7 +114,7 @@
             this.nombreCategoria.Size = new System.Drawing.Size(396, 26);
             this.nombreCategoria.TabIndex = 5;
             this.nombreCategoria.Tag = "";
-            this.nombreCategoria.TextChanged += new System.EventHandler(this.nombreCategoria_TextChanged);
+            // this.nombreCategoria.TextChanged += new System.EventHandler(this.nombreCategoria_TextChanged);
             // 
             // descripcionLbl
             // 
@@ -140,7 +140,7 @@
             this.descripcionCategoria.Size = new System.Drawing.Size(397, 26);
             this.descripcionCategoria.TabIndex = 7;
             this.descripcionCategoria.Tag = "";
-            this.descripcionCategoria.TextChanged += new System.EventHandler(this.descripcionCategoria_TextChanged);
+            // this.descripcionCategoria.TextChanged += new System.EventHandler(this.descripcionCategoria_TextChanged);
             // 
             // botonGuardar
             // 
@@ -170,7 +170,7 @@
             this.Controls.Add(this.titulo);
             this.Name = "FrmRegistrarCategoriaVehiculo";
             this.Text = "AutoMarket - Registrar Categoría de Vehículo";
-            this.Load += new System.EventHandler(this.FrmRegistrarCategoriaVehiculo_Load);
+            // this.Load += new System.EventHandler(this.FrmRegistrarCategoriaVehiculo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
