@@ -25,11 +25,21 @@ namespace CapaAccesoDatos
         // Método para agregar un nuevo cliente
         public void AgregarCliente(Cliente cliente)
         {
-            // Evitar duplicados: Antes de agregar un nuevo cliente, verificar que no exista un cliente con el mismo ID. Si ya existe, lanzar una excepción indicando que el cliente ya existe.
-            if (ClienteExiste(cliente.IdCliente))
+            /* Evitar duplicados: 
+              * Antes de agregar un nuevo cliente, verificar que no exista otro cliente con el mismo ID
+              * o la misma identificación. Si se encuentra un cliente con el mismo ID o identificación
+              * lanzar una excepción indicando que el cliente ya existe.
+            */
+            if (IdClienteExiste(cliente.IdCliente))
             {
                 throw new InvalidOperationException("El cliente con el ID proporcionado ya existe.");
             }
+
+            if (IdentificacionExiste(cliente.Identificacion))
+            {
+                throw new InvalidOperationException("El cliente con la identificación proporcionada ya existe.");
+            }
+
             // Verificar capacidad: Antes de agregar un nuevo cliente, verificar que el arreglo no haya alcanzado su capacidad máxima de 5 registros. Si se intenta agregar más allá de esta capacidad, lanzar una excepción indicando que no se pueden agregar más clientes.
             if (contador >= clientes.Length)
             {
@@ -39,7 +49,7 @@ namespace CapaAccesoDatos
             contador++;
         }
         // Método para verificar si un cliente existe por su ID
-        public bool ClienteExiste(int idCliente)
+        private bool IdClienteExiste(int idCliente)
         {
             for (int i = 0; i < contador; i++)
             {
@@ -50,6 +60,20 @@ namespace CapaAccesoDatos
             }
             return false;
         }
+
+        // Metodo para verificar si un cliente existe por su identificación
+        public bool IdentificacionExiste(string identificacion)
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                if (clientes[i].Identificacion == identificacion)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         // Método para obtener todos los clientes
         public Cliente[] ObtenerClientes()
         {

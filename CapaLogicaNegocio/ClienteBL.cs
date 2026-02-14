@@ -29,10 +29,6 @@ namespace CapaLogicaNegocio
                 throw new ArgumentException("El ID del cliente debe ser un número positivo.");
             }
 
-            if (clienteDAL.ClienteExiste(idCliente)) {
-                throw new InvalidOperationException($"El cliente con ID {idCliente} ya existe.");
-            }
-
             if (string.IsNullOrWhiteSpace(identificacion)) {
                 throw new ArgumentException("La identificación no puede estar vacía.");
             }

@@ -1,17 +1,19 @@
-using CapaPresentacion;
+/*
+ * Universidad Estatal a Distancia (UNED)
+ * Cuatrimestre: I Cuatrimestre 2026
+ * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Descripción: Programa de gestión de ventas de vehículos
+ * Estudiante: Jose David Canizales Azocar
+ * Fecha: Febrero 2026
+ */
 
-namespace UI
+namespace CapaPresentacion
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new FrmMenuPrincipal());
         }

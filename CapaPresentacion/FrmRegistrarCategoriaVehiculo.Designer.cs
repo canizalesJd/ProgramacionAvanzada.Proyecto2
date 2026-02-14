@@ -28,151 +28,153 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.titulo = new System.Windows.Forms.Label();
-            this.footer = new System.Windows.Forms.Label();
-            this.idCategoria = new System.Windows.Forms.TextBox();
-            this.idCategoriaLbl = new System.Windows.Forms.Label();
-            this.nombreLbl = new System.Windows.Forms.Label();
-            this.nombreCategoria = new System.Windows.Forms.TextBox();
-            this.descripcionLbl = new System.Windows.Forms.Label();
-            this.descripcionCategoria = new System.Windows.Forms.TextBox();
-            this.botonGuardar = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            titulo = new Label();
+            footer = new Label();
+            idCategoria = new TextBox();
+            idCategoriaLbl = new Label();
+            nombreLbl = new Label();
+            nombreCategoria = new TextBox();
+            descripcionLbl = new Label();
+            descripcionCategoria = new TextBox();
+            botonGuardar = new Button();
+            SuspendLayout();
             // 
             // titulo
             // 
-            this.titulo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.titulo.AutoSize = true;
-            this.titulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titulo.Location = new System.Drawing.Point(44, 22);
-            this.titulo.Name = "titulo";
-            this.titulo.Size = new System.Drawing.Size(355, 29);
-            this.titulo.TabIndex = 0;
-            this.titulo.Text = "Registrar Categoría de Vehículo";
+            titulo.Anchor = AnchorStyles.Top;
+            titulo.AutoSize = true;
+            titulo.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            titulo.Location = new Point(51, 25);
+            titulo.Margin = new Padding(4, 0, 4, 0);
+            titulo.Name = "titulo";
+            titulo.Size = new Size(355, 29);
+            titulo.TabIndex = 0;
+            titulo.Text = "Registrar Categoría de Vehículo";
             // 
             // footer
             // 
-            this.footer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.footer.AutoSize = true;
-            this.footer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.footer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.footer.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.footer.Location = new System.Drawing.Point(100, 346);
-            this.footer.Name = "footer";
-            this.footer.Size = new System.Drawing.Size(273, 15);
-            this.footer.TabIndex = 2;
-            this.footer.Text = "AutoMarket ©  - Todos los Derechos Resevados  ";
-            this.footer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            footer.Anchor = AnchorStyles.Bottom;
+            footer.AutoSize = true;
+            footer.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            footer.ImageAlign = ContentAlignment.BottomCenter;
+            footer.Location = new Point(117, 399);
+            footer.Margin = new Padding(4, 0, 4, 0);
+            footer.Name = "footer";
+            footer.Size = new Size(273, 15);
+            footer.TabIndex = 2;
+            footer.Text = "AutoMarket ©  - Todos los Derechos Resevados  ";
+            footer.TextAlign = ContentAlignment.BottomCenter;
             // 
             // idCategoria
             // 
-            this.idCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.idCategoria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.idCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.idCategoria.Location = new System.Drawing.Point(19, 79);
-            this.idCategoria.Name = "idCategoria";
-            this.idCategoria.Size = new System.Drawing.Size(400, 26);
-            this.idCategoria.TabIndex = 3;
-            this.idCategoria.Tag = "";
-            // this.idCategoria.TextChanged += new System.EventHandler(this.idCategoria_TextChanged);
+            idCategoria.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            idCategoria.BorderStyle = BorderStyle.FixedSingle;
+            idCategoria.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            idCategoria.Location = new Point(22, 91);
+            idCategoria.Margin = new Padding(4, 3, 4, 3);
+            idCategoria.Name = "idCategoria";
+            idCategoria.Size = new Size(466, 26);
+            idCategoria.TabIndex = 3;
+            idCategoria.Tag = "";
             // 
             // idCategoriaLbl
             // 
-            this.idCategoriaLbl.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.idCategoriaLbl.AutoSize = true;
-            this.idCategoriaLbl.Cursor = System.Windows.Forms.Cursors.Default;
-            this.idCategoriaLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.idCategoriaLbl.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.idCategoriaLbl.Location = new System.Drawing.Point(16, 61);
-            this.idCategoriaLbl.Name = "idCategoriaLbl";
-            this.idCategoriaLbl.Size = new System.Drawing.Size(25, 15);
-            this.idCategoriaLbl.TabIndex = 4;
-            this.idCategoriaLbl.Text = "ID  ";
-            this.idCategoriaLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            idCategoriaLbl.Anchor = AnchorStyles.Left;
+            idCategoriaLbl.AutoSize = true;
+            idCategoriaLbl.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            idCategoriaLbl.ImageAlign = ContentAlignment.BottomCenter;
+            idCategoriaLbl.Location = new Point(19, 70);
+            idCategoriaLbl.Margin = new Padding(4, 0, 4, 0);
+            idCategoriaLbl.Name = "idCategoriaLbl";
+            idCategoriaLbl.Size = new Size(25, 15);
+            idCategoriaLbl.TabIndex = 4;
+            idCategoriaLbl.Text = "ID  ";
+            idCategoriaLbl.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // nombreLbl
             // 
-            this.nombreLbl.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.nombreLbl.AutoSize = true;
-            this.nombreLbl.Cursor = System.Windows.Forms.Cursors.Default;
-            this.nombreLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nombreLbl.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.nombreLbl.Location = new System.Drawing.Point(18, 140);
-            this.nombreLbl.Name = "nombreLbl";
-            this.nombreLbl.Size = new System.Drawing.Size(52, 15);
-            this.nombreLbl.TabIndex = 6;
-            this.nombreLbl.Text = "Nombre";
-            this.nombreLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            nombreLbl.Anchor = AnchorStyles.Left;
+            nombreLbl.AutoSize = true;
+            nombreLbl.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            nombreLbl.ImageAlign = ContentAlignment.BottomCenter;
+            nombreLbl.Location = new Point(21, 162);
+            nombreLbl.Margin = new Padding(4, 0, 4, 0);
+            nombreLbl.Name = "nombreLbl";
+            nombreLbl.Size = new Size(52, 15);
+            nombreLbl.TabIndex = 6;
+            nombreLbl.Text = "Nombre";
+            nombreLbl.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // nombreCategoria
             // 
-            this.nombreCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.nombreCategoria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nombreCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nombreCategoria.Location = new System.Drawing.Point(21, 158);
-            this.nombreCategoria.Name = "nombreCategoria";
-            this.nombreCategoria.Size = new System.Drawing.Size(396, 26);
-            this.nombreCategoria.TabIndex = 5;
-            this.nombreCategoria.Tag = "";
-            // this.nombreCategoria.TextChanged += new System.EventHandler(this.nombreCategoria_TextChanged);
+            nombreCategoria.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            nombreCategoria.BorderStyle = BorderStyle.FixedSingle;
+            nombreCategoria.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            nombreCategoria.Location = new Point(24, 182);
+            nombreCategoria.Margin = new Padding(4, 3, 4, 3);
+            nombreCategoria.Name = "nombreCategoria";
+            nombreCategoria.Size = new Size(462, 26);
+            nombreCategoria.TabIndex = 5;
+            nombreCategoria.Tag = "";
             // 
             // descripcionLbl
             // 
-            this.descripcionLbl.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.descripcionLbl.AutoSize = true;
-            this.descripcionLbl.Cursor = System.Windows.Forms.Cursors.Default;
-            this.descripcionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descripcionLbl.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.descripcionLbl.Location = new System.Drawing.Point(18, 211);
-            this.descripcionLbl.Name = "descripcionLbl";
-            this.descripcionLbl.Size = new System.Drawing.Size(72, 15);
-            this.descripcionLbl.TabIndex = 8;
-            this.descripcionLbl.Text = "Descripción";
-            this.descripcionLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            descripcionLbl.Anchor = AnchorStyles.Left;
+            descripcionLbl.AutoSize = true;
+            descripcionLbl.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            descripcionLbl.ImageAlign = ContentAlignment.BottomCenter;
+            descripcionLbl.Location = new Point(21, 243);
+            descripcionLbl.Margin = new Padding(4, 0, 4, 0);
+            descripcionLbl.Name = "descripcionLbl";
+            descripcionLbl.Size = new Size(72, 15);
+            descripcionLbl.TabIndex = 8;
+            descripcionLbl.Text = "Descripción";
+            descripcionLbl.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // descripcionCategoria
             // 
-            this.descripcionCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.descripcionCategoria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.descripcionCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descripcionCategoria.Location = new System.Drawing.Point(21, 229);
-            this.descripcionCategoria.Name = "descripcionCategoria";
-            this.descripcionCategoria.Size = new System.Drawing.Size(397, 26);
-            this.descripcionCategoria.TabIndex = 7;
-            this.descripcionCategoria.Tag = "";
-            // this.descripcionCategoria.TextChanged += new System.EventHandler(this.descripcionCategoria_TextChanged);
+            descripcionCategoria.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            descripcionCategoria.BorderStyle = BorderStyle.FixedSingle;
+            descripcionCategoria.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            descripcionCategoria.Location = new Point(24, 264);
+            descripcionCategoria.Margin = new Padding(4, 3, 4, 3);
+            descripcionCategoria.Name = "descripcionCategoria";
+            descripcionCategoria.Size = new Size(463, 26);
+            descripcionCategoria.TabIndex = 7;
+            descripcionCategoria.Tag = "";
             // 
             // botonGuardar
             // 
-            this.botonGuardar.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.botonGuardar.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.botonGuardar.Location = new System.Drawing.Point(283, 281);
-            this.botonGuardar.Name = "botonGuardar";
-            this.botonGuardar.Size = new System.Drawing.Size(136, 41);
-            this.botonGuardar.TabIndex = 9;
-            this.botonGuardar.Text = "Registrar";
-            this.botonGuardar.UseVisualStyleBackColor = false;
-            this.botonGuardar.Click += new System.EventHandler(this.botonGuardar_Click);
+            botonGuardar.Anchor = AnchorStyles.Right;
+            botonGuardar.BackColor = SystemColors.ButtonShadow;
+            botonGuardar.Location = new Point(330, 324);
+            botonGuardar.Margin = new Padding(4, 3, 4, 3);
+            botonGuardar.Name = "botonGuardar";
+            botonGuardar.Size = new Size(159, 47);
+            botonGuardar.TabIndex = 9;
+            botonGuardar.Text = "Registrar";
+            botonGuardar.UseVisualStyleBackColor = false;
+            botonGuardar.Click += botonGuardar_Click;
             // 
             // FrmRegistrarCategoriaVehiculo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 370);
-            this.Controls.Add(this.botonGuardar);
-            this.Controls.Add(this.descripcionLbl);
-            this.Controls.Add(this.descripcionCategoria);
-            this.Controls.Add(this.nombreLbl);
-            this.Controls.Add(this.nombreCategoria);
-            this.Controls.Add(this.idCategoriaLbl);
-            this.Controls.Add(this.idCategoria);
-            this.Controls.Add(this.footer);
-            this.Controls.Add(this.titulo);
-            this.Name = "FrmRegistrarCategoriaVehiculo";
-            this.Text = "AutoMarket - Registrar Categoría de Vehículo";
-            // this.Load += new System.EventHandler(this.FrmRegistrarCategoriaVehiculo_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(519, 427);
+            Controls.Add(botonGuardar);
+            Controls.Add(descripcionLbl);
+            Controls.Add(descripcionCategoria);
+            Controls.Add(nombreLbl);
+            Controls.Add(nombreCategoria);
+            Controls.Add(idCategoriaLbl);
+            Controls.Add(idCategoria);
+            Controls.Add(footer);
+            Controls.Add(titulo);
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "FrmRegistrarCategoriaVehiculo";
+            Text = "AutoMarket - Registrar Categoría de Vehículo";
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
