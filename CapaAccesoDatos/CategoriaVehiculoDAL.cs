@@ -13,19 +13,11 @@ namespace CapaAccesoDatos
 {
     public class CategoriaVehiculoDAL
     {
-        private CategoriaVehiculo[] categorias;
-        private int contador;
-
-        // Constructor
-        public CategoriaVehiculoDAL()
-        {
-            // Los datos deben almacenarse en un arreglo de objetos CategoriaVehiculo con capacidad para 20 registros 
-            categorias = new CategoriaVehiculo[20];
-            contador = 0;
-        }
+        private static CategoriaVehiculo[] categorias = new CategoriaVehiculo[20];
+        private static int contador;
 
         // Método para agregar una nueva categoría de vehículo
-        public void AgregarCategoria(CategoriaVehiculo categoria)
+        public static void Guardar(CategoriaVehiculo categoria)
         {
             // Evitar duplicados: Antes de agregar una nueva categoría, verificar que no exista una categoría con el mismo ID. Si ya existe, lanzar una excepción indicando que la categoría ya existe.
             if (CategoriaExiste(categoria.IdCategoria))
@@ -44,7 +36,7 @@ namespace CapaAccesoDatos
         }
 
         // Metodo para verificar si una categoría de vehículo existe por su ID
-        public bool CategoriaExiste(int idCategoria)
+        public static bool CategoriaExiste(int idCategoria)
         {
             for (int i = 0; i < contador; i++)
             {
@@ -57,7 +49,7 @@ namespace CapaAccesoDatos
         }
 
         // Método para obtener todas las categorías de vehículo
-        public CategoriaVehiculo[] ObtenerCategorias()
+        public static CategoriaVehiculo[] Consultar()
         {
             // Retorna solo las categorías agregadas, no los espacios vacíos del arreglo
             CategoriaVehiculo[] resultado = new CategoriaVehiculo[contador];

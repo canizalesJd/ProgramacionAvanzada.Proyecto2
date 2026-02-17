@@ -5,18 +5,10 @@ namespace CapaLogicaNegocio
 {
     public class VendedorBL
     {
-        private readonly VendedorDAL vendedorDAL;
-
-        // Constructor
-        public VendedorBL()
-        {
-            vendedorDAL = new VendedorDAL();
-        }
-
         // Metodo para registrar un nuevo vendedor
         public void RegistrarVendedor(int idVendedor, string identificacion, string nombreCompleto, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono)
         {
-            if (vendedorDAL.VendedorExiste(idVendedor))
+            if (VendedorDAL.VendedorExiste(idVendedor))
             {
                 throw new ArgumentException($"Ya existe un vendedor con el ID {idVendedor}, ingrese un ID distinto.");
             }
@@ -44,15 +36,23 @@ namespace CapaLogicaNegocio
             {
                 throw new ArgumentException("El teléfono del vendedor no puede estar vacío.");
             }
-            Vendedor nuevoVendedor = new Vendedor(idVendedor, identificacion, nombreCompleto, fechaNacimiento, fechaIngreso, telefono);
-            vendedorDAL.AgregarVendedor(nuevoVendedor);
+
+            Vendedor nuevo = new Vendedor(
+                idVendedor,
+                identificacion,
+                nombreCompleto,
+                fechaNacimiento,
+                fechaIngreso,
+                telefono
+            );
+
+            VendedorDAL.Guardar(nuevo);
         }
 
         // Metodo para obtener todos los vendedores
-        public Vendedor[] ObtenerVendedores()
+        public Vendedor[] Consultar()
         {
-            return vendedorDAL.ObtenerVendedores();
+            return VendedorDAL.Consultar();
         }
-
     }
 }

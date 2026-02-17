@@ -14,18 +14,10 @@ namespace CapaLogicaNegocio
 {
     public class CategoriaVehiculoBL
     {
-        private readonly CategoriaVehiculoDAL categoriaVehiculoDAL;
-
-        // Constructor
-        public CategoriaVehiculoBL()
-        {
-            categoriaVehiculoDAL = new CategoriaVehiculoDAL();
-        }
-
         // Metodo para registrar una nueva categoría de vehículo
         public void RegistrarCategoria(int id, string nombre, string descripcion)
         {
-            if (categoriaVehiculoDAL.CategoriaExiste(id))
+            if (CategoriaVehiculoDAL.CategoriaExiste(id))
             {
                 throw new ArgumentException($"Ya existe una categoría con el ID {id}, ingrese un ID distinto.");
             }
@@ -45,14 +37,18 @@ namespace CapaLogicaNegocio
                 throw new ArgumentException("La descripción de la categoría no puede estar vacía.");
             }
 
-            CategoriaVehiculo nuevaCategoria = new CategoriaVehiculo(id, nombre, descripcion);
-            categoriaVehiculoDAL.AgregarCategoria(nuevaCategoria);
+            CategoriaVehiculo nueva = new CategoriaVehiculo(
+                id, 
+                nombre, 
+                descripcion
+            );
+            CategoriaVehiculoDAL.Guardar(nueva);
         }
 
         // Metodo para obtener todas las categorías de vehículo
         public CategoriaVehiculo[] ObtenerCategorias()
         {
-            return categoriaVehiculoDAL.ObtenerCategorias();
+            return CategoriaVehiculoDAL.Consultar();
         }
     }
 }

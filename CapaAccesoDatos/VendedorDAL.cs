@@ -13,19 +13,16 @@ namespace CapaAccesoDatos
 {
     public class VendedorDAL
     {
-        private Vendedor[] vendedores;
-        private int contador;
-
-        // Constructor
-        public VendedorDAL()
-        {
-            // Los datos deben almacenarse en un arreglo de objetos Vendedor con capacidad para 20 registros.
-            vendedores = new Vendedor[20];
-            contador = 0;
-        }
+        private static Vendedor[] vendedores = new Vendedor[20];
+        private static int contador = 0;
 
         // Método para agregar un nuevo vendedor
-        public void AgregarVendedor(Vendedor vendedor)
+
+        // <summary>
+        // Método que agrega un nuevo vendedor al arreglo de vendedores. Antes de agregar, verifica que no exista un vendedor con el mismo ID y que no se haya alcanzado la capacidad máxima de 20 registros. Si se intenta agregar un vendedor con un ID duplicado o si se ha alcanzado la capacidad máxima, se lanzará una excepción indicando el error correspondiente.
+        // </summary>
+        // <param name="vendedor">El objeto Vendedor que se desea agregar.</param>
+        public static void Guardar(Vendedor vendedor)
         {
             // Evitar duplicados: Antes de agregar un nuevo vendedor, verificar que no exista un vendedor con el mismo ID. Si ya existe, lanzar una excepción indicando que el vendedor ya existe.
             if (VendedorExiste(vendedor.IdVendedor))
@@ -37,12 +34,13 @@ namespace CapaAccesoDatos
             {
                 throw new InvalidOperationException("No se pueden agregar más vendedores, capacidad máxima alcanzada.");
             }
+
             vendedores[contador] = vendedor;
             contador++;
         }
 
         // Método para verificar si un vendedor existe por su ID
-        public bool VendedorExiste(int idVendedor)
+        public static bool VendedorExiste(int idVendedor)
         {
             for (int i = 0; i < contador; i++)
             {
@@ -55,7 +53,7 @@ namespace CapaAccesoDatos
         }
 
         // Método para obtener todos los vendedores
-        public Vendedor[] ObtenerVendedores()
+        public static Vendedor[] Consultar()
         {
             Vendedor[] resultado = new Vendedor[contador];
             Array.Copy(vendedores, resultado, contador);

@@ -13,19 +13,11 @@ namespace CapaAccesoDatos
 {
     public class SucursalDAL
     {
-        private Sucursal[] sucursales;
-        private int contador;
-
-        // Constructor
-        public SucursalDAL()
-        {
-            // Los datos deben almacenarse en un arreglo de objetos Sucursal con capacidad para 5 registros.
-            sucursales = new Sucursal[5];
-            contador = 0;
-        }
+        private static Sucursal[] sucursales = new Sucursal[5];
+        private static int contador;
 
         // Método para agregar una nueva sucursal
-        public void AgregarSucursal(Sucursal sucursal)
+        public static void Guardar(Sucursal sucursal)
         {
             // Evitar duplicados: Antes de agregar una nueva sucursal, verificar que no exista una sucursal con el mismo ID. Si ya existe, lanzar una excepción indicando que la sucursal ya existe.
             if (SucursalExiste(sucursal.IdSucursal))
@@ -42,7 +34,7 @@ namespace CapaAccesoDatos
         }
 
         // Método para verificar si una sucursal existe por su ID
-        public bool SucursalExiste(int idSucursal)
+        public static bool SucursalExiste(int idSucursal)
         {
             for (int i = 0; i < contador; i++)
             {
@@ -55,7 +47,7 @@ namespace CapaAccesoDatos
         }
 
         // Método para obtener todas las sucursales
-        public Sucursal[] ObtenerSucursales()
+        public static Sucursal[] Consultar()
         {
             Sucursal[] resultado = new Sucursal[contador];
             Array.Copy(sucursales, resultado, contador);

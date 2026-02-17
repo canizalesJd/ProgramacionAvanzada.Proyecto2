@@ -14,21 +14,13 @@ namespace CapaLogicaNegocio
 {
     public class VehiculoBL
     {
-        private readonly VehiculoDAL vehiculoDAL;
-
-        // Constructor
-        public VehiculoBL()
-        {
-            vehiculoDAL = new VehiculoDAL();
-        }
-
         // Metodo para registrar un nuevo vehículo
         public void RegistrarVehiculo(int idVehiculo, string marca, string modelo, int anio, decimal precio, CategoriaVehiculo categoria, char estado)
         {
             if (idVehiculo <= 0) {
                 throw new ArgumentException("El ID del vehículo debe ser un número positivo.");
             }
-            if (vehiculoDAL.VehiculoExiste(idVehiculo)) {
+            if (VehiculoDAL.VehiculoExiste(idVehiculo)) {
                 throw new InvalidOperationException($"El vehículo con ID {idVehiculo} ya existe.");
             }
             if (string.IsNullOrWhiteSpace(marca)) {
@@ -49,14 +41,21 @@ namespace CapaLogicaNegocio
             if (estado != 'N' && estado != 'U') {
                 throw new ArgumentException("El estado del vehículo debe ser 'N' o 'U'.");
             }
-            Vehiculo nuevoVehiculo = new Vehiculo(idVehiculo, marca, modelo, anio, precio, categoria, estado);
-            vehiculoDAL.AgregarVehiculo(nuevoVehiculo);
+            Vehiculo nuevoVehiculo = new Vehiculo(idVehiculo, 
+                marca, 
+                modelo, 
+                anio, 
+                precio, 
+                categoria, 
+                estado
+            );
+            VehiculoDAL.Guardar(nuevoVehiculo);
         }
 
         // Metodo para obtener todos los vehículos
         public Vehiculo[] ObtenerVehiculos()
         {
-            return vehiculoDAL.ObtenerVehiculos();
+            return VehiculoDAL.Consultar();
         }
     }
 }

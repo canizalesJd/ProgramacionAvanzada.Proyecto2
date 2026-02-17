@@ -14,14 +14,6 @@ namespace CapaLogicaNegocio
 {
     public class ClienteBL
     {
-        private readonly ClienteDAL clienteDAL;
-
-        // Constructor
-        public ClienteBL()
-        {
-            clienteDAL = new ClienteDAL();
-        }
-
         // Metodo para registrar un cliente nuevo
         public void RegistrarCliente(int idCliente, string identificacion, string nombreCompleto, DateTime fechaNacimiento, DateTime fechaRegistro, bool activo = true)
         {
@@ -46,14 +38,21 @@ namespace CapaLogicaNegocio
                 fechaRegistro = DateTime.Now;
             }
 
-            Cliente nuevoCliente = new Cliente(idCliente, identificacion, nombreCompleto, fechaNacimiento, fechaRegistro, activo);
-            clienteDAL.AgregarCliente(nuevoCliente);
+            Cliente nuevoCliente = new Cliente(
+                idCliente, 
+                identificacion,
+                nombreCompleto,
+                fechaNacimiento,
+                fechaRegistro, 
+                activo
+            );
+            ClienteDAL.Guardar(nuevoCliente);
         }
 
         // Metodo para obtener todos los clientes
         public Cliente[] ObtenerClientes()
         {
-            return clienteDAL.ObtenerClientes();
+            return ClienteDAL.Consultar();
         }
     }
 }

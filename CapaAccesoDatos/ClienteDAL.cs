@@ -13,17 +13,11 @@ namespace CapaAccesoDatos
 {
     public class ClienteDAL
     {
-        private Cliente[] clientes;
-        private int contador;
-        // Constructor
-        public ClienteDAL()
-        {
-            // Los datos deben almacenarse en un arreglo de objetos Cliente con capacidad para 5 registros.
-            clientes = new Cliente[5];
-            contador = 0;
-        }
+        private static Cliente[] clientes = new Cliente[5];
+        private static int contador;
+ 
         // Método para agregar un nuevo cliente
-        public void AgregarCliente(Cliente cliente)
+        public static void Guardar(Cliente cliente)
         {
             /* Evitar duplicados: 
               * Antes de agregar un nuevo cliente, verificar que no exista otro cliente con el mismo ID
@@ -49,7 +43,7 @@ namespace CapaAccesoDatos
             contador++;
         }
         // Método para verificar si un cliente existe por su ID
-        private bool IdClienteExiste(int idCliente)
+        private static bool IdClienteExiste(int idCliente)
         {
             for (int i = 0; i < contador; i++)
             {
@@ -62,7 +56,7 @@ namespace CapaAccesoDatos
         }
 
         // Metodo para verificar si un cliente existe por su identificación
-        public bool IdentificacionExiste(string identificacion)
+        public static bool IdentificacionExiste(string identificacion)
         {
             for (int i = 0; i < contador; i++)
             {
@@ -75,7 +69,7 @@ namespace CapaAccesoDatos
         }
 
         // Método para obtener todos los clientes
-        public Cliente[] ObtenerClientes()
+        public static Cliente[] Consultar()
         {
             Cliente[] resultado = new Cliente[contador];
             Array.Copy(clientes, resultado, contador);

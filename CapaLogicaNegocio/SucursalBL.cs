@@ -14,19 +14,13 @@ namespace CapaLogicaNegocio
 {
     public class SucursalBL
     {
-        private readonly SucursalDAL sucursalDAL;
-        // Constructor
-        public SucursalBL()
-        {
-            sucursalDAL = new SucursalDAL();
-        }
         // Metodo para registrar una sucursal nueva
         public void RegistrarSucursal(int idSucursal, string nombre, string direccion, string telefono, Vendedor vendedorEncargado)
         {
             if (idSucursal <= 0) {
                 throw new ArgumentException("El ID de la sucursal debe ser un número positivo.");
             }
-            if (sucursalDAL.SucursalExiste(idSucursal)) {
+            if (SucursalDAL.SucursalExiste(idSucursal)) {
                 throw new InvalidOperationException($"La sucursal con ID {idSucursal} ya existe.");
             }
             if (string.IsNullOrWhiteSpace(nombre)) {
@@ -41,14 +35,20 @@ namespace CapaLogicaNegocio
             if (vendedorEncargado == null) {
                 throw new ArgumentException("Debe asignar un vendedor encargado a la sucursal.");
             }
-            Sucursal nuevaSucursal = new Sucursal(idSucursal, nombre, direccion, telefono, vendedorEncargado);
-            sucursalDAL.AgregarSucursal(nuevaSucursal);
+            Sucursal nuevaSucursal = new Sucursal(
+                idSucursal,
+                nombre,
+                direccion,
+                telefono,
+                vendedorEncargado
+            );
+            SucursalDAL.Guardar(nuevaSucursal);
         }
 
         // Metodo para obtener todas las sucursales
         public Sucursal[] ObtenerSucursales()
         {
-            return sucursalDAL.ObtenerSucursales();
+            return SucursalDAL.Consultar();
         }        
     }
 }

@@ -34,7 +34,7 @@ namespace CapaPresentacion
 
         private void CargarVendedores()
         {
-            Vendedor[] vendedores = vendedorBL.ObtenerVendedores();
+            Vendedor[] vendedores = vendedorBL.Consultar();
 
             if (vendedores.Length == 0)
             {

@@ -13,19 +13,11 @@ namespace CapaAccesoDatos
 {
     public class VehiculoDAL
     {
-        private Vehiculo[] vehiculos;
-        private int contador;
-
-        // Constructor
-        public VehiculoDAL()
-        {
-            // Los datos deben almacenarse en un arreglo de objetos Vehículo con capacidad para 50 registros.
-            vehiculos = new Vehiculo[50];
-            contador = 0;
-        }
+        private static Vehiculo[] vehiculos = new Vehiculo[50];
+        private static int contador;
 
         // Método para agregar un nuevo vehículo
-        public void AgregarVehiculo(Vehiculo vehiculo)
+        public static void Guardar(Vehiculo vehiculo)
         {
             // Evitar duplicados: Antes de agregar un nuevo vehículo, verificar que no exista un vehículo con el mismo ID. Si ya existe, lanzar una excepción indicando que el vehículo ya existe.
             if (VehiculoExiste(vehiculo.IdVehiculo))
@@ -43,7 +35,7 @@ namespace CapaAccesoDatos
         }
 
         // Método para verificar si un vehículo existe por su ID
-        public bool VehiculoExiste(int idVehiculo)
+        public static bool VehiculoExiste(int idVehiculo)
         {
             for (int i = 0; i < contador; i++)
             {
@@ -56,7 +48,7 @@ namespace CapaAccesoDatos
         }
 
         // Método para obtener todos los vehículos
-        public Vehiculo[] ObtenerVehiculos()
+        public static Vehiculo[] Consultar()
         {
             // Retorna solo los vehículos agregados, no los espacios vacíos del arreglo
             Vehiculo[] resultado = new Vehiculo[contador];
