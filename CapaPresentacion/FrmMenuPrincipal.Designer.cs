@@ -68,6 +68,7 @@
             registrarVendedorToolStripMenuItem.Name = "registrarVendedorToolStripMenuItem";
             registrarVendedorToolStripMenuItem.Size = new Size(118, 20);
             registrarVendedorToolStripMenuItem.Text = "Registrar Vendedor";
+            registrarVendedorToolStripMenuItem.Click += registrarVendedorToolStripMenuItem_Click;
             // 
             // registrarSucursalToolStripMenuItem
             // 

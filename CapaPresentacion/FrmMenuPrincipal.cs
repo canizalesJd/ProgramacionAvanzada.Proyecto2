@@ -36,5 +36,11 @@ namespace CapaPresentacion
             FrmRegistrarSucursal frm = new FrmRegistrarSucursal();
             frm.Show();
         }
+
+        private void registrarVendedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmRegistrarVendedor frm = new FrmRegistrarVendedor();
+            frm.Show();
+        }
     }
 }
