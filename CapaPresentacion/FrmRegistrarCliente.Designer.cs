@@ -181,7 +181,7 @@
             // 
             botonGuardar.AutoSize = true;
             botonGuardar.BackColor = SystemColors.ButtonShadow;
-            botonGuardar.Location = new Point(387, 279);
+            botonGuardar.Location = new Point(387, 243);
             botonGuardar.Margin = new Padding(4, 3, 4, 3);
             botonGuardar.Name = "botonGuardar";
             botonGuardar.Size = new Size(159, 47);
@@ -195,7 +195,7 @@
             footer.Anchor = AnchorStyles.Bottom;
             footer.AutoSize = true;
             footer.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            footer.Location = new Point(157, 353);
+            footer.Location = new Point(157, 310);
             footer.Margin = new Padding(4, 0, 4, 0);
             footer.Name = "footer";
             footer.Size = new Size(273, 15);
@@ -231,7 +231,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(566, 377);
+            ClientSize = new Size(567, 334);
             Controls.Add(clienteActivo);
             Controls.Add(clienteActivoLbL);
             Controls.Add(footer);

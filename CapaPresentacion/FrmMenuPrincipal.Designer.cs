@@ -74,6 +74,7 @@
             registrarSucursalToolStripMenuItem.Name = "registrarSucursalToolStripMenuItem";
             registrarSucursalToolStripMenuItem.Size = new Size(112, 20);
             registrarSucursalToolStripMenuItem.Text = "Registrar Sucursal";
+            registrarSucursalToolStripMenuItem.Click += registrarSucursalToolStripMenuItem_Click;
             // 
             // registrarClienteToolStripMenuItem
             // 

@@ -44,7 +44,7 @@
             titulo.Anchor = AnchorStyles.Top;
             titulo.AutoSize = true;
             titulo.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titulo.Location = new Point(51, 25);
+            titulo.Location = new Point(23, 24);
             titulo.Margin = new Padding(4, 0, 4, 0);
             titulo.Name = "titulo";
             titulo.Size = new Size(355, 29);
@@ -57,7 +57,7 @@
             footer.AutoSize = true;
             footer.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             footer.ImageAlign = ContentAlignment.BottomCenter;
-            footer.Location = new Point(117, 399);
+            footer.Location = new Point(74, 413);
             footer.Margin = new Padding(4, 0, 4, 0);
             footer.Name = "footer";
             footer.Size = new Size(273, 15);
@@ -70,10 +70,10 @@
             idCategoria.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             idCategoria.BorderStyle = BorderStyle.FixedSingle;
             idCategoria.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            idCategoria.Location = new Point(22, 91);
+            idCategoria.Location = new Point(22, 98);
             idCategoria.Margin = new Padding(4, 3, 4, 3);
             idCategoria.Name = "idCategoria";
-            idCategoria.Size = new Size(466, 26);
+            idCategoria.Size = new Size(359, 26);
             idCategoria.TabIndex = 3;
             idCategoria.Tag = "";
             // 
@@ -83,7 +83,7 @@
             idCategoriaLbl.AutoSize = true;
             idCategoriaLbl.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             idCategoriaLbl.ImageAlign = ContentAlignment.BottomCenter;
-            idCategoriaLbl.Location = new Point(19, 70);
+            idCategoriaLbl.Location = new Point(19, 77);
             idCategoriaLbl.Margin = new Padding(4, 0, 4, 0);
             idCategoriaLbl.Name = "idCategoriaLbl";
             idCategoriaLbl.Size = new Size(25, 15);
@@ -97,7 +97,7 @@
             nombreLbl.AutoSize = true;
             nombreLbl.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             nombreLbl.ImageAlign = ContentAlignment.BottomCenter;
-            nombreLbl.Location = new Point(21, 162);
+            nombreLbl.Location = new Point(21, 169);
             nombreLbl.Margin = new Padding(4, 0, 4, 0);
             nombreLbl.Name = "nombreLbl";
             nombreLbl.Size = new Size(52, 15);
@@ -110,10 +110,10 @@
             nombreCategoria.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             nombreCategoria.BorderStyle = BorderStyle.FixedSingle;
             nombreCategoria.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nombreCategoria.Location = new Point(24, 182);
+            nombreCategoria.Location = new Point(24, 189);
             nombreCategoria.Margin = new Padding(4, 3, 4, 3);
             nombreCategoria.Name = "nombreCategoria";
-            nombreCategoria.Size = new Size(462, 26);
+            nombreCategoria.Size = new Size(355, 26);
             nombreCategoria.TabIndex = 5;
             nombreCategoria.Tag = "";
             // 
@@ -123,7 +123,7 @@
             descripcionLbl.AutoSize = true;
             descripcionLbl.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             descripcionLbl.ImageAlign = ContentAlignment.BottomCenter;
-            descripcionLbl.Location = new Point(21, 243);
+            descripcionLbl.Location = new Point(21, 250);
             descripcionLbl.Margin = new Padding(4, 0, 4, 0);
             descripcionLbl.Name = "descripcionLbl";
             descripcionLbl.Size = new Size(72, 15);
@@ -136,10 +136,10 @@
             descripcionCategoria.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             descripcionCategoria.BorderStyle = BorderStyle.FixedSingle;
             descripcionCategoria.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            descripcionCategoria.Location = new Point(24, 264);
+            descripcionCategoria.Location = new Point(24, 271);
             descripcionCategoria.Margin = new Padding(4, 3, 4, 3);
             descripcionCategoria.Name = "descripcionCategoria";
-            descripcionCategoria.Size = new Size(463, 26);
+            descripcionCategoria.Size = new Size(356, 26);
             descripcionCategoria.TabIndex = 7;
             descripcionCategoria.Tag = "";
             // 
@@ -147,7 +147,7 @@
             // 
             botonGuardar.Anchor = AnchorStyles.Right;
             botonGuardar.BackColor = SystemColors.ButtonShadow;
-            botonGuardar.Location = new Point(330, 324);
+            botonGuardar.Location = new Point(223, 331);
             botonGuardar.Margin = new Padding(4, 3, 4, 3);
             botonGuardar.Name = "botonGuardar";
             botonGuardar.Size = new Size(159, 47);
@@ -160,7 +160,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(519, 427);
+            ClientSize = new Size(412, 441);
             Controls.Add(botonGuardar);
             Controls.Add(descripcionLbl);
             Controls.Add(descripcionCategoria);
