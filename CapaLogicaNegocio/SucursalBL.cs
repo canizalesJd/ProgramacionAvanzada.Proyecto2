@@ -46,7 +46,7 @@ namespace CapaLogicaNegocio
         }
 
         // Metodo para obtener todas las sucursales
-        public Sucursal[] ObtenerSucursales()
+        public Sucursal[] Consultar()
         {
             return SucursalDAL.Consultar();
         }        

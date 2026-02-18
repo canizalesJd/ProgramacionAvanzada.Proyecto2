@@ -161,7 +161,7 @@
             comboVendedorEncargado.Size = new Size(407, 23);
             comboVendedorEncargado.Sorted = true;
             comboVendedorEncargado.TabIndex = 17;
-            comboVendedorEncargado.Text = "Seleccione un vendedor encargado";
+            comboVendedorEncargado.Text = " Seleccione un vendedor encargado";
             // 
             // vendedorEncargadoLbl
             // 
@@ -211,6 +211,7 @@
             botonGuardar.TabIndex = 21;
             botonGuardar.Text = "Registrar";
             botonGuardar.UseVisualStyleBackColor = false;
+            botonGuardar.Click += botonGuardar_Click;
             // 
             // footer
             // 

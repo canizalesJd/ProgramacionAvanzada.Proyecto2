@@ -19,6 +19,10 @@ namespace CapaEntidades
         public DateTime FechaIngreso { get; set; }
         public string Telefono { get; set; }
 
+        // Display member para mostrar la identificacion + nombre completo en los ComboBox
+        public string DisplayMember => $"{Identificacion} - {NombreCompleto}";
+
+
         public Vendedor(int idVendedor, string identificacion, string nombreCompleto, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono)
         {
             IdVendedor = idVendedor;
@@ -31,7 +35,7 @@ namespace CapaEntidades
 
         public override string ToString()
         {
-            return $"Vendedor: {NombreCompleto} - ID: {Identificacion} - Tel: {Telefono}";
+            return $"{Identificacion} - {NombreCompleto}";
         }
     }
 }

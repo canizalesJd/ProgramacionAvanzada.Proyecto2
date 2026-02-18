@@ -47,11 +47,12 @@ namespace CapaPresentacion
 
                 comboVendedorEncargado.Enabled = false;
                 botonGuardar.Enabled = false;
+                this.Close(); // Cerrar el formulario si no hay vendedores disponibles
                 return;
             }
 
             comboVendedorEncargado.DataSource = vendedores;
-            comboVendedorEncargado.DisplayMember = "NombreCompleto";
+            comboVendedorEncargado.DisplayMember = "DisplayMember";
             comboVendedorEncargado.ValueMember = "IdVendedor";
             comboVendedorEncargado.SelectedIndex = -1;
 

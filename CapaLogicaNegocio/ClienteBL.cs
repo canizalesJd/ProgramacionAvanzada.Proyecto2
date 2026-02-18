@@ -50,7 +50,7 @@ namespace CapaLogicaNegocio
         }
 
         // Metodo para obtener todos los clientes
-        public Cliente[] ObtenerClientes()
+        public Cliente[] Consultar()
         {
             return ClienteDAL.Consultar();
         }

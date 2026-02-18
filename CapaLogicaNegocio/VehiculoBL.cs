@@ -53,7 +53,7 @@ namespace CapaLogicaNegocio
         }
 
         // Metodo para obtener todos los vehículos
-        public Vehiculo[] ObtenerVehiculos()
+        public Vehiculo[] Consultar()
         {
             return VehiculoDAL.Consultar();
         }

@@ -62,6 +62,7 @@
             registrarVehículoToolStripMenuItem.Name = "registrarVehículoToolStripMenuItem";
             registrarVehículoToolStripMenuItem.Size = new Size(113, 20);
             registrarVehículoToolStripMenuItem.Text = "Registrar Vehículo";
+            registrarVehículoToolStripMenuItem.Click += registrarVehículoToolStripMenuItem_Click;
             // 
             // registrarVendedorToolStripMenuItem
             // 

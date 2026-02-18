@@ -42,5 +42,11 @@ namespace CapaPresentacion
             FrmRegistrarVendedor frm = new FrmRegistrarVendedor();
             frm.Show();
         }
+
+        private void registrarVehículoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmRegistrarVehiculo frm = new FrmRegistrarVehiculo();
+            frm.Show();
+        }
     }
 }

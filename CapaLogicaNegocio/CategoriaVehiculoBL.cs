@@ -46,7 +46,7 @@ namespace CapaLogicaNegocio
         }
 
         // Metodo para obtener todas las categorías de vehículo
-        public CategoriaVehiculo[] ObtenerCategorias()
+        public CategoriaVehiculo[] Consultar()
         {
             return CategoriaVehiculoDAL.Consultar();
         }
