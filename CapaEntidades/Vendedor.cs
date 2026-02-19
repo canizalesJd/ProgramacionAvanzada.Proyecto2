@@ -8,14 +8,13 @@
  */
 
 
+using System;
+
 namespace CapaEntidades
 {
-    public class Vendedor
+    public class Vendedor : Persona
     {
         public int IdVendedor { get; private set; }
-        public string Identificacion { get; set; }
-        public string NombreCompleto { get; set; }
-        public DateTime FechaNacimiento { get; set; }
         public DateTime FechaIngreso { get; set; }
         public string Telefono { get; set; }
 
@@ -23,19 +22,19 @@ namespace CapaEntidades
         public string DisplayMember => $"{Identificacion} - {NombreCompleto}";
 
 
-        public Vendedor(int idVendedor, string identificacion, string nombreCompleto, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono)
+        public Vendedor(int idVendedor, string identificacion,
+            string nombreCompleto, DateTime fechaNacimiento,
+            DateTime fechaIngreso, string telefono)
+            : base(identificacion, nombreCompleto, fechaNacimiento)
         {
             IdVendedor = idVendedor;
-            Identificacion = identificacion;
-            NombreCompleto = nombreCompleto;
-            FechaNacimiento = fechaNacimiento;
             FechaIngreso = fechaIngreso;
             Telefono = telefono;
         }
 
         public override string ToString()
         {
-            return $"{Identificacion} - {NombreCompleto}";
+            return $"Vendedor: {NombreCompleto} - ID: {Identificacion} - Fecha Ingreso: {FechaIngreso}";
         }
     }
 }

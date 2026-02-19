@@ -10,21 +10,18 @@
 
 namespace CapaEntidades
 {
-    public class Cliente
+    public class Cliente : Persona
     {
         public int IdCliente { get; private set; }
-        public string Identificacion { get; set; }
-        public string NombreCompleto { get; set; }
-        public DateTime FechaNacimiento { get; set; }
         public DateTime FechaRegistro { get; set; }
         public bool Activo { get; set; }
 
-        public Cliente(int idCliente, string identificacion, string nombreCompleto, DateTime fechaNacimiento, DateTime fechaRegistro, bool activo)
+        public Cliente(int idCliente, string identificacion,
+            string nombreCompleto, DateTime fechaNacimiento,
+            DateTime fechaRegistro, bool activo)
+            : base(identificacion, nombreCompleto, fechaNacimiento)
         {
             IdCliente = idCliente;
-            Identificacion = identificacion;
-            NombreCompleto = nombreCompleto;
-            FechaNacimiento = fechaNacimiento;
             FechaRegistro = fechaRegistro;
             Activo = activo;
         }
