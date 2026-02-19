@@ -31,6 +31,7 @@
             titulo = new Label();
             footer = new Label();
             dgvConsulta = new DataGridView();
+            botonActualizar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvConsulta).BeginInit();
             SuspendLayout();
             // 
@@ -39,7 +40,7 @@
             titulo.Anchor = AnchorStyles.Top;
             titulo.AutoSize = true;
             titulo.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titulo.Location = new Point(252, 17);
+            titulo.Location = new Point(12, 14);
             titulo.Margin = new Padding(4, 0, 4, 0);
             titulo.Name = "titulo";
             titulo.Size = new Size(253, 29);
@@ -72,11 +73,25 @@
             dgvConsulta.Size = new Size(720, 351);
             dgvConsulta.TabIndex = 8;
             // 
+            // botonActualizar
+            // 
+            botonActualizar.AutoSize = true;
+            botonActualizar.BackColor = SystemColors.Info;
+            botonActualizar.Location = new Point(600, 11);
+            botonActualizar.Margin = new Padding(4, 3, 4, 3);
+            botonActualizar.Name = "botonActualizar";
+            botonActualizar.Size = new Size(128, 37);
+            botonActualizar.TabIndex = 17;
+            botonActualizar.Text = "Actualizar";
+            botonActualizar.UseVisualStyleBackColor = false;
+            botonActualizar.Click += botonActualizar_Click;
+            // 
             // FrmConsultarVendedores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(746, 443);
+            Controls.Add(botonActualizar);
             Controls.Add(dgvConsulta);
             Controls.Add(footer);
             Controls.Add(titulo);
@@ -93,5 +108,6 @@
         private Label titulo;
         private Label footer;
         private DataGridView dgvConsulta;
+        private Button botonActualizar;
     }
 }

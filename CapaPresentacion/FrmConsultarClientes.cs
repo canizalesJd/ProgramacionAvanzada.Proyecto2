@@ -103,7 +103,8 @@ namespace CapaPresentacion
             dgvConsulta.Columns.Add(columnaNueva);
 
             // Agregar filas al DataGridView
-            if (clientes != null && clientes.Count() > 0) {
+            if (clientes != null && clientes.Count() > 0)
+            {
                 foreach (var cliente in clientes)
                 {
                     if (cliente != null)
@@ -118,6 +119,11 @@ namespace CapaPresentacion
                     }
                 }
             }
+        }
+
+        private void botonActualizar_Click(object sender, EventArgs e)
+        {
+            cargarClientes();
         }
     }
 }

@@ -37,6 +37,7 @@
             descripcionLbl = new Label();
             descripcionCategoria = new TextBox();
             botonGuardar = new Button();
+            botonCancelar = new Button();
             SuspendLayout();
             // 
             // titulo
@@ -146,21 +147,35 @@
             // botonGuardar
             // 
             botonGuardar.Anchor = AnchorStyles.Right;
-            botonGuardar.BackColor = SystemColors.ButtonShadow;
-            botonGuardar.Location = new Point(223, 331);
+            botonGuardar.BackColor = SystemColors.ActiveCaption;
+            botonGuardar.Location = new Point(163, 321);
             botonGuardar.Margin = new Padding(4, 3, 4, 3);
             botonGuardar.Name = "botonGuardar";
-            botonGuardar.Size = new Size(159, 47);
+            botonGuardar.Size = new Size(219, 47);
             botonGuardar.TabIndex = 9;
             botonGuardar.Text = "Registrar";
             botonGuardar.UseVisualStyleBackColor = false;
             botonGuardar.Click += botonGuardar_Click;
             // 
-            // FrmRegistrarCategoriaVehiculo
+            // botonCancelar
+            // 
+            botonCancelar.Anchor = AnchorStyles.Right;
+            botonCancelar.BackColor = Color.IndianRed;
+            botonCancelar.Location = new Point(24, 321);
+            botonCancelar.Margin = new Padding(4, 3, 4, 3);
+            botonCancelar.Name = "botonCancelar";
+            botonCancelar.Size = new Size(131, 47);
+            botonCancelar.TabIndex = 10;
+            botonCancelar.Text = "Cancelar";
+            botonCancelar.UseVisualStyleBackColor = false;
+            botonCancelar.Click += botonCancelar_Click;
+            // 
+            // FrmCategoria
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(412, 441);
+            Controls.Add(botonCancelar);
             Controls.Add(botonGuardar);
             Controls.Add(descripcionLbl);
             Controls.Add(descripcionCategoria);
@@ -171,7 +186,7 @@
             Controls.Add(footer);
             Controls.Add(titulo);
             Margin = new Padding(4, 3, 4, 3);
-            Name = "FrmRegistrarCategoriaVehiculo";
+            Name = "FrmCategoria";
             Text = "AutoMarket - Registrar Categoría de Vehículo";
             ResumeLayout(false);
             PerformLayout();
@@ -189,5 +204,6 @@
         private System.Windows.Forms.Label descripcionLbl;
         private System.Windows.Forms.TextBox descripcionCategoria;
         private System.Windows.Forms.Button botonGuardar;
+        private Button botonCancelar;
     }
 }

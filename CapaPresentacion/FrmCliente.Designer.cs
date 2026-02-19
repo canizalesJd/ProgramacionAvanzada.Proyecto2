@@ -43,6 +43,7 @@
             footer = new Label();
             clienteActivoLbL = new Label();
             clienteActivo = new CheckBox();
+            botonCancelar = new Button();
             SuspendLayout();
             // 
             // titulo
@@ -50,7 +51,7 @@
             titulo.Anchor = AnchorStyles.Top;
             titulo.AutoSize = true;
             titulo.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titulo.Location = new Point(192, 21);
+            titulo.Location = new Point(189, 21);
             titulo.Margin = new Padding(4, 0, 4, 0);
             titulo.Name = "titulo";
             titulo.Size = new Size(193, 29);
@@ -180,11 +181,11 @@
             // botonGuardar
             // 
             botonGuardar.AutoSize = true;
-            botonGuardar.BackColor = SystemColors.ButtonShadow;
-            botonGuardar.Location = new Point(387, 243);
+            botonGuardar.BackColor = SystemColors.ActiveCaption;
+            botonGuardar.Location = new Point(293, 276);
             botonGuardar.Margin = new Padding(4, 3, 4, 3);
             botonGuardar.Name = "botonGuardar";
-            botonGuardar.Size = new Size(159, 47);
+            botonGuardar.Size = new Size(253, 47);
             botonGuardar.TabIndex = 15;
             botonGuardar.Text = "Registrar";
             botonGuardar.UseVisualStyleBackColor = false;
@@ -195,7 +196,7 @@
             footer.Anchor = AnchorStyles.Bottom;
             footer.AutoSize = true;
             footer.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            footer.Location = new Point(157, 310);
+            footer.Location = new Point(154, 360);
             footer.Margin = new Padding(4, 0, 4, 0);
             footer.Name = "footer";
             footer.Size = new Size(273, 15);
@@ -227,11 +228,25 @@
             clienteActivo.TabIndex = 18;
             clienteActivo.UseVisualStyleBackColor = true;
             // 
-            // FrmRegistrarCliente
+            // botonCancelar
+            // 
+            botonCancelar.Anchor = AnchorStyles.Right;
+            botonCancelar.BackColor = Color.IndianRed;
+            botonCancelar.Location = new Point(13, 276);
+            botonCancelar.Margin = new Padding(4, 3, 4, 3);
+            botonCancelar.Name = "botonCancelar";
+            botonCancelar.Size = new Size(116, 47);
+            botonCancelar.TabIndex = 19;
+            botonCancelar.Text = "Cancelar";
+            botonCancelar.UseVisualStyleBackColor = false;
+            botonCancelar.Click += botonCancelar_Click;
+            // 
+            // FrmCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(567, 334);
+            ClientSize = new Size(561, 384);
+            Controls.Add(botonCancelar);
             Controls.Add(clienteActivo);
             Controls.Add(clienteActivoLbL);
             Controls.Add(footer);
@@ -247,7 +262,7 @@
             Controls.Add(idLbl);
             Controls.Add(idCliente);
             Controls.Add(titulo);
-            Name = "FrmRegistrarCliente";
+            Name = "FrmCliente";
             Text = "AutoMarket - Registrar Cliente";
             ResumeLayout(false);
             PerformLayout();
@@ -270,5 +285,6 @@
         private Label footer;
         private Label clienteActivoLbL;
         private CheckBox clienteActivo;
+        private Button botonCancelar;
     }
 }

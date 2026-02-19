@@ -113,5 +113,10 @@ namespace CapaPresentacion
             }
 
         }
+
+        private void botonActualizar_Click(object sender, EventArgs e)
+        {
+            cargarVendedores();
+        }
     }
 }

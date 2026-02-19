@@ -43,6 +43,7 @@
             sucursalActivaLbL = new Label();
             botonGuardar = new Button();
             footer = new Label();
+            botonCancelar = new Button();
             SuspendLayout();
             // 
             // idLbl
@@ -203,11 +204,11 @@
             // botonGuardar
             // 
             botonGuardar.AutoSize = true;
-            botonGuardar.BackColor = SystemColors.ButtonShadow;
-            botonGuardar.Location = new Point(396, 293);
+            botonGuardar.BackColor = SystemColors.ActiveCaption;
+            botonGuardar.Location = new Point(381, 295);
             botonGuardar.Margin = new Padding(4, 3, 4, 3);
             botonGuardar.Name = "botonGuardar";
-            botonGuardar.Size = new Size(159, 47);
+            botonGuardar.Size = new Size(177, 47);
             botonGuardar.TabIndex = 21;
             botonGuardar.Text = "Registrar";
             botonGuardar.UseVisualStyleBackColor = false;
@@ -226,11 +227,25 @@
             footer.Text = "AutoMarket ©  - Todos los Derechos Resevados  ";
             footer.TextAlign = ContentAlignment.BottomCenter;
             // 
-            // FrmRegistrarSucursal
+            // botonCancelar
+            // 
+            botonCancelar.Anchor = AnchorStyles.Right;
+            botonCancelar.BackColor = Color.IndianRed;
+            botonCancelar.Location = new Point(24, 295);
+            botonCancelar.Margin = new Padding(4, 3, 4, 3);
+            botonCancelar.Name = "botonCancelar";
+            botonCancelar.Size = new Size(123, 47);
+            botonCancelar.TabIndex = 23;
+            botonCancelar.Text = "Cancelar";
+            botonCancelar.UseVisualStyleBackColor = false;
+            botonCancelar.Click += botonCancelar_Click;
+            // 
+            // FrmSucursal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(584, 413);
+            Controls.Add(botonCancelar);
             Controls.Add(footer);
             Controls.Add(botonGuardar);
             Controls.Add(sucursalActiva);
@@ -246,9 +261,9 @@
             Controls.Add(titulo);
             Controls.Add(idLbl);
             Controls.Add(idSucursal);
-            Name = "FrmRegistrarSucursal";
+            Name = "FrmSucursal";
             Text = "AutoMarket - Registrar Sucursal";
-            Load += this.FrmRegistrarSucursal_Load;
+            Load += FrmRegistrarSucursal_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -270,5 +285,6 @@
         private Label sucursalActivaLbL;
         private Button botonGuardar;
         private Label footer;
+        private Button botonCancelar;
     }
 }

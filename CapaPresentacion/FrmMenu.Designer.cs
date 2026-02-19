@@ -40,9 +40,9 @@
             clienteToolStripMenuItem = new ToolStripMenuItem();
             sucursalesToolStripMenuItem = new ToolStripMenuItem();
             vehiculosToolStripMenuItem = new ToolStripMenuItem();
+            vendedoresToolStripMenuItem = new ToolStripMenuItem();
             footer = new Label();
             titulo = new Label();
-            vendedoresToolStripMenuItem = new ToolStripMenuItem();
             menuPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,7 +52,7 @@
             menuPrincipal.Location = new Point(0, 0);
             menuPrincipal.Name = "menuPrincipal";
             menuPrincipal.Padding = new Padding(7, 2, 0, 2);
-            menuPrincipal.Size = new Size(539, 24);
+            menuPrincipal.Size = new Size(568, 24);
             menuPrincipal.TabIndex = 0;
             menuPrincipal.Text = "menuStrip1";
             // 
@@ -133,12 +133,19 @@
             vehiculosToolStripMenuItem.Text = "Vehículos";
             vehiculosToolStripMenuItem.Click += vehiculosToolStripMenuItem_Click;
             // 
+            // vendedoresToolStripMenuItem
+            // 
+            vendedoresToolStripMenuItem.Name = "vendedoresToolStripMenuItem";
+            vendedoresToolStripMenuItem.Size = new Size(192, 22);
+            vendedoresToolStripMenuItem.Text = "Vendedores";
+            vendedoresToolStripMenuItem.Click += vendedoresToolStripMenuItem_Click;
+            // 
             // footer
             // 
             footer.Anchor = AnchorStyles.Bottom;
             footer.AutoSize = true;
             footer.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            footer.Location = new Point(143, 339);
+            footer.Location = new Point(158, 349);
             footer.Margin = new Padding(4, 0, 4, 0);
             footer.Name = "footer";
             footer.Size = new Size(273, 15);
@@ -151,7 +158,7 @@
             titulo.Anchor = AnchorStyles.None;
             titulo.AutoSize = true;
             titulo.Font = new Font("Microsoft Sans Serif", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titulo.Location = new Point(173, 164);
+            titulo.Location = new Point(188, 169);
             titulo.Margin = new Padding(4, 0, 4, 0);
             titulo.Name = "titulo";
             titulo.Size = new Size(209, 42);
@@ -159,18 +166,11 @@
             titulo.Text = "AutoMarket";
             titulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // vendedoresToolStripMenuItem
-            // 
-            vendedoresToolStripMenuItem.Name = "vendedoresToolStripMenuItem";
-            vendedoresToolStripMenuItem.Size = new Size(192, 22);
-            vendedoresToolStripMenuItem.Text = "Vendedores";
-            vendedoresToolStripMenuItem.Click += vendedoresToolStripMenuItem_Click;
-            // 
             // FrmMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(539, 363);
+            ClientSize = new Size(568, 373);
             Controls.Add(titulo);
             Controls.Add(footer);
             Controls.Add(menuPrincipal);

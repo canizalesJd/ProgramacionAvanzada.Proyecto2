@@ -53,5 +53,10 @@ namespace CapaPresentacion
                 }
             }
         }
+
+        private void botonCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -150,5 +150,10 @@ namespace CapaPresentacion
             // Referencias
             // [1] - Formato de moneda: https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings#code-example
         }
+
+        private void botonActualizar_Click(object sender, EventArgs e)
+        {
+            cargarVehiculos();
+        }
     }
 }

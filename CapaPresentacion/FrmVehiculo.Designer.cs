@@ -45,6 +45,7 @@
             estadoLbl = new Label();
             botonGuardar = new Button();
             footer = new Label();
+            botonCancelar = new Button();
             SuspendLayout();
             // 
             // titulo
@@ -224,11 +225,11 @@
             // botonGuardar
             // 
             botonGuardar.AutoSize = true;
-            botonGuardar.BackColor = SystemColors.ButtonShadow;
-            botonGuardar.Location = new Point(393, 197);
+            botonGuardar.BackColor = SystemColors.ActiveCaption;
+            botonGuardar.Location = new Point(370, 268);
             botonGuardar.Margin = new Padding(4, 3, 4, 3);
             botonGuardar.Name = "botonGuardar";
-            botonGuardar.Size = new Size(159, 47);
+            botonGuardar.Size = new Size(182, 47);
             botonGuardar.TabIndex = 26;
             botonGuardar.Text = "Registrar";
             botonGuardar.UseVisualStyleBackColor = false;
@@ -239,7 +240,7 @@
             footer.Anchor = AnchorStyles.Bottom;
             footer.AutoSize = true;
             footer.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            footer.Location = new Point(160, 300);
+            footer.Location = new Point(160, 335);
             footer.Margin = new Padding(4, 0, 4, 0);
             footer.Name = "footer";
             footer.Size = new Size(273, 15);
@@ -247,11 +248,25 @@
             footer.Text = "AutoMarket ©  - Todos los Derechos Resevados  ";
             footer.TextAlign = ContentAlignment.BottomCenter;
             // 
-            // FrmRegistrarVehiculo
+            // botonCancelar
+            // 
+            botonCancelar.Anchor = AnchorStyles.Right;
+            botonCancelar.BackColor = Color.IndianRed;
+            botonCancelar.Location = new Point(17, 268);
+            botonCancelar.Margin = new Padding(4, 3, 4, 3);
+            botonCancelar.Name = "botonCancelar";
+            botonCancelar.Size = new Size(131, 47);
+            botonCancelar.TabIndex = 28;
+            botonCancelar.Text = "Cancelar";
+            botonCancelar.UseVisualStyleBackColor = false;
+            botonCancelar.Click += botonCancelar_Click;
+            // 
+            // FrmVehiculo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(573, 324);
+            ClientSize = new Size(573, 359);
+            Controls.Add(botonCancelar);
             Controls.Add(footer);
             Controls.Add(botonGuardar);
             Controls.Add(comboEstadoVehiculo);
@@ -269,7 +284,7 @@
             Controls.Add(idLbl);
             Controls.Add(idVehiculo);
             Controls.Add(titulo);
-            Name = "FrmRegistrarVehiculo";
+            Name = "FrmVehiculo";
             Text = "AutoMarket -  Registrar Vehículo";
             Load += FrmRegistrarVehiculo_Load;
             ResumeLayout(false);
@@ -295,5 +310,6 @@
         private Label estadoLbl;
         private Button botonGuardar;
         private Label footer;
+        private Button botonCancelar;
     }
 }

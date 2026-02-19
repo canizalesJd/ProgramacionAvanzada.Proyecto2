@@ -43,6 +43,7 @@
             fechaIngresoLbl = new Label();
             botonGuardar = new Button();
             footer = new Label();
+            botonCancelar = new Button();
             SuspendLayout();
             // 
             // titulo
@@ -204,11 +205,11 @@
             // botonGuardar
             // 
             botonGuardar.AutoSize = true;
-            botonGuardar.BackColor = SystemColors.ButtonShadow;
-            botonGuardar.Location = new Point(278, 277);
+            botonGuardar.BackColor = SystemColors.ActiveCaption;
+            botonGuardar.Location = new Point(187, 277);
             botonGuardar.Margin = new Padding(4, 3, 4, 3);
             botonGuardar.Name = "botonGuardar";
-            botonGuardar.Size = new Size(159, 47);
+            botonGuardar.Size = new Size(250, 47);
             botonGuardar.TabIndex = 23;
             botonGuardar.Text = "Registrar";
             botonGuardar.UseVisualStyleBackColor = false;
@@ -227,11 +228,25 @@
             footer.Text = "AutoMarket ©  - Todos los Derechos Resevados  ";
             footer.TextAlign = ContentAlignment.BottomCenter;
             // 
-            // FrmRegistrarVendedor
+            // botonCancelar
+            // 
+            botonCancelar.Anchor = AnchorStyles.Right;
+            botonCancelar.BackColor = Color.IndianRed;
+            botonCancelar.Location = new Point(16, 277);
+            botonCancelar.Margin = new Padding(4, 3, 4, 3);
+            botonCancelar.Name = "botonCancelar";
+            botonCancelar.Size = new Size(163, 47);
+            botonCancelar.TabIndex = 25;
+            botonCancelar.Text = "Cancelar";
+            botonCancelar.UseVisualStyleBackColor = false;
+            botonCancelar.Click += botonCancelar_Click;
+            // 
+            // FrmVendedor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(458, 377);
+            Controls.Add(botonCancelar);
             Controls.Add(footer);
             Controls.Add(botonGuardar);
             Controls.Add(fechaIngresoVendedor);
@@ -247,7 +262,7 @@
             Controls.Add(idLbl);
             Controls.Add(idVendedor);
             Controls.Add(titulo);
-            Name = "FrmRegistrarVendedor";
+            Name = "FrmVendedor";
             Text = "AutoMarket  - Registrar Vendedor";
             ResumeLayout(false);
             PerformLayout();
@@ -270,5 +285,6 @@
         private Label fechaIngresoLbl;
         private Button botonGuardar;
         private Label footer;
+        private Button botonCancelar;
     }
 }
