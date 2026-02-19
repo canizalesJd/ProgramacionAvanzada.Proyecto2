@@ -1,6 +1,6 @@
 ﻿namespace CapaPresentacion
 {
-    partial class FrmMenuPrincipal
+    partial class FrmMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -37,6 +37,7 @@
             consultarInformaciónToolStripMenuItem = new ToolStripMenuItem();
             footer = new Label();
             titulo = new Label();
+            categoriaToolStripMenuItem = new ToolStripMenuItem();
             menuPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -87,6 +88,7 @@
             // 
             // consultarInformaciónToolStripMenuItem
             // 
+            consultarInformaciónToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriaToolStripMenuItem });
             consultarInformaciónToolStripMenuItem.Name = "consultarInformaciónToolStripMenuItem";
             consultarInformaciónToolStripMenuItem.Size = new Size(138, 20);
             consultarInformaciónToolStripMenuItem.Text = "Consultar Información";
@@ -116,6 +118,13 @@
             titulo.TabIndex = 2;
             titulo.Text = "AutoMarket";
             titulo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // categoriaToolStripMenuItem
+            // 
+            categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
+            categoriaToolStripMenuItem.Size = new Size(192, 22);
+            categoriaToolStripMenuItem.Text = " Categoría de Vehículo";
+            categoriaToolStripMenuItem.Click += categoriaToolStripMenuItem_Click;
             // 
             // FrmMenuPrincipal
             // 
@@ -147,6 +156,7 @@
         private System.Windows.Forms.ToolStripMenuItem consultarInformaciónToolStripMenuItem;
         private System.Windows.Forms.Label footer;
         private System.Windows.Forms.Label titulo;
+        private ToolStripMenuItem categoriaToolStripMenuItem;
     }
 }
 

@@ -12,15 +12,15 @@ using CapaEntidades;
 
 namespace CapaPresentacion
 {
-    public partial class FrmRegistrarSucursal : Form
+    public partial class FrmSucursal : Form
     {
-        private readonly SucursalBL sucursalBL;
-        private readonly VendedorBL vendedorBL;
-        public FrmRegistrarSucursal()
+        private readonly SucursalLN sucursalLN;
+        private readonly VendedorLN vendedorLN;
+        public FrmSucursal()
         {
             InitializeComponent();
-            sucursalBL = new SucursalBL();
-            vendedorBL = new VendedorBL();
+            sucursalLN = new SucursalLN();
+            vendedorLN = new VendedorLN();
         }
 
         private void limpiarCampos()
@@ -34,7 +34,7 @@ namespace CapaPresentacion
 
         private void CargarVendedores()
         {
-            Vendedor[] vendedores = vendedorBL.Consultar();
+            Vendedor[] vendedores = vendedorLN.Consultar();
 
             if (vendedores.Length == 0)
             {
@@ -84,7 +84,7 @@ namespace CapaPresentacion
                     return;
                 }
 
-                sucursalBL.RegistrarSucursal(id, nombre, direccion, telefono, vendedorEncargado);
+                sucursalLN.RegistrarSucursal(id, nombre, direccion, telefono, vendedorEncargado);
                 MessageBox.Show("Sucursal registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpiarCampos();
             }

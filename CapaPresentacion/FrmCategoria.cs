@@ -9,24 +9,22 @@
  * Fecha: Febrero 2026
  */
 
+
 namespace CapaPresentacion
 {
-    public partial class FrmRegistrarCliente : Form
+    public partial class FrmCategoria : Form
     {
-        private readonly ClienteBL clienteBL;
-        public FrmRegistrarCliente()
+        private readonly CategoriaVehiculoLN categoriaVehiculoLN;
+        public FrmCategoria()
         {
             InitializeComponent();
-            clienteBL = new ClienteBL();
+            categoriaVehiculoLN = new CategoriaVehiculoLN();
         }
-
         private void LimpiarCampos()
         {
-            idCliente.Clear();
-            identificacionCliente.Clear();
-            nombreCompleto.Clear();
-            fechaNacimiento.Value = DateTime.Now;
-            fechaRegistro.Value = DateTime.Now;
+            idCategoria.Clear();
+            nombreCategoria.Clear();
+            descripcionCategoria.Clear();
         }
 
         private void botonGuardar_Click(object sender, EventArgs e)
@@ -34,20 +32,18 @@ namespace CapaPresentacion
             {
                 try
                 {
-                    if (!int.TryParse(idCliente.Text, out int id))
+                    if (!int.TryParse(idCategoria.Text, out int id))
                     {
                         MessageBox.Show("El ID debe ser numérico.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    string identificacion = identificacionCliente.Text.Trim();
-                    string nombre = nombreCompleto.Text.Trim();
-                    DateTime fechaNacimientoCliente = fechaNacimiento.Value;
-                    DateTime fechaRegistroCliente = fechaRegistro.Value;
+                    string nombre = nombreCategoria.Text.Trim();
+                    string descripcion = descripcionCategoria.Text.Trim();
 
-                    clienteBL.RegistrarCliente(id, identificacion, nombre, fechaNacimientoCliente, fechaRegistroCliente);
+                    categoriaVehiculoLN.RegistrarCategoria(id, nombre, descripcion);
 
-                    MessageBox.Show("Cliente registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Categoría registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     LimpiarCampos();
                 }

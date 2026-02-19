@@ -12,7 +12,7 @@ using CapaEntidades;
 
 namespace CapaLogicaNegocio
 {
-    public class SucursalBL
+    public class SucursalLN
     {
         // Metodo para registrar una sucursal nueva
         public void RegistrarSucursal(int idSucursal, string nombre, string direccion, string telefono, Vendedor vendedorEncargado)
@@ -20,7 +20,7 @@ namespace CapaLogicaNegocio
             if (idSucursal <= 0) {
                 throw new ArgumentException("El ID de la sucursal debe ser un número positivo.");
             }
-            if (SucursalDAL.SucursalExiste(idSucursal)) {
+            if (SucursalAD.SucursalExiste(idSucursal)) {
                 throw new InvalidOperationException($"La sucursal con ID {idSucursal} ya existe.");
             }
             if (string.IsNullOrWhiteSpace(nombre)) {
@@ -42,13 +42,13 @@ namespace CapaLogicaNegocio
                 telefono,
                 vendedorEncargado
             );
-            SucursalDAL.Guardar(nuevaSucursal);
+            SucursalAD.Guardar(nuevaSucursal);
         }
 
         // Metodo para obtener todas las sucursales
         public Sucursal[] Consultar()
         {
-            return SucursalDAL.Consultar();
+            return SucursalAD.Consultar();
         }        
     }
 }

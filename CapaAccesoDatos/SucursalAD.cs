@@ -11,7 +11,7 @@
 
 namespace CapaAccesoDatos
 {
-    public class SucursalDAL
+    public class SucursalAD
     {
         private static Sucursal[] sucursales = new Sucursal[5];
         private static int contador;

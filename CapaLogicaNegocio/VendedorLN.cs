@@ -3,12 +3,12 @@ using CapaEntidades;
 
 namespace CapaLogicaNegocio
 {
-    public class VendedorBL
+    public class VendedorLN
     {
         // Metodo para registrar un nuevo vendedor
         public void RegistrarVendedor(int idVendedor, string identificacion, string nombreCompleto, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono)
         {
-            if (VendedorDAL.VendedorExiste(idVendedor))
+            if (VendedorAD.VendedorExiste(idVendedor))
             {
                 throw new ArgumentException($"Ya existe un vendedor con el ID {idVendedor}, ingrese un ID distinto.");
             }
@@ -46,13 +46,13 @@ namespace CapaLogicaNegocio
                 telefono
             );
 
-            VendedorDAL.Guardar(nuevo);
+            VendedorAD.Guardar(nuevo);
         }
 
         // Metodo para obtener todos los vendedores
         public Vendedor[] Consultar()
         {
-            return VendedorDAL.Consultar();
+            return VendedorAD.Consultar();
         }
     }
 }

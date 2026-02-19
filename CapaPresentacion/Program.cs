@@ -15,7 +15,7 @@ namespace CapaPresentacion
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new FrmMenuPrincipal());
+            Application.Run(new FrmMenu());
         }
     }
 }

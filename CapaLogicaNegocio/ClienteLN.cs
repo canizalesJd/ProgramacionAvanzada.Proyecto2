@@ -12,7 +12,7 @@ using CapaEntidades;
 
 namespace CapaLogicaNegocio
 {
-    public class ClienteBL
+    public class ClienteLN
     {
         // Metodo para registrar un cliente nuevo
         public void RegistrarCliente(int idCliente, string identificacion, string nombreCompleto, DateTime fechaNacimiento, DateTime fechaRegistro, bool activo = true)
@@ -46,13 +46,13 @@ namespace CapaLogicaNegocio
                 fechaRegistro, 
                 activo
             );
-            ClienteDAL.Guardar(nuevoCliente);
+            ClienteAD.Guardar(nuevoCliente);
         }
 
         // Metodo para obtener todos los clientes
         public Cliente[] Consultar()
         {
-            return ClienteDAL.Consultar();
+            return ClienteAD.Consultar();
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-
-/*
+﻿/*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
  * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
@@ -12,40 +9,46 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class FrmMenuPrincipal : Form
+    public partial class FrmMenu : Form
     {
-        public FrmMenuPrincipal()
+        public FrmMenu()
         {
             InitializeComponent();
         }
 
         private void registrarCategoriaVehiculoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmRegistrarCategoriaVehiculo frm = new FrmRegistrarCategoriaVehiculo();
+            FrmCategoria frm = new FrmCategoria();
             frm.Show();
         }
 
         private void registrarClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmRegistrarCliente frm = new FrmRegistrarCliente();
+            FrmCliente frm = new FrmCliente();
             frm.Show();
         }
 
         private void registrarSucursalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmRegistrarSucursal frm = new FrmRegistrarSucursal();
+            FrmSucursal frm = new FrmSucursal();
             frm.Show();
         }
 
         private void registrarVendedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmRegistrarVendedor frm = new FrmRegistrarVendedor();
+            FrmVendedor frm = new FrmVendedor();
             frm.Show();
         }
 
         private void registrarVehículoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmRegistrarVehiculo frm = new FrmRegistrarVehiculo();
+            FrmVehiculo frm = new FrmVehiculo();
+            frm.Show();
+        }
+
+        private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmConsultarCategoria frm = new FrmConsultarCategoria();
             frm.Show();
         }
     }

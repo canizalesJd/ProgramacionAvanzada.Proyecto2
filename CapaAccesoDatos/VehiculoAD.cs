@@ -11,7 +11,7 @@
 
 namespace CapaAccesoDatos
 {
-    public class VehiculoDAL
+    public class VehiculoAD
     {
         private static Vehiculo[] vehiculos = new Vehiculo[50];
         private static int contador;

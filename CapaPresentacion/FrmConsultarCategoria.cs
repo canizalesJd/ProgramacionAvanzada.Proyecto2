@@ -3,12 +3,12 @@ using CapaLogicaNegocio;
 
 namespace CapaPresentacion
 {
-    public partial class FrmConsultarCategoriaVehiculo : Form
+    public partial class FrmConsultarCategoria : Form
     {
-        private readonly CategoriaVehiculoBL categoriaVehiculoBL;
-        public FrmConsultarCategoriaVehiculo()
+        private readonly CategoriaVehiculoLN categoriaVehiculoLN;
+        public FrmConsultarCategoria()
         {
-            categoriaVehiculoBL = new CategoriaVehiculoBL();
+            categoriaVehiculoLN = new CategoriaVehiculoLN();
             InitializeComponent();
         }
 
@@ -19,7 +19,7 @@ namespace CapaPresentacion
 
         private void cargarCategorias()
         {
-            CategoriaVehiculo[] categorias = categoriaVehiculoBL.Consultar();
+            CategoriaVehiculo[] categorias = categoriaVehiculoLN.Consultar();
             if (categorias.Length == 0)
             {
                 MessageBox.Show(

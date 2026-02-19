@@ -13,16 +13,16 @@ using CapaEntidades;
 
 namespace CapaPresentacion
 {
-    public partial class FrmRegistrarVehiculo : Form
+    public partial class FrmVehiculo : Form
     {
-        private readonly VehiculoBL vehiculoBL;
-        private readonly CategoriaVehiculoBL categoriaVehiculoBL;
+        private readonly VehiculoLN vehiculoLN;
+        private readonly CategoriaVehiculoLN categoriaVehiculoLN;
 
-        public FrmRegistrarVehiculo()
+        public FrmVehiculo()
         {
             InitializeComponent();
-            vehiculoBL = new VehiculoBL();
-            categoriaVehiculoBL = new CategoriaVehiculoBL();
+            vehiculoLN = new VehiculoLN();
+            categoriaVehiculoLN = new CategoriaVehiculoLN();
         }
 
         private void limpiarCampos()
@@ -38,7 +38,7 @@ namespace CapaPresentacion
 
         private void CargarCategorias()
         {
-            CategoriaVehiculo[] categorias = categoriaVehiculoBL.Consultar();
+            CategoriaVehiculo[] categorias = categoriaVehiculoLN.Consultar();
             if (categorias.Length == 0)
             {
                 MessageBox.Show(
@@ -102,7 +102,7 @@ namespace CapaPresentacion
 
                 char estado = comboEstadoVehiculo.SelectedItem.ToString() == "Nuevo" ? 'N' : 'U';
 
-                vehiculoBL.RegistrarVehiculo(
+                vehiculoLN.RegistrarVehiculo(
                     id,
                     marca,
                     modelo,

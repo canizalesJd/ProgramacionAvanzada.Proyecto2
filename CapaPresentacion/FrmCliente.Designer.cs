@@ -1,6 +1,6 @@
 ﻿namespace CapaPresentacion
 {
-    partial class FrmRegistrarCliente
+    partial class FrmCliente
     {
         /// <summary>
         /// Required designer variable.

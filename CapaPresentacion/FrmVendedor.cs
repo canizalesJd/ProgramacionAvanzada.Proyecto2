@@ -11,13 +11,13 @@
 
 namespace CapaPresentacion
 {
-    public partial class FrmRegistrarVendedor : Form
+    public partial class FrmVendedor : Form
     {
-        private readonly VendedorBL vendedorBL;
-        public FrmRegistrarVendedor()
+        private readonly VendedorLN vendedorLN;
+        public FrmVendedor()
         {
             InitializeComponent();
-            vendedorBL = new VendedorBL();
+            vendedorLN = new VendedorLN();
         }
 
         private void LimpiarCampos()
@@ -44,7 +44,7 @@ namespace CapaPresentacion
                 DateTime fechaNacimiento = fechaNacimientoVendedor.Value;
                 DateTime fechaIngreso = fechaIngresoVendedor.Value;
                 string telefono = telefonoVendedor.Text.Trim();
-                vendedorBL.RegistrarVendedor(id, identificacion, nombre, fechaNacimiento, fechaIngreso, telefono);
+                vendedorLN.RegistrarVendedor(id, identificacion, nombre, fechaNacimiento, fechaIngreso, telefono);
                 MessageBox.Show("Vendedor registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCampos();
             }

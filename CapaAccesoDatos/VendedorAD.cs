@@ -11,7 +11,7 @@
 
 namespace CapaAccesoDatos
 {
-    public class VendedorDAL
+    public class VendedorAD
     {
         private static Vendedor[] vendedores = new Vendedor[20];
         private static int contador = 0;

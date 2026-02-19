@@ -12,7 +12,7 @@ using CapaEntidades;
 
 namespace CapaLogicaNegocio
 {
-    public class VehiculoBL
+    public class VehiculoLN
     {
         // Metodo para registrar un nuevo vehículo
         public void RegistrarVehiculo(int idVehiculo, string marca, string modelo, int anio, decimal precio, CategoriaVehiculo categoria, char estado)
@@ -20,7 +20,7 @@ namespace CapaLogicaNegocio
             if (idVehiculo <= 0) {
                 throw new ArgumentException("El ID del vehículo debe ser un número positivo.");
             }
-            if (VehiculoDAL.VehiculoExiste(idVehiculo)) {
+            if (VehiculoAD.VehiculoExiste(idVehiculo)) {
                 throw new InvalidOperationException($"El vehículo con ID {idVehiculo} ya existe.");
             }
             if (string.IsNullOrWhiteSpace(marca)) {
@@ -49,13 +49,13 @@ namespace CapaLogicaNegocio
                 categoria, 
                 estado
             );
-            VehiculoDAL.Guardar(nuevoVehiculo);
+            VehiculoAD.Guardar(nuevoVehiculo);
         }
 
         // Metodo para obtener todos los vehículos
         public Vehiculo[] Consultar()
         {
-            return VehiculoDAL.Consultar();
+            return VehiculoAD.Consultar();
         }
     }
 }

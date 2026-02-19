@@ -12,12 +12,12 @@ using CapaEntidades;
 
 namespace CapaLogicaNegocio
 {
-    public class CategoriaVehiculoBL
+    public class CategoriaVehiculoLN
     {
         // Metodo para registrar una nueva categoría de vehículo
         public void RegistrarCategoria(int id, string nombre, string descripcion)
         {
-            if (CategoriaVehiculoDAL.CategoriaExiste(id))
+            if (CategoriaVehiculoAD.CategoriaExiste(id))
             {
                 throw new ArgumentException($"Ya existe una categoría con el ID {id}, ingrese un ID distinto.");
             }
@@ -42,13 +42,13 @@ namespace CapaLogicaNegocio
                 nombre, 
                 descripcion
             );
-            CategoriaVehiculoDAL.Guardar(nueva);
+            CategoriaVehiculoAD.Guardar(nueva);
         }
 
         // Metodo para obtener todas las categorías de vehículo
         public CategoriaVehiculo[] Consultar()
         {
-            return CategoriaVehiculoDAL.Consultar();
+            return CategoriaVehiculoAD.Consultar();
         }
     }
 }

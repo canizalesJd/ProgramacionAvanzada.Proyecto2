@@ -11,7 +11,7 @@
 
 namespace CapaAccesoDatos
 {
-    public class ClienteDAL
+    public class ClienteAD
     {
         private static Cliente[] clientes = new Cliente[5];
         private static int contador;
