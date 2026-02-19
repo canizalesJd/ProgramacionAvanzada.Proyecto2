@@ -13,10 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="FrmMenuPrincipal.cs">
+    <Compile Update="FrmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmRegistrarCategoriaVehiculo.cs">
+    <Compile Update="FrmCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

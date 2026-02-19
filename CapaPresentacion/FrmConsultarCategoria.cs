@@ -12,7 +12,7 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
-        private void FrmConsultarCategoriaVehiculo_Load(object sender, EventArgs e)
+        private void FrmConsultarCategoria_Load(object sender, EventArgs e)
         {
             cargarCategorias();
         }
@@ -32,9 +32,9 @@ namespace CapaPresentacion
                 return;
             }
 
-            dataGridView.DataSource = null; // Limpiar cualquier fuente de datos previa
-            dataGridView.Rows.Clear(); // Limpiar filas existentes
-            dataGridView.Columns.Clear(); // Limpiar columnas existentes
+            dgvConsulta.DataSource = null; // Limpiar cualquier fuente de datos previa
+            dgvConsulta.Rows.Clear(); // Limpiar filas existentes
+            dgvConsulta.Columns.Clear(); // Limpiar columnas existentes
 
             DataGridViewColumn columnaNueva = new DataGridViewColumn();
             DataGridViewCell celdaNueva = new DataGridViewTextBoxCell();
@@ -45,7 +45,7 @@ namespace CapaPresentacion
             columnaNueva.Visible = true;
             columnaNueva.Width = 100;
 
-            dataGridView.Columns.Add(columnaNueva);
+            dgvConsulta.Columns.Add(columnaNueva);
 
             columnaNueva = new DataGridViewColumn();
             celdaNueva = new DataGridViewTextBoxCell();
@@ -56,7 +56,7 @@ namespace CapaPresentacion
             columnaNueva.Visible = true;
             columnaNueva.Width = 150;
 
-            dataGridView.Columns.Add(columnaNueva);
+            dgvConsulta.Columns.Add(columnaNueva);
 
             columnaNueva = new DataGridViewColumn();
             celdaNueva = new DataGridViewTextBoxCell();
@@ -67,24 +67,22 @@ namespace CapaPresentacion
             columnaNueva.Visible = true;
             columnaNueva.Width = 250;
 
-            dataGridView.Columns.Add(columnaNueva);
+            dgvConsulta.Columns.Add(columnaNueva);
 
-            if (categorias != null && categorias.Length > 0)
+            if (categorias != null && categorias.Count() > 0)
             {
                 foreach (var categoria in categorias)
                 {
                     if (categoria != null)
                     {
-                        DataGridViewRow row = (DataGridViewRow)dataGridView.Rows[0].Clone();
-                        row.Cells[0].Value = categoria.IdCategoria;
-                        row.Cells[1].Value = categoria.Nombre;
-                        row.Cells[2].Value = categoria.Descripcion;
-                        dataGridView.Rows.Add(row);
+                        dgvConsulta.Rows.Add(
+                            categoria.IdCategoria,
+                            categoria.Nombre,
+                            categoria.Descripcion
+                        );
                     }
                 }
             }
-
-
         }
             
     }
