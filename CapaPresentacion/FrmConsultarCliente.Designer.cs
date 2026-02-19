@@ -1,6 +1,6 @@
 ﻿namespace CapaPresentacion
 {
-    partial class FrmConsultarCategoria
+    partial class FrmConsultarCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             titulo = new Label();
             dgvConsulta = new DataGridView();
-            categoriaVehiculoBLBindingSource = new BindingSource(components);
             footer = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvConsulta).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)categoriaVehiculoBLBindingSource).BeginInit();
             SuspendLayout();
             // 
             // titulo
@@ -42,11 +39,11 @@
             titulo.Anchor = AnchorStyles.Top;
             titulo.AutoSize = true;
             titulo.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titulo.Location = new Point(94, 18);
+            titulo.Location = new Point(216, 15);
             titulo.Margin = new Padding(4, 0, 4, 0);
             titulo.Name = "titulo";
             titulo.Size = new Size(359, 29);
-            titulo.TabIndex = 1;
+            titulo.TabIndex = 2;
             titulo.Text = "Consultar Categoría de Vehículo";
             // 
             // dgvConsulta
@@ -54,18 +51,12 @@
             dgvConsulta.AllowUserToAddRows = false;
             dgvConsulta.AllowUserToDeleteRows = false;
             dgvConsulta.AllowUserToOrderColumns = true;
-            dgvConsulta.AutoGenerateColumns = false;
             dgvConsulta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvConsulta.DataSource = categoriaVehiculoBLBindingSource;
-            dgvConsulta.Location = new Point(12, 68);
+            dgvConsulta.Location = new Point(12, 62);
             dgvConsulta.Name = "dgvConsulta";
             dgvConsulta.ReadOnly = true;
-            dgvConsulta.Size = new Size(521, 343);
-            dgvConsulta.TabIndex = 2;
-            // 
-            // categoriaVehiculoBLBindingSource
-            // 
-            categoriaVehiculoBLBindingSource.DataSource = typeof(CapaLogicaNegocio.CategoriaVehiculoLN);
+            dgvConsulta.Size = new Size(748, 372);
+            dgvConsulta.TabIndex = 3;
             // 
             // footer
             // 
@@ -73,27 +64,26 @@
             footer.AutoSize = true;
             footer.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             footer.ImageAlign = ContentAlignment.BottomCenter;
-            footer.Location = new Point(142, 426);
+            footer.Location = new Point(255, 451);
             footer.Margin = new Padding(4, 0, 4, 0);
             footer.Name = "footer";
             footer.Size = new Size(273, 15);
-            footer.TabIndex = 3;
+            footer.TabIndex = 4;
             footer.Text = "AutoMarket ©  - Todos los Derechos Resevados  ";
             footer.TextAlign = ContentAlignment.BottomCenter;
             // 
-            // FrmConsultarCategoria
+            // FrmConsultarCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(545, 450);
+            ClientSize = new Size(772, 475);
             Controls.Add(footer);
             Controls.Add(dgvConsulta);
             Controls.Add(titulo);
-            Name = "FrmConsultarCategoria";
-            Text = "AutoMarket - Consultar Categoría de Vehículo";
-            Load += FrmConsultarCategoria_Load;
+            Name = "FrmConsultarCliente";
+            Text = "AutoMarket - Consultar Cliente";
+            Load += FrmConsultarCliente_Load;
             ((System.ComponentModel.ISupportInitialize)dgvConsulta).EndInit();
-            ((System.ComponentModel.ISupportInitialize)categoriaVehiculoBLBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -102,7 +92,6 @@
 
         private Label titulo;
         private DataGridView dgvConsulta;
-        private BindingSource categoriaVehiculoBLBindingSource;
         private Label footer;
     }
 }

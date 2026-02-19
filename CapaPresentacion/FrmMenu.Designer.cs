@@ -35,9 +35,10 @@
             registrarSucursalToolStripMenuItem = new ToolStripMenuItem();
             registrarClienteToolStripMenuItem = new ToolStripMenuItem();
             consultarInformaciónToolStripMenuItem = new ToolStripMenuItem();
+            categoriaToolStripMenuItem = new ToolStripMenuItem();
             footer = new Label();
             titulo = new Label();
-            categoriaToolStripMenuItem = new ToolStripMenuItem();
+            clienteToolStripMenuItem = new ToolStripMenuItem();
             menuPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -88,10 +89,17 @@
             // 
             // consultarInformaciónToolStripMenuItem
             // 
-            consultarInformaciónToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriaToolStripMenuItem });
+            consultarInformaciónToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriaToolStripMenuItem, clienteToolStripMenuItem });
             consultarInformaciónToolStripMenuItem.Name = "consultarInformaciónToolStripMenuItem";
             consultarInformaciónToolStripMenuItem.Size = new Size(138, 20);
             consultarInformaciónToolStripMenuItem.Text = "Consultar Información";
+            // 
+            // categoriaToolStripMenuItem
+            // 
+            categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
+            categoriaToolStripMenuItem.Size = new Size(192, 22);
+            categoriaToolStripMenuItem.Text = " Categoría de Vehículo";
+            categoriaToolStripMenuItem.Click += categoriaToolStripMenuItem_Click;
             // 
             // footer
             // 
@@ -119,14 +127,14 @@
             titulo.Text = "AutoMarket";
             titulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // categoriaToolStripMenuItem
+            // clienteToolStripMenuItem
             // 
-            categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
-            categoriaToolStripMenuItem.Size = new Size(192, 22);
-            categoriaToolStripMenuItem.Text = " Categoría de Vehículo";
-            categoriaToolStripMenuItem.Click += categoriaToolStripMenuItem_Click;
+            clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
+            clienteToolStripMenuItem.Size = new Size(192, 22);
+            clienteToolStripMenuItem.Text = "Cliente";
+            clienteToolStripMenuItem.Click += clienteToolStripMenuItem_Click;
             // 
-            // FrmMenuPrincipal
+            // FrmMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -136,7 +144,7 @@
             Controls.Add(menuPrincipal);
             MainMenuStrip = menuPrincipal;
             Margin = new Padding(4, 3, 4, 3);
-            Name = "FrmMenuPrincipal";
+            Name = "FrmMenu";
             Text = "AutoMarket - Inicio";
             menuPrincipal.ResumeLayout(false);
             menuPrincipal.PerformLayout();
@@ -157,6 +165,7 @@
         private System.Windows.Forms.Label footer;
         private System.Windows.Forms.Label titulo;
         private ToolStripMenuItem categoriaToolStripMenuItem;
+        private ToolStripMenuItem clienteToolStripMenuItem;
     }
 }
 

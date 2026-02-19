@@ -1,6 +1,15 @@
 ﻿using CapaEntidades;
 using CapaLogicaNegocio;
 
+/*
+ * Universidad Estatal a Distancia (UNED)
+ * Cuatrimestre: I Cuatrimestre 2026
+ * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Descripción: Programa de gestión de ventas de vehículos
+ * Estudiante: Jose David Canizales Azocar
+ * Fecha: Febrero 2026
+ */
+
 namespace CapaPresentacion
 {
     public partial class FrmConsultarCategoria : Form
@@ -36,39 +45,42 @@ namespace CapaPresentacion
             dgvConsulta.Rows.Clear(); // Limpiar filas existentes
             dgvConsulta.Columns.Clear(); // Limpiar columnas existentes
 
+            // Configurar las columnas del DataGridView
             DataGridViewColumn columnaNueva = new DataGridViewColumn();
             DataGridViewCell celdaNueva = new DataGridViewTextBoxCell();
 
+            // Configuración de la columna ID
             columnaNueva.CellTemplate = celdaNueva;
             columnaNueva.Name = "ID";
             columnaNueva.HeaderText = "ID Categoría";
             columnaNueva.Visible = true;
             columnaNueva.Width = 100;
-
+            // Agregar la columna al DataGridView
             dgvConsulta.Columns.Add(columnaNueva);
 
+            // Configuración de la columna Nombre
             columnaNueva = new DataGridViewColumn();
             celdaNueva = new DataGridViewTextBoxCell();
-
             columnaNueva.CellTemplate = celdaNueva;
             columnaNueva.Name = "Nombre";
             columnaNueva.HeaderText = "Nombre";
             columnaNueva.Visible = true;
             columnaNueva.Width = 150;
-
+            // Agregar la columna al DataGridView
             dgvConsulta.Columns.Add(columnaNueva);
 
+            // Configuración de la columna Descripción
             columnaNueva = new DataGridViewColumn();
             celdaNueva = new DataGridViewTextBoxCell();
-
             columnaNueva.CellTemplate = celdaNueva;
             columnaNueva.Name = "Descripcion";
             columnaNueva.HeaderText = "Descripción";
             columnaNueva.Visible = true;
             columnaNueva.Width = 250;
-
+            // Agregar la columna al DataGridView
             dgvConsulta.Columns.Add(columnaNueva);
 
+            // Agregar las filas con los datos de las categorías
             if (categorias != null && categorias.Count() > 0)
             {
                 foreach (var categoria in categorias)

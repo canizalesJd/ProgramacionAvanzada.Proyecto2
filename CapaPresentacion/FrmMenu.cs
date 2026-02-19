@@ -51,5 +51,11 @@ namespace CapaPresentacion
             FrmConsultarCategoria frm = new FrmConsultarCategoria();
             frm.Show();
         }
+
+        private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmConsultarCliente frm = new FrmConsultarCliente();
+            frm.Show();
+        }
     }
 }
