@@ -1,5 +1,4 @@
-﻿using CapaAccesoDatos;
-using CapaEntidades;
+﻿using CapaEntidades;
 using CapaLogicaNegocio;
 
 /*
@@ -7,7 +6,7 @@ using CapaLogicaNegocio;
  * Cuatrimestre: I Cuatrimestre 2026
  * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
- * Estudiante: Jose David Canizales Azocar
+ * Estudiante: José David Cañizales Azocar
  * Fecha: Febrero 2026
  */
 
