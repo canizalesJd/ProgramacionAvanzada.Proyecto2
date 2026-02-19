@@ -71,5 +71,11 @@ namespace CapaPresentacion
             FrmConsultarVehiculos frmConsultarVehiculos = new FrmConsultarVehiculos();
             frmConsultarVehiculos.Show();
         }
+
+        private void vendedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmConsultarVendedores frmConsultarVendedores = new FrmConsultarVendedores();
+            frmConsultarVendedores.Show();
+        }
     }
 }
