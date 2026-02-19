@@ -11,12 +11,20 @@
 
 namespace CapaAccesoDatos
 {
+    /// <summary>
+    /// Clase de acceso a datos para la entidad Sucursal. Esta clase proporciona métodos para almacenar y consultar sucursales en un arreglo estático.
+    /// </summary>
     public class SucursalAD
     {
+        // Arreglo estático para almacenar sucursales, con una capacidad máxima de 5 registros
         private static Sucursal[] sucursales = new Sucursal[5];
         private static int contador;
 
-        // Método para agregar una nueva sucursal
+        /// <summary>
+        /// Metodo para guardar una nueva sucursal en el arreglo. Antes de agregar una nueva sucursal, se realizan las siguientes validaciones:
+        /// </summary>
+        /// <param name="sucursal"></param>
+        /// <exception cref="InvalidOperationException"></exception>
         public static void Guardar(Sucursal sucursal)
         {
             // Evitar duplicados: Antes de agregar una nueva sucursal, verificar que no exista una sucursal con el mismo ID. Si ya existe, lanzar una excepción indicando que la sucursal ya existe.
@@ -33,7 +41,12 @@ namespace CapaAccesoDatos
             contador++;
         }
 
-        // Método para verificar si una sucursal existe por su ID
+        /// <summary>
+        /// Método para verificar si una sucursal existe por su ID
+        /// </summary>
+        /// <param name="idSucursal">
+        /// ID de la sucursal que se desea verificar.
+        /// </param>
         public static bool SucursalExiste(int idSucursal)
         {
             for (int i = 0; i < contador; i++)
@@ -46,7 +59,9 @@ namespace CapaAccesoDatos
             return false;
         }
 
-        // Método para obtener todas las sucursales
+        /// <summary>
+        /// Método para obtener todas las sucursales. Retorna solo las sucursales agregadas.
+        /// </summary>
         public static Sucursal[] Consultar()
         {
             Sucursal[] resultado = new Sucursal[contador];

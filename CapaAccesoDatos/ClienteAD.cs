@@ -11,12 +11,22 @@
 
 namespace CapaAccesoDatos
 {
+    /// <summary>
+    /// Clase de acceso a datos para la entidad Cliente. Esta clase proporciona métodos para almacenar y consultar clientes en un arreglo estático.
+    /// </summary>
     public class ClienteAD
     {
+        // Arreglo estático para almacenar clientes, con una capacidad máxima de 5 registros
         private static Cliente[] clientes = new Cliente[5];
         private static int contador;
- 
-        // Método para agregar un nuevo cliente
+
+        /// <summary>
+        /// Método para guardar un nuevo cliente en el arreglo. Antes de agregar un nuevo cliente, se realizan las siguientes validaciones:
+        /// </summary>
+        /// <param name="cliente">
+        /// El objeto Cliente que se desea guardar.
+        /// </param>
+        /// <exception cref="InvalidOperationException"></exception>
         public static void Guardar(Cliente cliente)
         {
             /* Evitar duplicados: 
@@ -42,7 +52,12 @@ namespace CapaAccesoDatos
             clientes[contador] = cliente;
             contador++;
         }
-        // Método para verificar si un cliente existe por su ID
+
+        /// <summary>
+        /// Método para verificar si un cliente existe por su ID
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
         private static bool IdClienteExiste(int idCliente)
         {
             for (int i = 0; i < contador; i++)
@@ -55,7 +70,11 @@ namespace CapaAccesoDatos
             return false;
         }
 
-        // Metodo para verificar si un cliente existe por su identificación
+        /// <summary>
+        ///  Método para verificar si un cliente existe por su identificación.
+        /// </summary>
+        /// <param name="identificacion"></param>
+        /// <returns></returns>
         public static bool IdentificacionExiste(string identificacion)
         {
             for (int i = 0; i < contador; i++)
@@ -68,9 +87,12 @@ namespace CapaAccesoDatos
             return false;
         }
 
-        // Método para obtener todos los clientes
+        /// <summary>
+        ///  Método para consultar todos los clientes almacenados en el arreglo.
+        /// </summary>
         public static Cliente[] Consultar()
         {
+            // Crear un nuevo arreglo para almacenar solo los clientes que han sido agregados, utilizando el contador para determinar cuántos clientes se han almacenado.
             Cliente[] resultado = new Cliente[contador];
             Array.Copy(clientes, resultado, contador);
             return resultado;

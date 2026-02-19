@@ -12,11 +12,27 @@ using CapaEntidades;
 
 namespace CapaLogicaNegocio
 {
+    /// <summary>
+    /// Clase de lógica de negocio para la entidad CategoriaVehiculo. Proporciona métodos para registrar nuevas categorías de vehículo y consultar las categorías existentes.
+    /// </summary>
     public class CategoriaVehiculoLN
     {
-        // Metodo para registrar una nueva categoría de vehículo
+        /// <summary>
+        /// Metodo para registrar una nueva categoría de vehículo.
+        /// </summary>
+        /// <param name="id">
+        /// El ID de la categoría, debe ser un número positivo y único.
+        /// </param>
+        /// <param name="nombre">
+        /// El nombre de la categoría, no puede estar vacío.
+        /// </param>
+        /// <param name="descripcion">
+        /// La descripción de la categoría, no puede estar vacía.
+        /// </param>
+        /// <exception cref="ArgumentException"></exception>
         public void RegistrarCategoria(int id, string nombre, string descripcion)
         {
+            // Validaciones de entrada
             if (CategoriaVehiculoAD.CategoriaExiste(id))
             {
                 throw new ArgumentException($"Ya existe una categoría con el ID {id}, ingrese un ID distinto.");
@@ -37,6 +53,7 @@ namespace CapaLogicaNegocio
                 throw new ArgumentException("La descripción de la categoría no puede estar vacía.");
             }
 
+            // Crear una nueva instancia de CategoriaVehiculo y guardarla usando la capa de acceso a datos
             CategoriaVehiculo nueva = new CategoriaVehiculo(
                 id, 
                 nombre, 
@@ -45,7 +62,9 @@ namespace CapaLogicaNegocio
             CategoriaVehiculoAD.Guardar(nueva);
         }
 
-        // Metodo para obtener todas las categorías de vehículo
+        /// <summary>
+        /// Metodo para consultar todas las categorías de vehículo registradas. Devuelve un arreglo de objetos CategoriaVehiculo.
+        /// </summary>
         public CategoriaVehiculo[] Consultar()
         {
             return CategoriaVehiculoAD.Consultar();

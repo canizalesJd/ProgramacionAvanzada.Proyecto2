@@ -11,17 +11,19 @@
 
 namespace CapaAccesoDatos
 {
+    /// <summary>
+    /// Clase de acceso a datos para la entidad Vendedor. Esta clase proporciona métodos para almacenar y consultar vendedores en un arreglo estático.
+    /// </summary>
     public class VendedorAD
     {
+        // Arreglo estático para almacenar vendedores, con una capacidad máxima de 20 registros
         private static Vendedor[] vendedores = new Vendedor[20];
         private static int contador = 0;
 
-        // Método para agregar un nuevo vendedor
-
-        // <summary>
-        // Método que agrega un nuevo vendedor al arreglo de vendedores. Antes de agregar, verifica que no exista un vendedor con el mismo ID y que no se haya alcanzado la capacidad máxima de 20 registros. Si se intenta agregar un vendedor con un ID duplicado o si se ha alcanzado la capacidad máxima, se lanzará una excepción indicando el error correspondiente.
-        // </summary>
-        // <param name="vendedor">El objeto Vendedor que se desea agregar.</param>
+        /// <summary>
+        /// Método que agrega un nuevo vendedor al arreglo de vendedores.
+        /// </summary>
+        /// <param name="vendedor">El objeto Vendedor que se desea agregar.</param>
         public static void Guardar(Vendedor vendedor)
         {
             // Evitar duplicados: Antes de agregar un nuevo vendedor, verificar que no exista un vendedor con el mismo ID. Si ya existe, lanzar una excepción indicando que el vendedor ya existe.
