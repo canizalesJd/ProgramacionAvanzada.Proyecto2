@@ -41,6 +41,7 @@
             sucursalesToolStripMenuItem = new ToolStripMenuItem();
             footer = new Label();
             titulo = new Label();
+            vehiculosToolStripMenuItem = new ToolStripMenuItem();
             menuPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             menuPrincipal.Location = new Point(0, 0);
             menuPrincipal.Name = "menuPrincipal";
             menuPrincipal.Padding = new Padding(7, 2, 0, 2);
-            menuPrincipal.Size = new Size(954, 24);
+            menuPrincipal.Size = new Size(539, 24);
             menuPrincipal.TabIndex = 0;
             menuPrincipal.Text = "menuStrip1";
             // 
@@ -98,7 +99,7 @@
             // 
             // consultarInformacionToolStripMenuItem
             // 
-            consultarInformacionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriaToolStripMenuItem, clienteToolStripMenuItem, sucursalesToolStripMenuItem });
+            consultarInformacionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriaToolStripMenuItem, clienteToolStripMenuItem, sucursalesToolStripMenuItem, vehiculosToolStripMenuItem });
             consultarInformacionToolStripMenuItem.Name = "consultarInformacionToolStripMenuItem";
             consultarInformacionToolStripMenuItem.Size = new Size(138, 20);
             consultarInformacionToolStripMenuItem.Text = "Consultar Información";
@@ -129,7 +130,7 @@
             footer.Anchor = AnchorStyles.Bottom;
             footer.AutoSize = true;
             footer.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            footer.Location = new Point(351, 495);
+            footer.Location = new Point(143, 339);
             footer.Margin = new Padding(4, 0, 4, 0);
             footer.Name = "footer";
             footer.Size = new Size(273, 15);
@@ -142,7 +143,7 @@
             titulo.Anchor = AnchorStyles.None;
             titulo.AutoSize = true;
             titulo.Font = new Font("Microsoft Sans Serif", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titulo.Location = new Point(381, 242);
+            titulo.Location = new Point(173, 164);
             titulo.Margin = new Padding(4, 0, 4, 0);
             titulo.Name = "titulo";
             titulo.Size = new Size(209, 42);
@@ -150,11 +151,18 @@
             titulo.Text = "AutoMarket";
             titulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // vehiculosToolStripMenuItem
+            // 
+            vehiculosToolStripMenuItem.Name = "vehiculosToolStripMenuItem";
+            vehiculosToolStripMenuItem.Size = new Size(192, 22);
+            vehiculosToolStripMenuItem.Text = "Vehículos";
+            vehiculosToolStripMenuItem.Click += vehiculosToolStripMenuItem_Click;
+            // 
             // FrmMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(954, 519);
+            ClientSize = new Size(539, 363);
             Controls.Add(titulo);
             Controls.Add(footer);
             Controls.Add(menuPrincipal);
@@ -184,6 +192,7 @@
         private ToolStripMenuItem sucursalToolStripMenuItem;
         private ToolStripMenuItem registroClienteToolStripMenuItem;
         private ToolStripMenuItem sucursalesToolStripMenuItem;
+        private ToolStripMenuItem vehiculosToolStripMenuItem;
     }
 }
 
