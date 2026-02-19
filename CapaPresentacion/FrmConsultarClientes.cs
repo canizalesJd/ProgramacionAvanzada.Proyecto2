@@ -12,10 +12,10 @@ using CapaLogicaNegocio;
 
 namespace CapaPresentacion
 {
-    public partial class FrmConsultarCliente : Form
+    public partial class FrmConsultarClientes : Form
     {
         private readonly ClienteLN clienteLN;
-        public FrmConsultarCliente()
+        public FrmConsultarClientes()
         {
             clienteLN = new ClienteLN();
             InitializeComponent();

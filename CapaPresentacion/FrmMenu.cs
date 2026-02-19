@@ -16,46 +16,54 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
-        private void registrarCategoriaVehiculoToolStripMenuItem_Click(object sender, EventArgs e)
+        // Registros
+        private void categoriaDeVehiculoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCategoria frm = new FrmCategoria();
-            frm.Show();
+            FrmCategoria frmCategoria = new FrmCategoria();
+            frmCategoria.Show();
         }
 
-        private void registrarClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void vehiculoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCliente frm = new FrmCliente();
-            frm.Show();
+            FrmVehiculo frmVehiculo = new FrmVehiculo();
+            frmVehiculo.Show();
         }
 
-        private void registrarSucursalToolStripMenuItem_Click(object sender, EventArgs e)
+        private void vendedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmSucursal frm = new FrmSucursal();
-            frm.Show();
+            FrmVendedor frmVendedor = new FrmVendedor();
+            frmVendedor.Show();
         }
 
-        private void registrarVendedorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void sucursalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmVendedor frm = new FrmVendedor();
-            frm.Show();
+            FrmSucursal frmSucursal = new FrmSucursal();
+            frmSucursal.Show();
         }
 
-        private void registrarVehículoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void registroClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmVehiculo frm = new FrmVehiculo();
-            frm.Show();
+            FrmCliente frmCliente = new FrmCliente();
+            frmCliente.Show();
         }
 
+        // Consultas de Información
         private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmConsultarCategoria frm = new FrmConsultarCategoria();
-            frm.Show();
+            FrmConsultarCategorias frmConsultarCategorias = new FrmConsultarCategorias();
+            frmConsultarCategorias.Show();
         }
 
         private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmConsultarCliente frm = new FrmConsultarCliente();
-            frm.Show();
+            FrmConsultarClientes frmConsultarClientes = new FrmConsultarClientes();
+            frmConsultarClientes.Show();
+        }
+
+        private void sucursalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmConsultarSucursales frmConsultarSucursales = new FrmConsultarSucursales();
+            frmConsultarSucursales.Show();
         }
     }
 }

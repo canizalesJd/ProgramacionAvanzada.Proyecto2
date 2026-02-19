@@ -29,70 +29,79 @@
         private void InitializeComponent()
         {
             menuPrincipal = new MenuStrip();
-            registrarCategoriaVehiculoToolStripMenuItem = new ToolStripMenuItem();
-            registrarVehículoToolStripMenuItem = new ToolStripMenuItem();
-            registrarVendedorToolStripMenuItem = new ToolStripMenuItem();
-            registrarSucursalToolStripMenuItem = new ToolStripMenuItem();
-            registrarClienteToolStripMenuItem = new ToolStripMenuItem();
-            consultarInformaciónToolStripMenuItem = new ToolStripMenuItem();
+            registrosToolStripMenuItem = new ToolStripMenuItem();
+            categoriaDeVehiculoToolStripMenuItem = new ToolStripMenuItem();
+            vehiculoToolStripMenuItem = new ToolStripMenuItem();
+            vendedorToolStripMenuItem = new ToolStripMenuItem();
+            sucursalToolStripMenuItem = new ToolStripMenuItem();
+            registroClienteToolStripMenuItem = new ToolStripMenuItem();
+            consultarInformacionToolStripMenuItem = new ToolStripMenuItem();
             categoriaToolStripMenuItem = new ToolStripMenuItem();
+            clienteToolStripMenuItem = new ToolStripMenuItem();
+            sucursalesToolStripMenuItem = new ToolStripMenuItem();
             footer = new Label();
             titulo = new Label();
-            clienteToolStripMenuItem = new ToolStripMenuItem();
             menuPrincipal.SuspendLayout();
             SuspendLayout();
             // 
             // menuPrincipal
             // 
-            menuPrincipal.Items.AddRange(new ToolStripItem[] { registrarCategoriaVehiculoToolStripMenuItem, registrarVehículoToolStripMenuItem, registrarVendedorToolStripMenuItem, registrarSucursalToolStripMenuItem, registrarClienteToolStripMenuItem, consultarInformaciónToolStripMenuItem });
+            menuPrincipal.Items.AddRange(new ToolStripItem[] { registrosToolStripMenuItem, consultarInformacionToolStripMenuItem });
             menuPrincipal.Location = new Point(0, 0);
             menuPrincipal.Name = "menuPrincipal";
             menuPrincipal.Padding = new Padding(7, 2, 0, 2);
-            menuPrincipal.Size = new Size(933, 24);
+            menuPrincipal.Size = new Size(954, 24);
             menuPrincipal.TabIndex = 0;
             menuPrincipal.Text = "menuStrip1";
             // 
-            // registrarCategoriaVehiculoToolStripMenuItem
+            // registrosToolStripMenuItem
             // 
-            registrarCategoriaVehiculoToolStripMenuItem.Name = "registrarCategoriaVehiculoToolStripMenuItem";
-            registrarCategoriaVehiculoToolStripMenuItem.Size = new Size(183, 20);
-            registrarCategoriaVehiculoToolStripMenuItem.Text = "Registrar Categoría de Vehículo";
-            registrarCategoriaVehiculoToolStripMenuItem.Click += registrarCategoriaVehiculoToolStripMenuItem_Click;
+            registrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriaDeVehiculoToolStripMenuItem, vehiculoToolStripMenuItem, vendedorToolStripMenuItem, sucursalToolStripMenuItem, registroClienteToolStripMenuItem });
+            registrosToolStripMenuItem.Name = "registrosToolStripMenuItem";
+            registrosToolStripMenuItem.Size = new Size(67, 20);
+            registrosToolStripMenuItem.Text = "Registros";
             // 
-            // registrarVehículoToolStripMenuItem
+            // categoriaDeVehiculoToolStripMenuItem
             // 
-            registrarVehículoToolStripMenuItem.Name = "registrarVehículoToolStripMenuItem";
-            registrarVehículoToolStripMenuItem.Size = new Size(113, 20);
-            registrarVehículoToolStripMenuItem.Text = "Registrar Vehículo";
-            registrarVehículoToolStripMenuItem.Click += registrarVehículoToolStripMenuItem_Click;
+            categoriaDeVehiculoToolStripMenuItem.Name = "categoriaDeVehiculoToolStripMenuItem";
+            categoriaDeVehiculoToolStripMenuItem.Size = new Size(189, 22);
+            categoriaDeVehiculoToolStripMenuItem.Text = "Categoría de Vehículo";
+            categoriaDeVehiculoToolStripMenuItem.Click += categoriaDeVehiculoToolStripMenuItem_Click;
             // 
-            // registrarVendedorToolStripMenuItem
+            // vehiculoToolStripMenuItem
             // 
-            registrarVendedorToolStripMenuItem.Name = "registrarVendedorToolStripMenuItem";
-            registrarVendedorToolStripMenuItem.Size = new Size(118, 20);
-            registrarVendedorToolStripMenuItem.Text = "Registrar Vendedor";
-            registrarVendedorToolStripMenuItem.Click += registrarVendedorToolStripMenuItem_Click;
+            vehiculoToolStripMenuItem.Name = "vehiculoToolStripMenuItem";
+            vehiculoToolStripMenuItem.Size = new Size(189, 22);
+            vehiculoToolStripMenuItem.Text = "Vehículo";
+            vehiculoToolStripMenuItem.Click += vehiculoToolStripMenuItem_Click;
             // 
-            // registrarSucursalToolStripMenuItem
+            // vendedorToolStripMenuItem
             // 
-            registrarSucursalToolStripMenuItem.Name = "registrarSucursalToolStripMenuItem";
-            registrarSucursalToolStripMenuItem.Size = new Size(112, 20);
-            registrarSucursalToolStripMenuItem.Text = "Registrar Sucursal";
-            registrarSucursalToolStripMenuItem.Click += registrarSucursalToolStripMenuItem_Click;
+            vendedorToolStripMenuItem.Name = "vendedorToolStripMenuItem";
+            vendedorToolStripMenuItem.Size = new Size(189, 22);
+            vendedorToolStripMenuItem.Text = "Vendedor";
+            vendedorToolStripMenuItem.Click += vendedorToolStripMenuItem_Click;
             // 
-            // registrarClienteToolStripMenuItem
+            // sucursalToolStripMenuItem
             // 
-            registrarClienteToolStripMenuItem.Name = "registrarClienteToolStripMenuItem";
-            registrarClienteToolStripMenuItem.Size = new Size(105, 20);
-            registrarClienteToolStripMenuItem.Text = "Registrar Cliente";
-            registrarClienteToolStripMenuItem.Click += registrarClienteToolStripMenuItem_Click;
+            sucursalToolStripMenuItem.Name = "sucursalToolStripMenuItem";
+            sucursalToolStripMenuItem.Size = new Size(189, 22);
+            sucursalToolStripMenuItem.Text = "Sucursal";
+            sucursalToolStripMenuItem.Click += sucursalToolStripMenuItem_Click;
             // 
-            // consultarInformaciónToolStripMenuItem
+            // registroClienteToolStripMenuItem
             // 
-            consultarInformaciónToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriaToolStripMenuItem, clienteToolStripMenuItem });
-            consultarInformaciónToolStripMenuItem.Name = "consultarInformaciónToolStripMenuItem";
-            consultarInformaciónToolStripMenuItem.Size = new Size(138, 20);
-            consultarInformaciónToolStripMenuItem.Text = "Consultar Información";
+            registroClienteToolStripMenuItem.Name = "registroClienteToolStripMenuItem";
+            registroClienteToolStripMenuItem.Size = new Size(189, 22);
+            registroClienteToolStripMenuItem.Text = "Cliente";
+            registroClienteToolStripMenuItem.Click += registroClienteToolStripMenuItem_Click;
+            // 
+            // consultarInformacionToolStripMenuItem
+            // 
+            consultarInformacionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriaToolStripMenuItem, clienteToolStripMenuItem, sucursalesToolStripMenuItem });
+            consultarInformacionToolStripMenuItem.Name = "consultarInformacionToolStripMenuItem";
+            consultarInformacionToolStripMenuItem.Size = new Size(138, 20);
+            consultarInformacionToolStripMenuItem.Text = "Consultar Información";
             // 
             // categoriaToolStripMenuItem
             // 
@@ -101,12 +110,26 @@
             categoriaToolStripMenuItem.Text = " Categoría de Vehículo";
             categoriaToolStripMenuItem.Click += categoriaToolStripMenuItem_Click;
             // 
+            // clienteToolStripMenuItem
+            // 
+            clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
+            clienteToolStripMenuItem.Size = new Size(192, 22);
+            clienteToolStripMenuItem.Text = "Cliente";
+            clienteToolStripMenuItem.Click += clienteToolStripMenuItem_Click;
+            // 
+            // sucursalesToolStripMenuItem
+            // 
+            sucursalesToolStripMenuItem.Name = "sucursalesToolStripMenuItem";
+            sucursalesToolStripMenuItem.Size = new Size(192, 22);
+            sucursalesToolStripMenuItem.Text = "Sucursales";
+            sucursalesToolStripMenuItem.Click += sucursalesToolStripMenuItem_Click;
+            // 
             // footer
             // 
             footer.Anchor = AnchorStyles.Bottom;
             footer.AutoSize = true;
             footer.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            footer.Location = new Point(307, 492);
+            footer.Location = new Point(351, 495);
             footer.Margin = new Padding(4, 0, 4, 0);
             footer.Name = "footer";
             footer.Size = new Size(273, 15);
@@ -119,7 +142,7 @@
             titulo.Anchor = AnchorStyles.None;
             titulo.AutoSize = true;
             titulo.Font = new Font("Microsoft Sans Serif", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titulo.Location = new Point(340, 242);
+            titulo.Location = new Point(381, 242);
             titulo.Margin = new Padding(4, 0, 4, 0);
             titulo.Name = "titulo";
             titulo.Size = new Size(209, 42);
@@ -127,18 +150,11 @@
             titulo.Text = "AutoMarket";
             titulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // clienteToolStripMenuItem
-            // 
-            clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            clienteToolStripMenuItem.Size = new Size(192, 22);
-            clienteToolStripMenuItem.Text = "Cliente";
-            clienteToolStripMenuItem.Click += clienteToolStripMenuItem_Click;
-            // 
             // FrmMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(933, 519);
+            ClientSize = new Size(954, 519);
             Controls.Add(titulo);
             Controls.Add(footer);
             Controls.Add(menuPrincipal);
@@ -156,16 +172,18 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuPrincipal;
-        private System.Windows.Forms.ToolStripMenuItem registrarCategoriaVehiculoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem registrarVehículoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem registrarVendedorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem registrarSucursalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem registrarClienteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem consultarInformaciónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarInformacionToolStripMenuItem;
         private System.Windows.Forms.Label footer;
         private System.Windows.Forms.Label titulo;
         private ToolStripMenuItem categoriaToolStripMenuItem;
         private ToolStripMenuItem clienteToolStripMenuItem;
+        private ToolStripMenuItem registrosToolStripMenuItem;
+        private ToolStripMenuItem categoriaDeVehiculoToolStripMenuItem;
+        private ToolStripMenuItem vehiculoToolStripMenuItem;
+        private ToolStripMenuItem vendedorToolStripMenuItem;
+        private ToolStripMenuItem sucursalToolStripMenuItem;
+        private ToolStripMenuItem registroClienteToolStripMenuItem;
+        private ToolStripMenuItem sucursalesToolStripMenuItem;
     }
 }
 
