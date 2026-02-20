@@ -45,7 +45,12 @@ namespace CapaAccesoDatos
             contador++;
         }
 
-        // Metodo para verificar si una categoría de vehículo existe por su ID
+        /// <summary>
+        /// Método para verificar si una categoría de vehículo con un ID específico ya existe en el arreglo.
+        /// </summary>
+        /// <param name="idCategoria">
+        /// El ID de la categoría de vehículo que se desea verificar.
+        /// </param>
         public static bool CategoriaExiste(int idCategoria)
         {
             for (int i = 0; i < contador; i++)

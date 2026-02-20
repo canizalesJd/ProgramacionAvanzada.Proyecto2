@@ -88,7 +88,7 @@ namespace CapaAccesoDatos
         }
 
         /// <summary>
-        ///  Método para consultar todos los clientes almacenados en el arreglo.
+        /// Metodo para consultar todos los clientes almacenados en el arreglo.
         /// </summary>
         public static Cliente[] Consultar()
         {

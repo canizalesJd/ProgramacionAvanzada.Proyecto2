@@ -54,7 +54,9 @@ namespace CapaAccesoDatos
             return false;
         }
 
-        // Método para obtener todos los vendedores
+        /// <summary>
+        /// Metodo que devuelve un arreglo con todos los vendedores almacenados. El tamaño del arreglo devuelto corresponde al número de vendedores actualmente almacenados, no a la capacidad máxima de 20 registros.
+        /// </summary>
         public static Vendedor[] Consultar()
         {
             Vendedor[] resultado = new Vendedor[contador];

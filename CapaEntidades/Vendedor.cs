@@ -7,11 +7,11 @@
  * Fecha: Febrero 2026
  */
 
-
-using System;
-
 namespace CapaEntidades
 {
+    /// <summary>
+    /// Clase que representa la entidad de Vendedor, que hereda de Persona e incluye propiedades adicionales como IdVendedor, FechaIngreso y Telefono. Esta clase se utiliza para representar a los vendedores en el sistema de gestión de ventas de vehículos.
+    /// </summary>
     public class Vendedor : Persona
     {
         public int IdVendedor { get; private set; }
@@ -21,7 +21,7 @@ namespace CapaEntidades
         // Display member para mostrar la identificacion + nombre completo en los ComboBox
         public string DisplayMember => $"{Identificacion} - {NombreCompleto}";
 
-
+        // Constructor que inicializa las propiedades de Vendedor, incluyendo las propiedades heredadas de Persona
         public Vendedor(int idVendedor, string identificacion,
             string nombreCompleto, DateTime fechaNacimiento,
             DateTime fechaIngreso, string telefono)
@@ -30,11 +30,6 @@ namespace CapaEntidades
             IdVendedor = idVendedor;
             FechaIngreso = fechaIngreso;
             Telefono = telefono;
-        }
-
-        public override string ToString()
-        {
-            return $"Vendedor: {NombreCompleto} - ID: {Identificacion} - Fecha Ingreso: {FechaIngreso}";
         }
     }
 }

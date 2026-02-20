@@ -57,7 +57,9 @@ namespace CapaAccesoDatos
             return false;
         }
 
-        // Método para obtener todos los vehículos
+        /// <summary>
+        /// Metodo para consultar todos los vehículos almacenados en el arreglo.
+        /// </summary>
         public static Vehiculo[] Consultar()
         {
             // Retorna solo los vehículos agregados, no los espacios vacíos del arreglo
