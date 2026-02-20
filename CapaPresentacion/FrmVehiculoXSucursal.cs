@@ -53,16 +53,6 @@ namespace CapaPresentacion
                 return;
             }
 
-            int totalSucursalesActivas = 0;
-
-            for (int i = 0; i < sucursales.Length; i++)
-            {
-                if (sucursales[i].Activa)
-                {
-                    totalSucursalesActivas++;
-                }
-            }
-
             comboSucursal.DataSource = sucursales;
             comboSucursal.DisplayMember = "Nombre";
             comboSucursal.ValueMember = "IdSucursal";
