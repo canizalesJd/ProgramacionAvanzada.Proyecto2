@@ -134,8 +134,9 @@ namespace CapaPresentacion
             // Agregar filas al DataGridView
             if (vehiculos != null && vehiculos.Length > 0)
             {
-                foreach (Vehiculo vehiculo in vehiculos)
+                for (int i = 0; i < vehiculos.Length; i++)
                 {
+                    Vehiculo vehiculo = vehiculos[i];
                     if (vehiculo != null)
                     {
                         dgvConsulta.Rows.Add(

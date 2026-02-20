@@ -114,9 +114,10 @@ namespace CapaPresentacion
             // Agregar filas con los datos de los vehículos
             // Agregar filas al DataGridView
             if (vehiculosXSucursal != null && vehiculosXSucursal.Length > 0)
-            {
-                foreach (VehiculoXSucursal vehiculoXSucursal in vehiculosXSucursal)
+            {              
+                for (int i = 0; i < vehiculosXSucursal.Length; i++)
                 {
+                    VehiculoXSucursal vehiculoXSucursal = vehiculosXSucursal[i];
                     if (vehiculoXSucursal != null)
                     {
                         dgvConsulta.Rows.Add(

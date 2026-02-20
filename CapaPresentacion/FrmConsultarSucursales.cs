@@ -130,11 +130,11 @@ namespace CapaPresentacion
             dgvConsulta.Columns.Add(columnaNueva);
 
             // Agregar filas con los datos de las sucursales
-            // Agregar las filas con los datos de las categorías
             if (sucursales != null && sucursales.Length > 0)
             {
-                foreach (Sucursal sucursal in sucursales)
+                for (int i = 0; i < sucursales.Length; i++)
                 {
+                    Sucursal sucursal = sucursales[i];
                     if (sucursal != null)
                     {
                         dgvConsulta.Rows.Add(
@@ -149,8 +149,6 @@ namespace CapaPresentacion
                     }
                 }
             }
-
-
         }
 
         // Evento del botón "Actualizar" que se ejecuta al hacer clic. Llama al método para cargar las sucursales nuevamente, permitiendo al usuario actualizar la información mostrada en el DataGridView para reflejar cualquier cambio reciente en las sucursales registradas.

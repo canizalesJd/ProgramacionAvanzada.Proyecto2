@@ -111,8 +111,9 @@ namespace CapaPresentacion
             // Agregar filas con los datos de los vendedores
             if (vendedores.Length > 0)
             {
-                foreach (Vendedor vendedor in vendedores)
+                for (int i = 0; i < vendedores.Length; i++)
                 {
+                    Vendedor vendedor = vendedores[i];
                     if (vendedor != null)
                     {
                         dgvConsulta.Rows.Add(
@@ -126,7 +127,6 @@ namespace CapaPresentacion
                     }
                 }
             }
-
         }
 
         // Evento que se ejecuta al hacer clic en el botón de actualizar, encargado de recargar la lista de vendedores para reflejar cualquier cambio reciente en la información disponible.
