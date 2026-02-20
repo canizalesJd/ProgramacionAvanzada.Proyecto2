@@ -84,7 +84,7 @@
             botonActualizar.TabIndex = 17;
             botonActualizar.Text = "Actualizar";
             botonActualizar.UseVisualStyleBackColor = false;
-            botonActualizar.Click += botonActualizar_Click;
+            botonActualizar.Click += BotonActualizar_Click;
             // 
             // FrmConsultarVehiculos
             // 

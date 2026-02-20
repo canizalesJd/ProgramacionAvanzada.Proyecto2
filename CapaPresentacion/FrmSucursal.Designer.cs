@@ -238,7 +238,7 @@
             botonCancelar.TabIndex = 23;
             botonCancelar.Text = "Cancelar";
             botonCancelar.UseVisualStyleBackColor = false;
-            botonCancelar.Click += botonCancelar_Click;
+            botonCancelar.Click += BotonCancelar_Click;
             // 
             // FrmSucursal
             // 

@@ -93,7 +93,7 @@
             botonActualizar.TabIndex = 16;
             botonActualizar.Text = "Actualizar";
             botonActualizar.UseVisualStyleBackColor = false;
-            botonActualizar.Click += botonActualizar_Click;
+            botonActualizar.Click += BotonActualizar_Click;
             // 
             // FrmConsultarCategorias
             // 

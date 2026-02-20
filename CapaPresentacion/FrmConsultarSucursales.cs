@@ -13,8 +13,10 @@ using CapaLogicaNegocio;
 
 namespace CapaPresentacion
 {
+    // Formulario para consultar la lista de sucursales registradas en el sistema
     public partial class FrmConsultarSucursales : Form
     {
+        // Instancia de la clase de lógica de negocio para gestionar las sucursales.
         private readonly SucursalLN sucursalLN;
         public FrmConsultarSucursales()
         {
@@ -22,12 +24,14 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
+        // Evento que se ejecuta al cargar el formulario, encargado de cargar la lista de sucursales en el DataGridView
         private void FrmConsultarSucursales_Load(object sender, EventArgs e)
         {
-            cargarSucursales();
+            CargarSucursales();
         }
 
-        private void cargarSucursales()
+        // Método encargado de cargar las sucursales desde la lógica de negocio y mostrarlas en el DataGridView. Configura las columnas del DataGridView para mostrar la información relevante de cada sucursal, incluyendo el ID, nombre, dirección, teléfono y detalles del vendedor encargado. Si no hay sucursales registradas, muestra un mensaje informativo y cierra el formulario.
+        private void CargarSucursales()
         {
             Sucursal[] sucursales = sucursalLN.Consultar();
             if (sucursales.Length == 0)
@@ -137,9 +141,10 @@ namespace CapaPresentacion
 
         }
 
-        private void botonActualizar_Click(object sender, EventArgs e)
+        // Evento del botón "Actualizar" que se ejecuta al hacer clic. Llama al método para cargar las sucursales nuevamente, permitiendo al usuario actualizar la información mostrada en el DataGridView para reflejar cualquier cambio reciente en las sucursales registradas.
+        private void BotonActualizar_Click(object sender, EventArgs e)
         {
-            cargarSucursales();
+            CargarSucursales();
         }
     }
 }

@@ -12,8 +12,10 @@ using CapaLogicaNegocio;
 
 namespace CapaPresentacion
 {
+    // Formulario para consultar la lista de vehículos registrados en el sistema
     public partial class FrmConsultarVehiculos : Form
     {
+        // Instancia de la clase de lógica de negocio para gestionar los vehículos.
         private readonly VehiculoLN vehiculoLN;
         public FrmConsultarVehiculos()
         {
@@ -21,12 +23,14 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
+        // Evento que se ejecuta al cargar el formulario, encargado de cargar la lista de vehículos en el DataGridView
         private void FrmConsultarVehiculos_Load(object sender, EventArgs e)
         {
-            cargarVehiculos();
+            CargarVehiculos();
         }
 
-        private void cargarVehiculos()
+        // Método para cargar la lista de vehículos desde la lógica de negocio y mostrarla en el DataGridView. Configura las columnas del DataGridView y agrega filas con los datos de cada vehículo, incluyendo su categoría y estado formateados adecuadamente.
+        private void CargarVehiculos()
         {
             Vehiculo[] vehiculos = vehiculoLN.Consultar();
             if (vehiculos.Length == 0)
@@ -151,9 +155,10 @@ namespace CapaPresentacion
             // [1] - Formato de moneda: https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings#code-example
         }
 
-        private void botonActualizar_Click(object sender, EventArgs e)
+        // Evento del botón "Actualizar" para recargar la lista de vehículos y reflejar cualquier cambio reciente en la información disponible.
+        private void BotonActualizar_Click(object sender, EventArgs e)
         {
-            cargarVehiculos();
+            CargarVehiculos();
         }
     }
 }

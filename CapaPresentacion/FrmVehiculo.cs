@@ -13,8 +13,10 @@ using CapaEntidades;
 
 namespace CapaPresentacion
 {
+    // Formulario para registrar un nuevo vehículo en el sistema.
     public partial class FrmVehiculo : Form
     {
+        // Instancias de las clases de lógica de negocio para manejar las operaciones relacionadas con vehículos y categorías de vehículos.
         private readonly VehiculoLN vehiculoLN;
         private readonly CategoriaVehiculoLN categoriaVehiculoLN;
 
@@ -25,7 +27,8 @@ namespace CapaPresentacion
             categoriaVehiculoLN = new CategoriaVehiculoLN();
         }
 
-        private void limpiarCampos()
+        // Método para limpiar los campos del formulario después de registrar un vehículo o al cancelar la operación.
+        private void LimpiarCampos()
         {
             idVehiculo.Clear();
             marcaVehiculo.Clear();
@@ -36,6 +39,7 @@ namespace CapaPresentacion
             comboEstadoVehiculo.SelectedIndex = -1;
         }
 
+        // Método para cargar las categorías de vehículos disponibles en el sistema. Si no hay categorías registradas, se muestra un mensaje informativo y se deshabilitan los controles relacionados con la selección de categoría y el botón de guardar, además de cerrar el formulario.
         private void CargarCategorias()
         {
             CategoriaVehiculo[] categorias = categoriaVehiculoLN.Consultar();
@@ -60,25 +64,29 @@ namespace CapaPresentacion
             botonGuardar.Enabled = true;
         }
 
+        // Evento que se ejecuta al cargar el formulario. Llama a los métodos para cargar las categorías de vehículos y el estado del vehículo en los controles correspondientes.
         private void FrmRegistrarVehiculo_Load(object sender, EventArgs e)
         {
             CargarCategorias();
             CargarEstadoVehiculo();
         }
 
+        // Método para cargar las opciones de estado del vehículo en el combo box. Se agregan las opciones "Nuevo" y "Usado" con sus respectivos valores 'N' y 'U'. Se establece el DisplayMember y ValueMember para mostrar el texto correcto en el combo box.
         private void CargarEstadoVehiculo()
         {
+            // Limpiar el combo box antes de agregar las opciones
             comboEstadoVehiculo.Items.Clear();
-
+            // Agregar opciones de estado del vehículo
             comboEstadoVehiculo.Items.Add(new { Texto = "Nuevo", Valor = 'N' });
             comboEstadoVehiculo.Items.Add(new { Texto = "Usado", Valor = 'U' });
-
+            // Configurar DisplayMember y ValueMember para mostrar el texto correcto en el combo box
             comboEstadoVehiculo.DisplayMember = "Texto";
             comboEstadoVehiculo.ValueMember = "Valor";
             comboEstadoVehiculo.SelectedIndex = -1;
         }
 
-        private void botonGuardar_Click(object sender, EventArgs e)
+        // Evento que se ejecuta al hacer clic en el botón de guardar. Valida los datos ingresados, registra el vehículo utilizando la lógica de negocio y muestra mensajes de éxito o error según corresponda.
+        private void BotonGuardar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -117,7 +125,7 @@ namespace CapaPresentacion
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
-                limpiarCampos();
+                LimpiarCampos();
             }
             catch (FormatException)
             {
@@ -142,7 +150,8 @@ namespace CapaPresentacion
             }
         }
 
-        private void botonCancelar_Click(object sender, EventArgs e)
+        // Evento que se ejecuta al hacer clic en el botón de cancelar. Cierra el formulario sin guardar ningún cambio.
+        private void BotonCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }

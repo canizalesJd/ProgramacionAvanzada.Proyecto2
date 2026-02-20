@@ -13,8 +13,10 @@ using CapaLogicaNegocio;
 
 namespace CapaPresentacion
 {
+    // Formulario para consultar la lista de vendedores registrados en el sistema
     public partial class FrmConsultarVendedores : Form
     {
+        // Instancia de la clase de lógica de negocio para gestionar los vendedores.
         private readonly VendedorLN vendedorLN;
         public FrmConsultarVendedores()
         {
@@ -22,12 +24,14 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
+        // Evento que se ejecuta al cargar el formulario, encargado de cargar la lista de vendedores en el DataGridView
         private void FrmConsultarVendedores_Load(object sender, EventArgs e)
         {
-            cargarVendedores();
+            CargarVendedores();
         }
 
-        private void cargarVendedores()
+        // Método para cargar la lista de vendedores desde la lógica de negocio y mostrarla en el DataGridView. Configura las columnas del DataGridView y agrega filas con los datos de cada vendedor, incluyendo su fecha de nacimiento e ingreso formateados adecuadamente.
+        private void CargarVendedores()
         {
             Vendedor[] vendedores = vendedorLN.Consultar();
             if (vendedores.Length == 0)
@@ -113,9 +117,10 @@ namespace CapaPresentacion
 
         }
 
-        private void botonActualizar_Click(object sender, EventArgs e)
+        // Evento que se ejecuta al hacer clic en el botón de actualizar, encargado de recargar la lista de vendedores para reflejar cualquier cambio reciente en la información disponible.
+        private void BotonActualizar_Click(object sender, EventArgs e)
         {
-            cargarVendedores();
+            CargarVendedores();
         }
     }
 }

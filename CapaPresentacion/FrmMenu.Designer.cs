@@ -68,35 +68,35 @@
             categoriaDeVehiculoToolStripMenuItem.Name = "categoriaDeVehiculoToolStripMenuItem";
             categoriaDeVehiculoToolStripMenuItem.Size = new Size(189, 22);
             categoriaDeVehiculoToolStripMenuItem.Text = "Categoría de Vehículo";
-            categoriaDeVehiculoToolStripMenuItem.Click += categoriaDeVehiculoToolStripMenuItem_Click;
+            categoriaDeVehiculoToolStripMenuItem.Click += CategoriaDeVehiculoToolStripMenuItem_Click;
             // 
             // vehiculoToolStripMenuItem
             // 
             vehiculoToolStripMenuItem.Name = "vehiculoToolStripMenuItem";
             vehiculoToolStripMenuItem.Size = new Size(189, 22);
             vehiculoToolStripMenuItem.Text = "Vehículo";
-            vehiculoToolStripMenuItem.Click += vehiculoToolStripMenuItem_Click;
+            vehiculoToolStripMenuItem.Click += VehiculoToolStripMenuItem_Click;
             // 
             // vendedorToolStripMenuItem
             // 
             vendedorToolStripMenuItem.Name = "vendedorToolStripMenuItem";
             vendedorToolStripMenuItem.Size = new Size(189, 22);
             vendedorToolStripMenuItem.Text = "Vendedor";
-            vendedorToolStripMenuItem.Click += vendedorToolStripMenuItem_Click;
+            vendedorToolStripMenuItem.Click += VendedorToolStripMenuItem_Click;
             // 
             // sucursalToolStripMenuItem
             // 
             sucursalToolStripMenuItem.Name = "sucursalToolStripMenuItem";
             sucursalToolStripMenuItem.Size = new Size(189, 22);
             sucursalToolStripMenuItem.Text = "Sucursal";
-            sucursalToolStripMenuItem.Click += sucursalToolStripMenuItem_Click;
+            sucursalToolStripMenuItem.Click += SucursalToolStripMenuItem_Click;
             // 
             // registroClienteToolStripMenuItem
             // 
             registroClienteToolStripMenuItem.Name = "registroClienteToolStripMenuItem";
             registroClienteToolStripMenuItem.Size = new Size(189, 22);
             registroClienteToolStripMenuItem.Text = "Cliente";
-            registroClienteToolStripMenuItem.Click += registroClienteToolStripMenuItem_Click;
+            registroClienteToolStripMenuItem.Click += RegistroClienteToolStripMenuItem_Click;
             // 
             // consultarInformacionToolStripMenuItem
             // 
@@ -110,35 +110,35 @@
             categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
             categoriaToolStripMenuItem.Size = new Size(192, 22);
             categoriaToolStripMenuItem.Text = " Categoría de Vehículo";
-            categoriaToolStripMenuItem.Click += categoriaToolStripMenuItem_Click;
+            categoriaToolStripMenuItem.Click += CategoriaToolStripMenuItem_Click;
             // 
             // clienteToolStripMenuItem
             // 
             clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
             clienteToolStripMenuItem.Size = new Size(192, 22);
             clienteToolStripMenuItem.Text = "Cliente";
-            clienteToolStripMenuItem.Click += clienteToolStripMenuItem_Click;
+            clienteToolStripMenuItem.Click += ClienteToolStripMenuItem_Click;
             // 
             // sucursalesToolStripMenuItem
             // 
             sucursalesToolStripMenuItem.Name = "sucursalesToolStripMenuItem";
             sucursalesToolStripMenuItem.Size = new Size(192, 22);
             sucursalesToolStripMenuItem.Text = "Sucursales";
-            sucursalesToolStripMenuItem.Click += sucursalesToolStripMenuItem_Click;
+            sucursalesToolStripMenuItem.Click += SucursalesToolStripMenuItem_Click;
             // 
             // vehiculosToolStripMenuItem
             // 
             vehiculosToolStripMenuItem.Name = "vehiculosToolStripMenuItem";
             vehiculosToolStripMenuItem.Size = new Size(192, 22);
             vehiculosToolStripMenuItem.Text = "Vehículos";
-            vehiculosToolStripMenuItem.Click += vehiculosToolStripMenuItem_Click;
+            vehiculosToolStripMenuItem.Click += VehiculosToolStripMenuItem_Click;
             // 
             // vendedoresToolStripMenuItem
             // 
             vendedoresToolStripMenuItem.Name = "vendedoresToolStripMenuItem";
             vendedoresToolStripMenuItem.Size = new Size(192, 22);
             vendedoresToolStripMenuItem.Text = "Vendedores";
-            vendedoresToolStripMenuItem.Click += vendedoresToolStripMenuItem_Click;
+            vendedoresToolStripMenuItem.Click += VendedoresToolStripMenuItem_Click;
             // 
             // footer
             // 

@@ -12,8 +12,10 @@ using CapaLogicaNegocio;
 
 namespace CapaPresentacion
 {
+    // Formulario para consultar las categorías de vehículos registradas en el sistema.
     public partial class FrmConsultarCategorias : Form
     {
+        // Instancia de la clase de lógica de negocio para gestionar las categorías de vehículos.
         private readonly CategoriaVehiculoLN categoriaVehiculoLN;
         public FrmConsultarCategorias()
         {
@@ -21,12 +23,14 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
+        // Evento que se ejecuta al cargar el formulario. Llama al método para cargar las categorías de vehículos y mostrarlas en el DataGridView.
         private void FrmConsultarCategoria_Load(object sender, EventArgs e)
         {
-            cargarCategorias();
+            CargarCategorias();
         }
 
-        private void cargarCategorias()
+        // Método para cargar las categorías de vehículos desde la lógica de negocio y mostrarlas en el DataGridView. Si no hay categorías registradas, muestra un mensaje informativo y cierra el formulario.
+        private void CargarCategorias()
         {
             CategoriaVehiculo[] categorias = categoriaVehiculoLN.Consultar();
             if (categorias.Length == 0)
@@ -97,9 +101,10 @@ namespace CapaPresentacion
             }
         }
 
-        private void botonActualizar_Click(object sender, EventArgs e)
+        // Evento del botón "Actualizar" que se ejecuta al hacer clic. Llama al método para cargar las categorías de vehículos nuevamente, permitiendo al usuario ver cualquier cambio reciente en las categorías disponibles.
+        private void BotonActualizar_Click(object sender, EventArgs e)
         {
-            cargarCategorias();
+            CargarCategorias();
         }
     }
 }

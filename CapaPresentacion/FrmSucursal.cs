@@ -12,8 +12,10 @@ using CapaEntidades;
 
 namespace CapaPresentacion
 {
+    // Formulario para registrar una nueva sucursal en el sistema.
     public partial class FrmSucursal : Form
     {
+        // Instancias de la capa de lógica de negocio para gestionar las operaciones relacionadas con sucursales y vendedores.
         private readonly SucursalLN sucursalLN;
         private readonly VendedorLN vendedorLN;
         public FrmSucursal()
@@ -23,7 +25,8 @@ namespace CapaPresentacion
             vendedorLN = new VendedorLN();
         }
 
-        private void limpiarCampos()
+        // Método para limpiar los campos del formulario después de registrar una sucursal o al cancelar el registro.
+        private void LimpiarCampos()
         {
             idSucursal.Clear();
             nombreSucursal.Clear();
@@ -32,6 +35,7 @@ namespace CapaPresentacion
             comboVendedorEncargado.SelectedIndex = -1;
         }
 
+        // Método para cargar los vendedores disponibles en el sistema y mostrarlos en el combo box para seleccionar el encargado de la sucursal. Si no hay vendedores registrados, se muestra un mensaje informativo y se deshabilita la opción de guardar.
         private void CargarVendedores()
         {
             Vendedor[] vendedores = vendedorLN.Consultar();
@@ -60,11 +64,13 @@ namespace CapaPresentacion
             botonGuardar.Enabled = true;
         }
 
+        // Evento que se ejecuta al cargar el formulario, donde se llama al método para cargar los vendedores disponibles.
         private void FrmRegistrarSucursal_Load(object sender, EventArgs e)
         {
             CargarVendedores();
         }
 
+        // Evento que se ejecuta al hacer clic en el botón de guardar, donde se valida la información ingresada, se registra la nueva sucursal utilizando la lógica de negocio y se muestra un mensaje de éxito o error según corresponda. Después de registrar la sucursal, se limpian los campos del formulario para permitir el registro de una nueva sucursal.
         private void botonGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -86,7 +92,7 @@ namespace CapaPresentacion
 
                 sucursalLN.RegistrarSucursal(id, nombre, direccion, telefono, vendedorEncargado);
                 MessageBox.Show("Sucursal registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                limpiarCampos();
+                LimpiarCampos();
             }
             catch (Exception ex)
             {
@@ -94,7 +100,8 @@ namespace CapaPresentacion
             }
         }
 
-        private void botonCancelar_Click(object sender, EventArgs e)
+        // Evento que se ejecuta al hacer clic en el botón de cancelar, donde se cierra el formulario actual sin guardar cambios.
+        private void BotonCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }

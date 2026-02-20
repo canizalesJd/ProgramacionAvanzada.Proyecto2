@@ -155,7 +155,7 @@
             botonGuardar.TabIndex = 9;
             botonGuardar.Text = "Registrar";
             botonGuardar.UseVisualStyleBackColor = false;
-            botonGuardar.Click += botonGuardar_Click;
+            botonGuardar.Click += BotonGuardar_Click;
             // 
             // botonCancelar
             // 
@@ -168,7 +168,7 @@
             botonCancelar.TabIndex = 10;
             botonCancelar.Text = "Cancelar";
             botonCancelar.UseVisualStyleBackColor = false;
-            botonCancelar.Click += botonCancelar_Click;
+            botonCancelar.Click += BotonCancelar_Click;
             // 
             // FrmCategoria
             // 

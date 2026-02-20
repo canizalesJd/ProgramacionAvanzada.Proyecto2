@@ -12,8 +12,10 @@ using CapaLogicaNegocio;
 
 namespace CapaPresentacion
 {
+    // Formulario para consultar la lista de clientes registrados en el sistema
     public partial class FrmConsultarClientes : Form
     {
+        // Instancia de la capa de lógica de negocio para acceder a las operaciones relacionadas con clientes
         private readonly ClienteLN clienteLN;
         public FrmConsultarClientes()
         {
@@ -21,12 +23,14 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
+        // Evento que se ejecuta al cargar el formulario, encargado de cargar la lista de clientes en el DataGridView
         private void FrmConsultarCliente_Load(object sender, EventArgs e)
         {
-            cargarClientes();
+            CargarClientes();
         }
 
-        private void cargarClientes()
+        // Método encargado de cargar la lista de clientes desde la capa de lógica de negocio y mostrarla en el DataGridView
+        private void CargarClientes()
         {
             Cliente[] clientes = clienteLN.Consultar();
             if (clientes.Length == 0)
@@ -121,9 +125,10 @@ namespace CapaPresentacion
             }
         }
 
-        private void botonActualizar_Click(object sender, EventArgs e)
+        // Evento que se ejecuta al hacer clic en el botón "Actualizar", encargado de recargar la lista de clientes en el DataGridView
+        private void BotonActualizar_Click(object sender, EventArgs e)
         {
-            cargarClientes();
+            CargarClientes();
         }
     }
 }

@@ -189,7 +189,7 @@
             botonGuardar.TabIndex = 15;
             botonGuardar.Text = "Registrar";
             botonGuardar.UseVisualStyleBackColor = false;
-            botonGuardar.Click += botonGuardar_Click;
+            botonGuardar.Click += BotonGuardar_Click;
             // 
             // footer
             // 
@@ -239,7 +239,7 @@
             botonCancelar.TabIndex = 19;
             botonCancelar.Text = "Cancelar";
             botonCancelar.UseVisualStyleBackColor = false;
-            botonCancelar.Click += botonCancelar_Click;
+            botonCancelar.Click += BotonCancelar_Click;
             // 
             // FrmCliente
             // 
