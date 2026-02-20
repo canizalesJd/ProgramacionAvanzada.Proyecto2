@@ -13,28 +13,13 @@ using CapaEntidades;
 namespace CapaLogicaNegocio
 {
     /// <summary>
-    /// Clase de lógica de negocio para la entidad Sucursal. Proporciona métodos para registrar nuevas sucursales y consultar las sucursales existentes.
+    /// Clase de lógica de negocio para la entidad Sucursal.
     /// </summary>
     public class SucursalLN
     {
         /// <summary>
-        /// Método para registrar una nueva sucursal. Valida los datos de entrada y lanza excepciones si los datos no son válidos o si la sucursal ya existe.
+        /// Método para registrar una nueva sucursal
         /// </summary>
-        /// <param name="idSucursal">
-        /// El ID de la sucursal, debe ser un número positivo y único. Si el ID ya existe en el sistema, se lanzará una excepción.
-        /// </param>
-        /// <param name="nombre">
-        /// El nombre de la sucursal, no puede estar vacío ni contener solo espacios en blanco. Es un campo obligatorio.
-        /// </param>
-        /// <param name="direccion">
-        /// La dirección de la sucursal, no puede estar vacía ni contener solo espacios en blanco. Es un campo obligatorio.
-        /// </param>
-        /// <param name="telefono">
-        /// El teléfono de la sucursal, no puede estar vacío ni contener solo espacios en blanco. Es un campo obligatorio y debe ser un número de teléfono válido.
-        /// </param>
-        /// <param name="vendedorEncargado">
-        /// El vendedor encargado de la sucursal, no puede ser nulo. Debe ser un objeto válido de la clase Vendedor que represente al encargado de la sucursal.
-        /// </param>
         public void RegistrarSucursal(int idSucursal, string nombre, string direccion, string telefono, Vendedor vendedorEncargado, bool activa)
         {
             // Validación de datos de entrada

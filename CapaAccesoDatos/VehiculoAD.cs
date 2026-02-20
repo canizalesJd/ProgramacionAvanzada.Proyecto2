@@ -12,7 +12,7 @@
 namespace CapaAccesoDatos
 {
     /// <summary>
-    /// Clase de acceso a datos para la entidad Vehiculo. Esta clase proporciona métodos para almacenar y consultar vehículos en un arreglo estático.
+    /// Clase de acceso a datos para la entidad Vehiculo.
     /// </summary>
     public class VehiculoAD
     {
@@ -23,9 +23,6 @@ namespace CapaAccesoDatos
         /// <summary>
         /// Metodo para guardar un nuevo vehículo en el arreglo.
         /// </summary>
-        /// <param name="vehiculo">  
-        /// El objeto Vehiculo que se desea guardar
-        /// </param>
         public static void Guardar(Vehiculo vehiculo)
         {
             // Evitar duplicados: Antes de agregar un nuevo vehículo, verificar que no exista un vehículo con el mismo ID. Si ya existe, lanzar una excepción indicando que el vehículo ya existe.

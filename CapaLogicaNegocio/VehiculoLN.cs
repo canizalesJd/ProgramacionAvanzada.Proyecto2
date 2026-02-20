@@ -13,34 +13,13 @@ using CapaEntidades;
 namespace CapaLogicaNegocio
 {
     /// <summary>
-    /// Clase de lógica de negocio para la entidad Vehículo. Proporciona métodos para registrar nuevos vehículos y consultar los vehículos existentes.
+    /// Clase de lógica de negocio para la entidad Vehículo.
     /// </summary>
     public class VehiculoLN
     {
         /// <summary>
         /// Método para registrar un nuevo vehículo en el sistema.
         /// </summary>
-        /// <param name="idVehiculo">
-        /// El ID del vehículo, debe ser un número positivo y único. No puede ser un ID que ya exista en el sistema.
-        /// </param>
-        /// <param name="marca">
-        /// La marca del vehículo, no puede estar vacía o ser solo espacios en blanco.
-        /// </param>
-        /// <param name="modelo">
-        /// El modelo del vehículo, no puede estar vacío o ser solo espacios en blanco.
-        /// </param>
-        /// <param name="anio">
-        /// El año del vehículo, debe ser un número entre 1900 y el año actual más dos años (para permitir modelos futuros).
-        /// </param>
-        /// <param name="precio">
-        /// El precio del vehículo, no puede ser un número negativo.
-        /// </param>
-        /// <param name="categoria">
-        /// La categoría del vehículo, no puede ser nula. Debe ser una instancia válida de la clase CategoriaVehiculo.
-        /// </param>
-        /// <param name="estado">
-        /// El estado del vehículo, debe ser 'N' para nuevo o 'U' para usado. No puede ser ningún otro valor.
-        /// </param>
         public void RegistrarVehiculo(int idVehiculo, string marca, string modelo, int anio, decimal precio, CategoriaVehiculo categoria, char estado)
         {
             if (idVehiculo <= 0) {

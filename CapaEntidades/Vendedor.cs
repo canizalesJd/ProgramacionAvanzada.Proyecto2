@@ -10,10 +10,11 @@
 namespace CapaEntidades
 {
     /// <summary>
-    /// Clase que representa la entidad de Vendedor, que hereda de Persona e incluye propiedades adicionales como IdVendedor, FechaIngreso y Telefono. Esta clase se utiliza para representar a los vendedores en el sistema de gestión de ventas de vehículos.
+    /// Clase que representa la entidad de Vendedor, que hereda de Persona
     /// </summary>
     public class Vendedor : Persona
     {
+        // Propiedades específicas de Vendedor
         public int IdVendedor { get; private set; }
         public DateTime FechaIngreso { get; set; }
         public string Telefono { get; set; }

@@ -11,9 +11,6 @@ namespace CapaAccesoDatos
         /// <summary>
         /// Método para guardar una nueva relación entre un vehículo y una sucursal.
         /// </summary>
-        /// <param name="vehiculoXSucursal">
-        /// Objeto de tipo VehiculoXSucursal que contiene la información de la relación a guardar.
-        /// </param>
         public static void Guardar(VehiculoXSucursal vehiculoXSucursal)
         {
             // Validar que el objeto no sea nulo
@@ -55,14 +52,8 @@ namespace CapaAccesoDatos
         }
 
         /// <summary>
-        /// Método para verificar si una relación entre un vehículo y una sucursal ya existe en el arreglo, utilizando los IDs del vehículo y la sucursal como parámetros de búsqueda.
+        /// Método para verificar si una relación entre un vehículo y una sucursal ya existe en el arreglo
         /// </summary>
-        /// <param name="idVehiculo">
-        /// El ID del vehículo, debe ser un número positivo que corresponda a un vehículo registrado en el sistema.
-        /// </param>
-        /// <param name="idSucursal">
-        /// El ID de la sucursal, debe ser un número positivo que corresponda a una sucursal registrada en el sistema.
-        /// </param>
         public static bool VehiculoXSucursalExiste(int idVehiculo, int idSucursal)
         {
             for (int i = 0; i < contador; i++)

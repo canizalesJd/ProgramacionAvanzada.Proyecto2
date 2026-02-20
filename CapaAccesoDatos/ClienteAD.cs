@@ -21,11 +21,8 @@ namespace CapaAccesoDatos
         private static int contador;
 
         /// <summary>
-        /// Método para guardar un nuevo cliente en el arreglo. Antes de agregar un nuevo cliente, se realizan las siguientes validaciones:
+        /// Método para guardar un nuevo cliente en el arreglo.
         /// </summary>
-        /// <param name="cliente">
-        /// El objeto Cliente que se desea guardar.
-        /// </param>
         public static void Guardar(Cliente cliente)
         {
             /* Evitar duplicados: 
@@ -55,8 +52,6 @@ namespace CapaAccesoDatos
         /// <summary>
         /// Método para verificar si un cliente existe por su ID
         /// </summary>
-        /// <param name="idCliente"></param>
-        /// <returns></returns>
         private static bool IdClienteExiste(int idCliente)
         {
             for (int i = 0; i < contador; i++)
@@ -72,8 +67,6 @@ namespace CapaAccesoDatos
         /// <summary>
         ///  Método para verificar si un cliente existe por su identificación.
         /// </summary>
-        /// <param name="identificacion"></param>
-        /// <returns></returns>
         public static bool IdentificacionExiste(string identificacion)
         {
             for (int i = 0; i < contador; i++)

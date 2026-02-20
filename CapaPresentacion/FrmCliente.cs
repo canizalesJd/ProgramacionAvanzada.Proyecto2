@@ -32,7 +32,7 @@ namespace CapaPresentacion
             fechaRegistro.Value = DateTime.Now;
         }
 
-        // Evento del botón "Guardar" que se ejecuta al hacer clic. Valida los datos ingresados, registra el cliente utilizando la lógica de negocio y muestra mensajes de éxito o error según corresponda.
+        // Método para validar los datos de entrada y registrar un nuevo cliente utilizando la lógica de negocio.
         private void BotonGuardar_Click(object sender, EventArgs e)
         {
             {

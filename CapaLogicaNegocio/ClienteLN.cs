@@ -20,25 +20,6 @@ namespace CapaLogicaNegocio
         /// <summary>
         /// Registra un nuevo cliente en el sistema.
         /// </summary>
-        /// <param name="idCliente"> 
-        /// El ID del cliente, debe ser un número positivo y único.
-        /// </param>
-        /// <param name="identificacion">
-        /// La identificación del cliente, no puede estar vacía y debe ser única. 
-        /// </param>
-        /// <param name="nombreCompleto">
-        /// El nombre completo del cliente, no puede estar vacío.
-        /// </param>
-        /// <param name="fechaNacimiento">
-        /// La fecha de nacimiento del cliente, debe ser anterior a la fecha actual.
-        /// </param>
-        /// <param name="fechaRegistro">
-        /// La fecha de registro del cliente, si no se proporciona, se asignará la fecha actual.
-        /// </param>
-        /// <param name="activo">
-        /// Indica si el cliente está activo, por defecto es true.
-        /// </param>
-        /// <exception cref="ArgumentException"></exception>
         public void RegistrarCliente(int idCliente, string identificacion, string nombreCompleto, DateTime fechaNacimiento, DateTime fechaRegistro, bool activo = true)
         {
             // Validaciones de entrada

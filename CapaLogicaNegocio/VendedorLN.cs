@@ -20,24 +20,6 @@ namespace CapaLogicaNegocio
         /// <summary>
         /// Registra un nuevo vendedor en el sistema después de validar los datos de entrada.
         /// </summary>
-        /// <param name="idVendedor">
-        /// El ID único del vendedor. Debe ser un número positivo y no puede existir otro vendedor con el mismo ID.
-        /// </param>
-        /// <param name="identificacion">
-        /// La identificación del vendedor. No puede estar vacía o contener solo espacios en blanco.
-        /// </param>
-        /// <param name="nombreCompleto">
-        /// El nombre completo del vendedor. No puede estar vacío o contener solo espacios en blanco.
-        /// </param>
-        /// <param name="fechaNacimiento">
-        /// La fecha de nacimiento del vendedor. Debe ser una fecha pasada, es decir, anterior a la fecha actual y el vendedor debe tener al menos 18 años de edad.
-        /// </param>
-        /// <param name="fechaIngreso">
-        /// La fecha de ingreso del vendedor a la empresa. No puede ser una fecha futura, es decir, debe ser igual o anterior a la fecha actual.
-        /// </param>
-        /// <param name="telefono">
-        /// El número de teléfono del vendedor. No puede estar vacío o contener solo espacios en blanco.
-        /// </param>
         public void RegistrarVendedor(int idVendedor, string identificacion, string nombreCompleto, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono)
         {
             // Validación de datos de entrada

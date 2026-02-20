@@ -13,23 +13,13 @@ using CapaEntidades;
 namespace CapaLogicaNegocio
 {
     /// <summary>
-    /// Clase de lógica de negocio para la entidad CategoriaVehiculo. Proporciona métodos para registrar nuevas categorías de vehículo y consultar las categorías existentes.
+    /// Clase de lógica de negocio para la entidad CategoriaVehiculo.
     /// </summary>
     public class CategoriaVehiculoLN
     {
         /// <summary>
         /// Método para registrar una nueva categoría de vehículo.
         /// </summary>
-        /// <param name="id">
-        /// El ID de la categoría, debe ser un número positivo y único.
-        /// </param>
-        /// <param name="nombre">
-        /// El nombre de la categoría, no puede estar vacío.
-        /// </param>
-        /// <param name="descripcion">
-        /// La descripción de la categoría, no puede estar vacía.
-        /// </param>
-        /// <exception cref="ArgumentException"></exception>
         public void RegistrarCategoria(int id, string nombre, string descripcion)
         {
             // Validaciones de entrada

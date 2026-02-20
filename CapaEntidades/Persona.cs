@@ -22,9 +22,6 @@ namespace CapaEntidades
         /// <summary>
         /// Constructor para inicializar los atributos de la persona.
         /// </summary>
-        /// <param name="identificacion">Identificación de la persona.</param>
-        /// <param name="nombreCompleto">Nombre completo de la persona.</param>
-        /// <param name="fechaNacimiento">Fecha de nacimiento de la persona.</param>
         public Persona(string identificacion, string nombreCompleto, DateTime fechaNacimiento)
         {
             Identificacion = identificacion;

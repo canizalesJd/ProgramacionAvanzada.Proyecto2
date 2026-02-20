@@ -11,7 +11,7 @@
 namespace CapaEntidades
 {
     /// <summary>
-    /// Clase que representa la entidad de Cliente, que hereda de la clase Persona. Esta clase incluye propiedades específicas para el cliente, como IdCliente, FechaRegistro y Activo, además de las propiedades heredadas de Persona como Identificacion, NombreCompleto y FechaNacimiento.
+    /// Clase que representa la entidad de Cliente, que hereda de la clase Persona.
     /// </summary>
     public class Cliente : Persona
     {
