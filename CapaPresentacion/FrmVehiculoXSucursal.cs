@@ -49,7 +49,7 @@ namespace CapaPresentacion
 
                 comboSucursal.Enabled = false;
                 botonGuardar.Enabled = false;
-                this.Close(); // Cerrar el formulario si no hay vendedores disponibles
+                this.Close(); // Cerrar el formulario si no hay sucursales disponibles
                 return;
             }
 
@@ -75,7 +75,7 @@ namespace CapaPresentacion
                 );
                 comboVehiculo.Enabled = false;
                 botonGuardar.Enabled = false;
-                this.Close(); // Cerrar el formulario si no hay vendedores disponibles
+                this.Close(); // Cerrar el formulario si no hay vehículos disponibles
                 return;
             }
             comboVehiculo.DataSource = vehiculos;
