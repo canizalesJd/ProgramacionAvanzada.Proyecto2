@@ -26,7 +26,6 @@ namespace CapaAccesoDatos
         /// <param name="vehiculo">  
         /// El objeto Vehiculo que se desea guardar
         /// </param>
-        /// <exception cref="InvalidOperationException"></exception>
         public static void Guardar(Vehiculo vehiculo)
         {
             // Evitar duplicados: Antes de agregar un nuevo vehículo, verificar que no exista un vehículo con el mismo ID. Si ya existe, lanzar una excepción indicando que el vehículo ya existe.

@@ -26,7 +26,6 @@ namespace CapaAccesoDatos
         /// <param name="categoria">
         /// La categoría de vehículo a agregar. Debe contener un ID único que no exista en el arreglo y no debe ser nula.
         /// </param>
-        /// <exception cref="InvalidOperationException"></exception>
         public static void Guardar(CategoriaVehiculo categoria)
         {
             // Evitar duplicados: Antes de agregar una nueva categoría, verificar que no exista una categoría con el mismo ID. Si ya existe, lanzar una excepción indicando que la categoría ya existe.

@@ -23,8 +23,9 @@ namespace CapaAccesoDatos
         /// <summary>
         /// Metodo para guardar una nueva sucursal en el arreglo. Antes de agregar una nueva sucursal, se realizan las siguientes validaciones:
         /// </summary>
-        /// <param name="sucursal"></param>
-        /// <exception cref="InvalidOperationException"></exception>
+        /// <param name="sucursal">
+        /// El objecto Sucursal que se desea guardar.
+        /// </param>
         public static void Guardar(Sucursal sucursal)
         {
             // Evitar duplicados: Antes de agregar una nueva sucursal, verificar que no exista una sucursal con el mismo ID. Si ya existe, lanzar una excepción indicando que la sucursal ya existe.

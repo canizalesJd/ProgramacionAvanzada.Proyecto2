@@ -18,7 +18,7 @@ namespace CapaLogicaNegocio
     public class VehiculoLN
     {
         /// <summary>
-        /// Metodo para registrar un nuevo vehículo en el sistema.
+        /// Método para registrar un nuevo vehículo en el sistema.
         /// </summary>
         /// <param name="idVehiculo">
         /// El ID del vehículo, debe ser un número positivo y único. No puede ser un ID que ya exista en el sistema.
@@ -78,7 +78,7 @@ namespace CapaLogicaNegocio
             VehiculoAD.Guardar(nuevoVehiculo);
         }
 
-        // Metodo para obtener todos los vehículos
+        // Método para obtener todos los vehículos
         public Vehiculo[] Consultar()
         {
             return VehiculoAD.Consultar();

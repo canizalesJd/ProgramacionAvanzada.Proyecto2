@@ -26,7 +26,6 @@ namespace CapaAccesoDatos
         /// <param name="cliente">
         /// El objeto Cliente que se desea guardar.
         /// </param>
-        /// <exception cref="InvalidOperationException"></exception>
         public static void Guardar(Cliente cliente)
         {
             /* Evitar duplicados: 
