@@ -40,7 +40,7 @@
             titulo.Anchor = AnchorStyles.Top;
             titulo.AutoSize = true;
             titulo.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titulo.Location = new Point(12, 12);
+            titulo.Location = new Point(-15, 12);
             titulo.Margin = new Padding(4, 0, 4, 0);
             titulo.Name = "titulo";
             titulo.Size = new Size(355, 29);
@@ -51,7 +51,7 @@
             // 
             botonActualizar.AutoSize = true;
             botonActualizar.BackColor = SystemColors.Info;
-            botonActualizar.Location = new Point(894, 10);
+            botonActualizar.Location = new Point(839, 12);
             botonActualizar.Margin = new Padding(4, 3, 4, 3);
             botonActualizar.Name = "botonActualizar";
             botonActualizar.Size = new Size(128, 37);
@@ -66,7 +66,7 @@
             footer.AutoSize = true;
             footer.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             footer.ImageAlign = ContentAlignment.BottomCenter;
-            footer.Location = new Point(363, 447);
+            footer.Location = new Point(336, 447);
             footer.Margin = new Padding(4, 0, 4, 0);
             footer.Name = "footer";
             footer.Size = new Size(273, 15);
@@ -83,14 +83,14 @@
             dgvConsulta.Location = new Point(12, 60);
             dgvConsulta.Name = "dgvConsulta";
             dgvConsulta.ReadOnly = true;
-            dgvConsulta.Size = new Size(1010, 368);
+            dgvConsulta.Size = new Size(956, 368);
             dgvConsulta.TabIndex = 20;
             // 
             // FrmConsultarVehiculoXSucursal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1034, 471);
+            ClientSize = new Size(980, 471);
             Controls.Add(dgvConsulta);
             Controls.Add(footer);
             Controls.Add(botonActualizar);

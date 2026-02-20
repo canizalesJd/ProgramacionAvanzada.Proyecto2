@@ -1,5 +1,4 @@
-﻿using CapaAccesoDatos;
-using CapaEntidades;
+﻿using CapaEntidades;
 using CapaLogicaNegocio;
 
 /*
@@ -124,7 +123,7 @@ namespace CapaPresentacion
                             vehiculoXSucursal.Sucursal.Nombre,
                             vehiculoXSucursal.Vehiculo.DisplayMember,
                             vehiculoXSucursal.Vehiculo.Estado == 'U' ? "Usado" : "Nuevo",
-                            vehiculoXSucursal.Vehiculo.Categoria,
+                            vehiculoXSucursal.Vehiculo.Categoria.Nombre,
                             vehiculoXSucursal.Cantidad,
                             vehiculoXSucursal.Vehiculo.Precio.ToString("C", new System.Globalization.CultureInfo("es-CR")) // [1]
                         );

@@ -43,9 +43,9 @@
             titulo.Location = new Point(13, 17);
             titulo.Margin = new Padding(4, 0, 4, 0);
             titulo.Name = "titulo";
-            titulo.Size = new Size(359, 29);
+            titulo.Size = new Size(197, 29);
             titulo.TabIndex = 2;
-            titulo.Text = "Consultar Categoría de Vehículo";
+            titulo.Text = "Consultar Cliente";
             // 
             // dgvConsulta
             // 
