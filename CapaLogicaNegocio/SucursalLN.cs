@@ -35,7 +35,7 @@ namespace CapaLogicaNegocio
         /// <param name="vendedorEncargado">
         /// El vendedor encargado de la sucursal, no puede ser nulo. Debe ser un objeto válido de la clase Vendedor que represente al encargado de la sucursal.
         /// </param>
-        public void RegistrarSucursal(int idSucursal, string nombre, string direccion, string telefono, Vendedor vendedorEncargado)
+        public void RegistrarSucursal(int idSucursal, string nombre, string direccion, string telefono, Vendedor vendedorEncargado, bool activa)
         {
             // Validación de datos de entrada
             if (idSucursal <= 0) {
@@ -62,7 +62,8 @@ namespace CapaLogicaNegocio
                 nombre,
                 direccion,
                 telefono,
-                vendedorEncargado
+                vendedorEncargado,
+                activa
             );
             SucursalAD.Guardar(nuevaSucursal);
         }

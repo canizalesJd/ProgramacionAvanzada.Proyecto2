@@ -21,6 +21,8 @@ namespace CapaEntidades
         public string Telefono { get; set; }
         public Vendedor VendedorEncargado { get; set; }
 
+        public bool Activa { get; set; } = true;
+
         /// <summary>
         /// Constructor para inicializar los atributos de la sucursal, incluyendo el identificador único, nombre, dirección, teléfono y el vendedor encargado.
         /// </summary>
@@ -39,13 +41,14 @@ namespace CapaEntidades
         /// <param name="vendedorEncargado">
         /// Objeto Vendedor que representa al vendedor encargado de la sucursal. Este valor debe ser una instancia válida de la clase Vendedor que esté asignada como responsable de la sucursal.
         /// </param>
-        public Sucursal(int idSucursal, string nombre, string direccion, string telefono, Vendedor vendedorEncargado)
+        public Sucursal(int idSucursal, string nombre, string direccion, string telefono, Vendedor vendedorEncargado, bool activa)
         {
             IdSucursal = idSucursal;
             Nombre = nombre;
             Direccion = direccion;
             Telefono = telefono;
             VendedorEncargado = vendedorEncargado;
+            Activa = activa;
         }
     }
 }

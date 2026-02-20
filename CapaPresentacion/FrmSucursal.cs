@@ -83,6 +83,7 @@ namespace CapaPresentacion
                 string nombre = nombreSucursal.Text.Trim();
                 string direccion = direccionSucursal.Text.Trim();
                 string telefono = telefonoSucursal.Text.Trim();
+                bool activa = sucursalActiva.Checked;
 
                 if (comboVendedorEncargado.SelectedItem is not Vendedor vendedorEncargado)
                 {
@@ -90,7 +91,7 @@ namespace CapaPresentacion
                     return;
                 }
 
-                sucursalLN.RegistrarSucursal(id, nombre, direccion, telefono, vendedorEncargado);
+                sucursalLN.RegistrarSucursal(id, nombre, direccion, telefono, vendedorEncargado, activa);
                 MessageBox.Show("Sucursal registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCampos();
             }

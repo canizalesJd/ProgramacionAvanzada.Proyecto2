@@ -118,6 +118,17 @@ namespace CapaPresentacion
             // Agregar la columna al DataGridView
             dgvConsulta.Columns.Add(columnaNueva);
 
+            // Configurar columna para Activa
+            columnaNueva = new DataGridViewColumn();
+            celdaNueva = new DataGridViewTextBoxCell();
+            columnaNueva.CellTemplate = celdaNueva;
+            columnaNueva.Name = "Activa";
+            columnaNueva.HeaderText = "Activa";
+            columnaNueva.Visible = true;
+            columnaNueva.Width = 100;
+            // Agregar la columna al DataGridView
+            dgvConsulta.Columns.Add(columnaNueva);
+
             // Agregar filas con los datos de las sucursales
             // Agregar las filas con los datos de las categorías
             if (sucursales != null && sucursales.Count() > 0)
@@ -132,7 +143,8 @@ namespace CapaPresentacion
                             sucursal.Direccion,
                             sucursal.Telefono,
                             sucursal.VendedorEncargado != null ? sucursal.VendedorEncargado.NombreCompleto : "N/A",
-                            sucursal.VendedorEncargado != null ? sucursal.VendedorEncargado.Identificacion : "N/A"
+                            sucursal.VendedorEncargado != null ? sucursal.VendedorEncargado.Identificacion : "N/A",
+                            sucursal.Activa ? "Sí" : "No"
                         );
                     }
                 }
