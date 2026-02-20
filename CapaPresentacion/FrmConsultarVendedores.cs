@@ -100,7 +100,7 @@ namespace CapaPresentacion
             // Agregar filas con los datos de los vendedores
             if (vendedores.Length > 0)
             {
-                foreach (var vendedor in vendedores)
+                foreach (Vendedor vendedor in vendedores)
                 {
                     if (vendedor != null)
                     {

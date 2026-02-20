@@ -85,9 +85,9 @@ namespace CapaPresentacion
             dgvConsulta.Columns.Add(columnaNueva);
 
             // Agregar las filas con los datos de las categorías
-            if (categorias != null && categorias.Count() > 0)
+            if (categorias != null && categorias.Length > 0)
             {
-                foreach (var categoria in categorias)
+                foreach (CategoriaVehiculo categoria in categorias)
                 {
                     if (categoria != null)
                     {

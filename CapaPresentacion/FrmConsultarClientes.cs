@@ -107,9 +107,9 @@ namespace CapaPresentacion
             dgvConsulta.Columns.Add(columnaNueva);
 
             // Agregar filas al DataGridView
-            if (clientes != null && clientes.Count() > 0)
+            if (clientes != null && clientes.Length > 0)
             {
-                foreach (var cliente in clientes)
+                foreach (Cliente cliente in clientes)
                 {
                     if (cliente != null)
                     {

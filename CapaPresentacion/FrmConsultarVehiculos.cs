@@ -132,9 +132,9 @@ namespace CapaPresentacion
 
             // Agregar filas con los datos de los vehículos
             // Agregar filas al DataGridView
-            if (vehiculos != null && vehiculos.Count() > 0)
+            if (vehiculos != null && vehiculos.Length > 0)
             {
-                foreach (var vehiculo in vehiculos)
+                foreach (Vehiculo vehiculo in vehiculos)
                 {
                     if (vehiculo != null)
                     {

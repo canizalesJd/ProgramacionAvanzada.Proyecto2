@@ -131,9 +131,9 @@ namespace CapaPresentacion
 
             // Agregar filas con los datos de las sucursales
             // Agregar las filas con los datos de las categorías
-            if (sucursales != null && sucursales.Count() > 0)
+            if (sucursales != null && sucursales.Length > 0)
             {
-                foreach (var sucursal in sucursales)
+                foreach (Sucursal sucursal in sucursales)
                 {
                     if (sucursal != null)
                     {
