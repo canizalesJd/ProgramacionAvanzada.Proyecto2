@@ -61,6 +61,17 @@ namespace CapaPresentacion
             columnaNueva.Width = 100;
             dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
 
+            // Configurar columna para la Identificación del vendedor
+            columnaNueva = new DataGridViewColumn();
+            celdaNueva = new DataGridViewTextBoxCell();
+            columnaNueva.CellTemplate = celdaNueva;
+            columnaNueva.Name = "Identificacion";
+            columnaNueva.HeaderText = "Identificación";
+            columnaNueva.Visible = true;
+            columnaNueva.Width = 150;
+            // Agregar la columna al DataGridView
+            dgvConsulta.Columns.Add(columnaNueva);
+
             // Configurar columna para Nombre
             columnaNueva = new DataGridViewColumn();
             columnaNueva.CellTemplate = celdaNueva;
@@ -106,6 +117,7 @@ namespace CapaPresentacion
                     {
                         dgvConsulta.Rows.Add(
                             vendedor.IdVendedor,
+                            vendedor.Identificacion,
                             vendedor.NombreCompleto,
                             vendedor.Telefono,
                             vendedor.FechaNacimiento.ToString("dd/MM/yyyy"),

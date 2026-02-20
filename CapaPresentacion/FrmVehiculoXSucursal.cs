@@ -1,5 +1,4 @@
-﻿using CapaAccesoDatos;
-using CapaEntidades;
+﻿using CapaEntidades;
 using CapaLogicaNegocio;
 
 /*

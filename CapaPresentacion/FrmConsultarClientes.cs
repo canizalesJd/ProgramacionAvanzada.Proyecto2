@@ -62,6 +62,17 @@ namespace CapaPresentacion
             // Agregar la columna al DataGridView
             dgvConsulta.Columns.Add(columnaNueva);
 
+            // Configurar columna para la Identificación del cliente
+            columnaNueva = new DataGridViewColumn();
+            celdaNueva = new DataGridViewTextBoxCell();
+            columnaNueva.CellTemplate = celdaNueva;
+            columnaNueva.Name = "Identificacion";
+            columnaNueva.HeaderText = "Identificación";
+            columnaNueva.Visible = true;
+            columnaNueva.Width = 150;
+            // Agregar la columna al DataGridView
+            dgvConsulta.Columns.Add(columnaNueva);
+
             // Configurar columna para Nombre Completo
             columnaNueva = new DataGridViewColumn();
             celdaNueva = new DataGridViewTextBoxCell();
@@ -115,6 +126,7 @@ namespace CapaPresentacion
                     {
                         dgvConsulta.Rows.Add(
                             cliente.IdCliente,
+                            cliente.Identificacion,
                             cliente.NombreCompleto,
                             cliente.FechaNacimiento.ToString("dd/MM/yyyy"),
                             cliente.FechaRegistro.ToString("dd/MM/yyyy"),
