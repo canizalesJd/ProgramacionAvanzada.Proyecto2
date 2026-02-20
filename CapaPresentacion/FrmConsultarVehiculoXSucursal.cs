@@ -112,7 +112,6 @@ namespace CapaPresentacion
             dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
 
             // Agregar filas con los datos de los vehículos
-            // Agregar filas al DataGridView
             if (vehiculosXSucursal != null && vehiculosXSucursal.Length > 0)
             {              
                 for (int i = 0; i < vehiculosXSucursal.Length; i++)
