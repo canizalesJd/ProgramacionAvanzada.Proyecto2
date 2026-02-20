@@ -75,7 +75,7 @@ namespace CapaLogicaNegocio
             ClienteAD.Guardar(nuevoCliente);
         }
 
-        // Metodo para obtener todos los clientes
+        // Método para obtener todos los clientes
         public Cliente[] Consultar()
         {
             return ClienteAD.Consultar();

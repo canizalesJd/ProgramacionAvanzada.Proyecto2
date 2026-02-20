@@ -71,7 +71,7 @@ namespace CapaPresentacion
         }
 
         // Evento que se ejecuta al hacer clic en el botón de guardar, donde se valida la información ingresada, se registra la nueva sucursal utilizando la lógica de negocio y se muestra un mensaje de éxito o error según corresponda. Después de registrar la sucursal, se limpian los campos del formulario para permitir el registro de una nueva sucursal.
-        private void botonGuardar_Click(object sender, EventArgs e)
+        private void BotonGuardar_Click(object sender, EventArgs e)
         {
             try
             {

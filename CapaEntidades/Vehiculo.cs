@@ -22,6 +22,9 @@ namespace CapaEntidades
         public decimal Precio { get; set; }
         public CategoriaVehiculo Categoria { get; set; }
         public char Estado { get; set; }
+
+        // Display member para mostrar el anio + marca + modelo en los ComboBox
+        public string DisplayMember => $"{Anio} - {Marca} {Modelo}";
         /// <summary>
         /// Constructor para inicializar los atributos de un vehículo, incluyendo el identificador único, marca, modelo, año, precio, categoría y estado. El estado debe ser 'N' para vehículos nuevos o 'U' para vehículos usados. Si se proporciona un estado diferente, se lanzará una excepción indicando que el estado no es válido.
         /// </summary>

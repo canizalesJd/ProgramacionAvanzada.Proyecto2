@@ -38,22 +38,28 @@ namespace CapaLogicaNegocio
         public void RegistrarSucursal(int idSucursal, string nombre, string direccion, string telefono, Vendedor vendedorEncargado, bool activa)
         {
             // Validación de datos de entrada
-            if (idSucursal <= 0) {
+            if (idSucursal <= 0)
+            {
                 throw new ArgumentException("El ID de la sucursal debe ser un número positivo.");
             }
-            if (SucursalAD.SucursalExiste(idSucursal)) {
+            if (SucursalAD.SucursalExiste(idSucursal))
+            {
                 throw new InvalidOperationException($"La sucursal con ID {idSucursal} ya existe.");
             }
-            if (string.IsNullOrWhiteSpace(nombre)) {
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
                 throw new ArgumentException("El nombre de la sucursal no puede estar vacío.");
             }
-            if (string.IsNullOrWhiteSpace(direccion)) {
+            if (string.IsNullOrWhiteSpace(direccion))
+            {
                 throw new ArgumentException("La dirección de la sucursal no puede estar vacía.");
             }
-            if (string.IsNullOrWhiteSpace(telefono)) {
+            if (string.IsNullOrWhiteSpace(telefono))
+            {
                 throw new ArgumentException("El teléfono de la sucursal no puede estar vacío.");
             }
-            if (vendedorEncargado == null) {
+            if (vendedorEncargado == null)
+            {
                 throw new ArgumentException("Debe asignar un vendedor encargado a la sucursal.");
             }
             // Crear y guardar la nueva sucursal
@@ -68,10 +74,16 @@ namespace CapaLogicaNegocio
             SucursalAD.Guardar(nuevaSucursal);
         }
 
-        // Metodo para obtener todas las sucursales
+        // Método para obtener todas las sucursales
         public Sucursal[] Consultar()
         {
             return SucursalAD.Consultar();
-        }        
+        }
+
+        // Método para obtener las sucursales activas
+        public Sucursal[] ConsultarActivas()
+        {
+            return SucursalAD.ConsultarActivas();
+        }
     }
 }

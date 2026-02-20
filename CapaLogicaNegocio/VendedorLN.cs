@@ -93,7 +93,7 @@ namespace CapaLogicaNegocio
             VendedorAD.Guardar(nuevo);
         }
 
-        // Metodo para obtener todos los vendedores
+        // Método para obtener todos los vendedores
         public Vendedor[] Consultar()
         {
             return VendedorAD.Consultar();

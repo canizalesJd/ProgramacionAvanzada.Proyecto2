@@ -212,7 +212,7 @@
             botonGuardar.TabIndex = 21;
             botonGuardar.Text = "Registrar";
             botonGuardar.UseVisualStyleBackColor = false;
-            botonGuardar.Click += botonGuardar_Click;
+            botonGuardar.Click += BotonGuardar_Click;
             // 
             // footer
             // 

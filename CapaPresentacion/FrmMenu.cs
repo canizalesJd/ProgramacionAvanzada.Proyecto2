@@ -17,7 +17,7 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
-        // Opcion de Registros
+        // Opción de Registros
         private void CategoriaDeVehiculoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCategoria frmCategoria = new FrmCategoria();
@@ -48,7 +48,13 @@ namespace CapaPresentacion
             frmCliente.Show();
         }
 
-        // Opcion de Consultas de Información
+        private void VehiculoPorSucursalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmVehiculoXSucursal frmVehiculoXSucursal = new FrmVehiculoXSucursal();
+            frmVehiculoXSucursal.Show();
+        }
+
+        // Opción de Consultas
         private void CategoriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmConsultarCategorias frmConsultarCategorias = new FrmConsultarCategorias();

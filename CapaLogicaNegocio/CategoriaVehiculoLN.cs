@@ -18,7 +18,7 @@ namespace CapaLogicaNegocio
     public class CategoriaVehiculoLN
     {
         /// <summary>
-        /// Metodo para registrar una nueva categoría de vehículo.
+        /// Método para registrar una nueva categoría de vehículo.
         /// </summary>
         /// <param name="id">
         /// El ID de la categoría, debe ser un número positivo y único.
@@ -63,7 +63,7 @@ namespace CapaLogicaNegocio
         }
 
         /// <summary>
-        /// Metodo para consultar todas las categorías de vehículo registradas. Devuelve un arreglo de objetos CategoriaVehiculo.
+        /// Método para consultar todas las categorías de vehículo registradas. Devuelve un arreglo de objetos CategoriaVehiculo.
         /// </summary>
         public CategoriaVehiculo[] Consultar()
         {

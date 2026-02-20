@@ -43,6 +43,7 @@
             vendedoresToolStripMenuItem = new ToolStripMenuItem();
             footer = new Label();
             titulo = new Label();
+            vehiculoPorSucursalToolStripMenuItem = new ToolStripMenuItem();
             menuPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -58,7 +59,7 @@
             // 
             // registrosToolStripMenuItem
             // 
-            registrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriaDeVehiculoToolStripMenuItem, vehiculoToolStripMenuItem, vendedorToolStripMenuItem, sucursalToolStripMenuItem, registroClienteToolStripMenuItem });
+            registrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriaDeVehiculoToolStripMenuItem, vehiculoToolStripMenuItem, vendedorToolStripMenuItem, sucursalToolStripMenuItem, registroClienteToolStripMenuItem, vehiculoPorSucursalToolStripMenuItem });
             registrosToolStripMenuItem.Name = "registrosToolStripMenuItem";
             registrosToolStripMenuItem.Size = new Size(67, 20);
             registrosToolStripMenuItem.Text = "Registros";
@@ -166,6 +167,13 @@
             titulo.Text = "AutoMarket";
             titulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // vehiculoPorSucursalToolStripMenuItem
+            // 
+            vehiculoPorSucursalToolStripMenuItem.Name = "vehiculoPorSucursalToolStripMenuItem";
+            vehiculoPorSucursalToolStripMenuItem.Size = new Size(189, 22);
+            vehiculoPorSucursalToolStripMenuItem.Text = "Vehículo por Sucursal";
+            vehiculoPorSucursalToolStripMenuItem.Click += VehiculoPorSucursalToolStripMenuItem_Click;
+            // 
             // FrmMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -202,6 +210,7 @@
         private ToolStripMenuItem sucursalesToolStripMenuItem;
         private ToolStripMenuItem vehiculosToolStripMenuItem;
         private ToolStripMenuItem vendedoresToolStripMenuItem;
+        private ToolStripMenuItem vehiculoPorSucursalToolStripMenuItem;
     }
 }
 

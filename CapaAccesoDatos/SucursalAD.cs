@@ -69,5 +69,36 @@ namespace CapaAccesoDatos
             Array.Copy(sucursales, resultado, contador);
             return resultado;
         }
+
+        /// <summary>
+        /// Método para obtener solo las sucursales activas. Retorna solo las sucursales que tienen el atributo Activa en true.
+        /// </summary>
+        public static Sucursal[] ConsultarActivas()
+        {
+            // Contar cuántas sucursales activas hay para crear un arreglo del tamaño correcto
+            int totalActivas = 0;
+            for (int i = 0; i < contador; i++)
+            {
+                if (sucursales[i].Activa) {
+                    totalActivas++;
+                }
+            }
+
+            // Crear el arreglo con el tamaño exacto necesario
+            Sucursal[] resultado = new Sucursal[totalActivas];
+
+            // Llenar el arreglo con las sucursales activas
+            int indice = 0;
+            for (int i = 0; i < contador; i++)
+            {
+                if (sucursales[i].Activa)
+                {
+                    resultado[indice] = sucursales[i];
+                    indice++;
+                }
+            }
+
+            return resultado;
+        }
     }
 }
