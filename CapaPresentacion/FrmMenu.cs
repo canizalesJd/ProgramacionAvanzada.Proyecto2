@@ -47,7 +47,6 @@ namespace CapaPresentacion
             FrmCliente frmCliente = new FrmCliente();
             frmCliente.Show();
         }
-
         private void VehiculoPorSucursalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmVehiculoXSucursal frmVehiculoXSucursal = new FrmVehiculoXSucursal();

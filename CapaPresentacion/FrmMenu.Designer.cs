@@ -35,7 +35,6 @@
             vendedorToolStripMenuItem = new ToolStripMenuItem();
             sucursalToolStripMenuItem = new ToolStripMenuItem();
             registroClienteToolStripMenuItem = new ToolStripMenuItem();
-            vehiculoPorSucursalToolStripMenuItem = new ToolStripMenuItem();
             consultarInformacionToolStripMenuItem = new ToolStripMenuItem();
             categoriaToolStripMenuItem = new ToolStripMenuItem();
             clienteToolStripMenuItem = new ToolStripMenuItem();
@@ -45,6 +44,7 @@
             vehiculoConsultarPorSucursalToolStripMenuItem = new ToolStripMenuItem();
             footer = new Label();
             titulo = new Label();
+            vehículoPorSucursalToolStripMenuItem = new ToolStripMenuItem();
             menuPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -60,7 +60,7 @@
             // 
             // registrosToolStripMenuItem
             // 
-            registrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriaDeVehiculoToolStripMenuItem, vehiculoToolStripMenuItem, vendedorToolStripMenuItem, sucursalToolStripMenuItem, registroClienteToolStripMenuItem, vehiculoPorSucursalToolStripMenuItem });
+            registrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriaDeVehiculoToolStripMenuItem, vehiculoToolStripMenuItem, vendedorToolStripMenuItem, sucursalToolStripMenuItem, registroClienteToolStripMenuItem, vehículoPorSucursalToolStripMenuItem });
             registrosToolStripMenuItem.Name = "registrosToolStripMenuItem";
             registrosToolStripMenuItem.Size = new Size(67, 20);
             registrosToolStripMenuItem.Text = "Registros";
@@ -99,13 +99,6 @@
             registroClienteToolStripMenuItem.Size = new Size(189, 22);
             registroClienteToolStripMenuItem.Text = "Cliente";
             registroClienteToolStripMenuItem.Click += RegistroClienteToolStripMenuItem_Click;
-            // 
-            // vehiculoPorSucursalToolStripMenuItem
-            // 
-            vehiculoPorSucursalToolStripMenuItem.Name = "vehiculoPorSucursalToolStripMenuItem";
-            vehiculoPorSucursalToolStripMenuItem.Size = new Size(189, 22);
-            vehiculoPorSucursalToolStripMenuItem.Text = "Vehículo por Sucursal";
-            vehiculoPorSucursalToolStripMenuItem.Click += VehiculoConsultarPorSucursalToolStripMenuItem_Click;
             // 
             // consultarInformacionToolStripMenuItem
             // 
@@ -182,6 +175,13 @@
             titulo.Text = "AutoMarket";
             titulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // vehículoPorSucursalToolStripMenuItem
+            // 
+            vehículoPorSucursalToolStripMenuItem.Name = "vehículoPorSucursalToolStripMenuItem";
+            vehículoPorSucursalToolStripMenuItem.Size = new Size(189, 22);
+            vehículoPorSucursalToolStripMenuItem.Text = "Vehículo por Sucursal";
+            vehículoPorSucursalToolStripMenuItem.Click += VehiculoPorSucursalToolStripMenuItem_Click;
+            // 
             // FrmMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -218,8 +218,8 @@
         private ToolStripMenuItem sucursalesToolStripMenuItem;
         private ToolStripMenuItem vehiculosToolStripMenuItem;
         private ToolStripMenuItem vendedoresToolStripMenuItem;
-        private ToolStripMenuItem vehiculoPorSucursalToolStripMenuItem;
         private ToolStripMenuItem vehiculoConsultarPorSucursalToolStripMenuItem;
+        private ToolStripMenuItem vehículoPorSucursalToolStripMenuItem;
     }
 }
 

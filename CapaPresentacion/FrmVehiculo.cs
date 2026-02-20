@@ -74,14 +74,9 @@ namespace CapaPresentacion
         // Método para cargar las opciones de estado del vehículo en el combo box. Se agregan las opciones "Nuevo" y "Usado" con sus respectivos valores 'N' y 'U'. Se establece el DisplayMember y ValueMember para mostrar el texto correcto en el combo box.
         private void CargarEstadoVehiculo()
         {
-            // Limpiar el combo box antes de agregar las opciones
             comboEstadoVehiculo.Items.Clear();
-            // Agregar opciones de estado del vehículo
-            comboEstadoVehiculo.Items.Add(new { Texto = "Nuevo", Valor = 'N' });
-            comboEstadoVehiculo.Items.Add(new { Texto = "Usado", Valor = 'U' });
-            // Configurar DisplayMember y ValueMember para mostrar el texto correcto en el combo box
-            comboEstadoVehiculo.DisplayMember = "Texto";
-            comboEstadoVehiculo.ValueMember = "Valor";
+            comboEstadoVehiculo.Items.Add("Nuevo");
+            comboEstadoVehiculo.Items.Add("Usado");
             comboEstadoVehiculo.SelectedIndex = -1;
         }
 

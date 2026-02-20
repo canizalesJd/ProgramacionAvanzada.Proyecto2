@@ -33,6 +33,7 @@ namespace CapaPresentacion
             direccionSucursal.Clear();
             telefonoSucursal.Clear();
             comboVendedorEncargado.SelectedIndex = -1;
+            sucursalActiva.Checked = true; // Por defecto, la sucursal se registra como activa
         }
 
         // Método para cargar los vendedores disponibles en el sistema y mostrarlos en el combo box para seleccionar el encargado de la sucursal. Si no hay vendedores registrados, se muestra un mensaje informativo y se deshabilita la opción de guardar.
