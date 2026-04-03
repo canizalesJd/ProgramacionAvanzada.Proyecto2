@@ -1,13 +1,17 @@
-﻿using CapaEntidades;
-
-/*
+﻿/*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
- * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: José David Cañizales Azocar
- * Fecha: Febrero 2026
+ * Fecha: Marzo 2026
  */
+
+using CapaEntidades;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
+using Microsoft.Data.SqlClient;
 
 namespace CapaAccesoDatos
 {
@@ -19,26 +23,50 @@ namespace CapaAccesoDatos
         // Arreglo estático para almacenar categorías de vehículos, con una capacidad máxima de 20 registros
         private static CategoriaVehiculo[] categorias = new CategoriaVehiculo[20];
         private static int contador;
+        private static readonly string cadenaConexion = ConfigurationManager.ConnectionStrings["AutoMarketBD"].ConnectionString;
 
         /// <summary>
         /// Método para agregar una nueva categoría de vehículo al arreglo.
         /// </summary>
         public static void Guardar(CategoriaVehiculo categoria)
         {
-            // Evitar duplicados: Antes de agregar una nueva categoría, verificar que no exista una categoría con el mismo ID. Si ya existe, lanzar una excepción indicando que la categoría ya existe.
+            // 1. Validación previa: que no exista ya en BD
             if (CategoriaExiste(categoria.IdCategoria))
             {
                 throw new InvalidOperationException("La categoría con el ID proporcionado ya existe.");
             }
 
-            // Verificar capacidad: Antes de agregar una nueva categoría, verificar que el arreglo no haya alcanzado su capacidad máxima de 20 registros. Si se intenta agregar más allá de esta capacidad, lanzar una excepción indicando que no se pueden agregar más categorías.
-            if (contador >= categorias.Length)
+            // 2. Insertar en la base de datos
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
-                throw new InvalidOperationException("No se pueden agregar más categorías, capacidad máxima alcanzada.");
+                string sentencia = @"INSERT INTO dbo.CategoriaVehiculo
+                             (IdCategoria, NombreCategoria, Descripcion)
+                             VALUES (@IdCategoria, @NombreCategoria, @Descripcion)";
+
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
+                {
+                    comando.CommandType = CommandType.Text;
+                    comando.Parameters.AddWithValue("@IdCategoria", categoria.IdCategoria);
+                    comando.Parameters.AddWithValue("@NombreCategoria", categoria.Nombre);
+                    comando.Parameters.AddWithValue("@Descripcion", categoria.Descripcion);
+
+                    try
+                    {
+                        conexion.Open();
+                        int filas = comando.ExecuteNonQuery();
+
+                        // Verificar si la inserción fue exitosa
+                        if (filas == 0)
+                        {
+                            throw new InvalidOperationException("No se pudo insertar la categoría en la base de datos.");
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al guardar la categoría en la base de datos: " + ex.Message, ex);
+                    }
+                }
             }
-            
-            categorias[contador] = categoria;
-            contador++;
         }
 
         /// <summary>
@@ -46,25 +74,69 @@ namespace CapaAccesoDatos
         /// </summary>
         public static bool CategoriaExiste(int idCategoria)
         {
-            for (int i = 0; i < contador; i++)
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
-                if (categorias[i].IdCategoria == idCategoria)
+                string sentencia = @"SELECT COUNT(1)
+                             FROM dbo.CategoriaVehiculo
+                             WHERE IdCategoria = @IdCategoria";
+
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
                 {
-                    return true;
+                    comando.CommandType = CommandType.Text;
+                    comando.Parameters.AddWithValue("@IdCategoria", idCategoria);
+
+                    try
+                    {
+                        conexion.Open();
+                        // ExecuteScalar devuelve el primer valor de la primera fila del resultado
+                        int cantidad = (int)comando.ExecuteScalar();
+                        return cantidad > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al verificar la existencia de la categoría: " + ex.Message, ex);
+                    }
                 }
             }
-            return false;
         }
-        
+
         /// <summary>
         /// Método para obtener todas las categorías de vehículo
         /// </summary>
-        public static CategoriaVehiculo[] Consultar()
+        public static List<CategoriaVehiculo> Consultar()
         {
-            // Retornar solo las categorías agregadas, sin incluir los espacios vacíos del arreglo original usando el contador para determinar cuántas categorías se han agregado.
-            CategoriaVehiculo[] resultado = new CategoriaVehiculo[contador];
-            Array.Copy(categorias, resultado, contador);
-            return resultado;
+            List<CategoriaVehiculo> lista = new List<CategoriaVehiculo>();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                string sentencia = @"SELECT IdCategoria, NombreCategoria, Descripcion
+                             FROM dbo.CategoriaVehiculo";
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
+                {
+                    comando.CommandType = CommandType.Text;
+                    try
+                    {
+                        conexion.Open();
+                        using (SqlDataReader lector = comando.ExecuteReader())
+                        {
+                            while (lector.Read())
+                            {
+                                CategoriaVehiculo categoria = new CategoriaVehiculo(
+                                    lector.GetInt32(0),
+                                    lector.GetString(1),
+                                    lector.GetString(2)
+                                );
+
+                                lista.Add(categoria);
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al consultar las categorías: " + ex.Message, ex);
+                    }
+                }
+            }
+            return lista;
         }
 
     }

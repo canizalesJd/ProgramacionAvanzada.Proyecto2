@@ -55,7 +55,7 @@ namespace CapaLogicaNegocio
         /// <summary>
         /// Método para consultar todas las categorías de vehículo registradas. Devuelve un arreglo de objetos CategoriaVehiculo.
         /// </summary>
-        public CategoriaVehiculo[] Consultar()
+        public List<CategoriaVehiculo> Consultar()
         {
             return CategoriaVehiculoAD.Consultar();
         }

@@ -42,8 +42,8 @@ namespace CapaPresentacion
         // Método para cargar las categorías de vehículos disponibles en el sistema. Si no hay categorías registradas, se muestra un mensaje informativo y se deshabilitan los controles relacionados con la selección de categoría y el botón de guardar, además de cerrar el formulario.
         private void CargarCategorias()
         {
-            CategoriaVehiculo[] categorias = categoriaVehiculoLN.Consultar();
-            if (categorias.Length == 0)
+            List<CategoriaVehiculo> categorias = categoriaVehiculoLN.Consultar();
+            if (categorias == null || categorias.Count == 0)
             {
                 MessageBox.Show(
                     "No hay categorías de vehículos registradas. Debe registrar al menos una antes de crear un vehículo.",
