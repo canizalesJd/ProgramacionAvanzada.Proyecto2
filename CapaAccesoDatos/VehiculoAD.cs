@@ -1,13 +1,16 @@
-﻿using CapaEntidades;
-
-/*
+﻿/*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
- * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: José David Cañizales Azocar
- * Fecha: Febrero 2026
+ * Fecha: Abril 2026
  */
+
+using CapaEntidades;
+using System.Data;
+using System.Configuration;
+using Microsoft.Data.SqlClient;
 
 namespace CapaAccesoDatos
 {
@@ -16,9 +19,8 @@ namespace CapaAccesoDatos
     /// </summary>
     public class VehiculoAD
     {
-        // Arreglo estático para almacenar vehículos, con una capacidad máxima de 50 registros
-        private static Vehiculo[] vehiculos = new Vehiculo[50];
-        private static int contador;
+        // Conexión a la base de datos utilizando la cadena de conexión definida en el archivo de configuración
+        private static readonly string cadenaConexion = ConfigurationManager.ConnectionStrings["AutoMarketBD"].ConnectionString;
 
         /// <summary>
         /// Metodo para guardar un nuevo vehículo en el arreglo.
@@ -31,37 +33,135 @@ namespace CapaAccesoDatos
                 throw new InvalidOperationException("El vehículo con el ID proporcionado ya existe.");
             }
 
-            // Verificar capacidad: Antes de agregar un nuevo vehículo, verificar que el arreglo no haya alcanzado su capacidad máxima de 50 registros. Si se intenta agregar más allá de esta capacidad, lanzar una excepción indicando que no se pueden agregar más vehículos.
-            if (contador >= vehiculos.Length)
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
-                throw new InvalidOperationException("No se pueden agregar más vehículos, capacidad máxima alcanzada.");
+                string sentencia = @"INSERT INTO dbo.Vehiculo
+                                     (IdVehiculo, Marca, Modelo, Ano, Precio, IdCategoria, Estado)
+                                     VALUES (@IdVehiculo, @Marca, @Modelo, @Ano, @Precio, @IdCategoria, @Estado)";
+
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
+                {
+                    comando.CommandType = CommandType.Text;
+                    comando.Parameters.AddWithValue("@IdVehiculo", vehiculo.IdVehiculo);
+                    comando.Parameters.AddWithValue("@Marca", vehiculo.Marca);
+                    comando.Parameters.AddWithValue("@Modelo", vehiculo.Modelo);
+                    comando.Parameters.AddWithValue("@Ano", vehiculo.Anio);
+                    comando.Parameters.AddWithValue("@Precio", vehiculo.Precio);
+                    comando.Parameters.AddWithValue("@IdCategoria", vehiculo.Categoria.IdCategoria);
+                    comando.Parameters.AddWithValue("@Estado", vehiculo.Estado);
+
+                    try
+                    {
+                        conexion.Open();
+                        int filas = comando.ExecuteNonQuery();
+
+                        if (filas == 0)
+                            throw new InvalidOperationException("No se pudo insertar el vehículo en la base de datos.");
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al guardar el vehículo en la base de datos: " + ex.Message, ex);
+                    }
+                }
             }
-            vehiculos[contador] = vehiculo;
-            contador++;
         }
 
         // Método para verificar si un vehículo existe por su ID
         public static bool VehiculoExiste(int idVehiculo)
         {
-            for (int i = 0; i < contador; i++)
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
-                if (vehiculos[i].IdVehiculo == idVehiculo)
+                string sentencia = @"SELECT COUNT(1)
+                             FROM dbo.Vehiculo
+                             WHERE IdVehiculo = @IdVehiculo";
+
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
                 {
-                    return true;
+                    comando.CommandType = CommandType.Text;
+                    comando.Parameters.AddWithValue("@IdVehiculo", idVehiculo);
+
+                    try
+                    {
+                        conexion.Open();
+                        // ExecuteScalar devuelve el primer valor de la primera fila del resultado
+                        int cantidad = (int)comando.ExecuteScalar();
+                        return cantidad > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al verificar la existencia del vehículo: " + ex.Message, ex);
+                    }
                 }
             }
-            return false;
         }
 
         /// <summary>
         /// Metodo para consultar todos los vehículos almacenados en el arreglo.
         /// </summary>
-        public static Vehiculo[] Consultar()
+        public static List<Vehiculo> Consultar()
         {
-            // Retorna solo los vehículos agregados, no los espacios vacíos del arreglo
-            Vehiculo[] resultado = new Vehiculo[contador];
-            Array.Copy(vehiculos, resultado, contador);
-            return resultado;
+            List<Vehiculo> lista = new List<Vehiculo>();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                string sentencia = @"
+                    SELECT  v.IdVehiculo,
+                            v.Marca,
+                            v.Modelo,
+                            v.Ano,
+                            v.Precio,
+                            v.IdCategoria,
+                            v.Estado,
+                            c.IdCategoria,
+                            c.NombreCategoria,
+                            c.Descripcion
+                    FROM    dbo.Vehiculo v
+                    INNER JOIN dbo.CategoriaVehiculo c ON v.IdCategoria = c.IdCategoria";
+
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
+                {
+                    comando.CommandType = CommandType.Text;
+
+                    try
+                    {
+                        conexion.Open();
+
+                        using (SqlDataReader lector = comando.ExecuteReader())
+                        {
+                            while (lector.Read())
+                            {
+                                // Construir CategoriaVehiculo
+                                CategoriaVehiculo categoriaVehiculo = new CategoriaVehiculo(
+                                    lector.GetInt32(7),    // IdCategoria
+                                    lector.GetString(8),   // NombreCategoria
+                                    lector.GetString(9)   // Descripcion
+                                );
+
+                                // Construir Vehiculo
+                                char estado = lector.GetString(6)[0];
+
+                                Vehiculo vehiculo = new Vehiculo(
+                                    lector.GetInt32(0),
+                                    lector.GetString(1),
+                                    lector.GetString(2),
+                                    lector.GetInt32(3),
+                                    lector.GetDecimal(4),
+                                    categoriaVehiculo,
+                                    estado
+                                );
+
+                                lista.Add(vehiculo);
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al consultar los vehiculos: " + ex.Message, ex);
+                    }
+                }
+            }
+
+            return lista;
         }
     }
 }

@@ -1,14 +1,14 @@
-﻿using CapaEntidades;
-using CapaLogicaNegocio;
-
-/*
+﻿/*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
- * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: José David Cañizales Azocar
- * Fecha: Febrero 2026
+ * Fecha: Abril 2026
  */
+
+using CapaEntidades;
+using CapaLogicaNegocio;
 
 namespace CapaPresentacion
 {
@@ -32,8 +32,9 @@ namespace CapaPresentacion
         // Método para cargar la lista de vehículos desde la lógica de negocio y mostrarla en el DataGridView. Configura las columnas del DataGridView y agrega filas con los datos de cada vehículo, incluyendo su categoría y estado formateados adecuadamente.
         private void CargarVehiculos()
         {
-            Vehiculo[] vehiculos = vehiculoLN.Consultar();
-            if (vehiculos.Length == 0)
+            List<Vehiculo> vehiculos = vehiculoLN.Consultar();
+
+            if (vehiculos == null || vehiculos.Count == 0)
             {
                 MessageBox.Show(
                     "No hay vehículos registrados.",
@@ -41,118 +42,89 @@ namespace CapaPresentacion
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
-                this.Close(); // Cerrar el formulario si no hay vehículos disponibles
+                Close();
                 return;
             }
-            dgvConsulta.DataSource = null; // Limpiar cualquier fuente de datos previa
-            dgvConsulta.Rows.Clear(); // Limpiar filas existentes
-            dgvConsulta.Columns.Clear(); // Limpiar columnas existentes
 
-            // Configurar columnas manualmente para asegurar el orden y formato deseado
-            DataGridViewColumn columnaNueva = new DataGridViewColumn();
-            DataGridViewCell celdaNueva = new DataGridViewTextBoxCell();
+            dgvConsulta.DataSource = null;
+            dgvConsulta.Rows.Clear();
+            dgvConsulta.Columns.Clear();
+            dgvConsulta.AutoGenerateColumns = false;
 
-            // Configurar columna para ID Vehículo
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "ID";
-            columnaNueva.HeaderText = "ID Vehículo";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 100;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            // ID Vehículo
+            var colId = new DataGridViewTextBoxColumn();
+            colId.Name = "IdVehiculo";
+            colId.HeaderText = "ID Vehículo";
+            colId.DataPropertyName = "IdVehiculo";
+            colId.Visible = true;
+            colId.Width = 100;
+            dgvConsulta.Columns.Add(colId);
 
-            // Configurar columna para Marca
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Marca";
-            columnaNueva.HeaderText = "Marca";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 150;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            // Marca
+            var colMarca = new DataGridViewTextBoxColumn();
+            colMarca.Name = "Marca";
+            colMarca.HeaderText = "Marca";
+            colMarca.DataPropertyName = "Marca";
+            colMarca.Visible = true;
+            colMarca.Width = 150;
+            dgvConsulta.Columns.Add(colMarca);
 
-            // Configurar columna para Modelo
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Modelo";
-            columnaNueva.HeaderText = "Modelo";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 150;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            // Modelo
+            var colModelo = new DataGridViewTextBoxColumn();
+            colModelo.Name = "Modelo";
+            colModelo.HeaderText = "Modelo";
+            colModelo.DataPropertyName = "Modelo";
+            colModelo.Visible = true;
+            colModelo.Width = 150;
+            dgvConsulta.Columns.Add(colModelo);
 
-            // Configurar columna para Año
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Anio";
-            columnaNueva.HeaderText = "Año";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 80;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            // Año
+            var colAnio = new DataGridViewTextBoxColumn();
+            colAnio.Name = "Anio";
+            colAnio.HeaderText = "Año";
+            colAnio.DataPropertyName = "Anio";
+            colAnio.Visible = true;
+            colAnio.Width = 80;
+            dgvConsulta.Columns.Add(colAnio);
 
-            // Configurar columna para Precio
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Precio";
-            columnaNueva.HeaderText = "Precio";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 100;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            // Precio (se formatea en CellFormatting)
+            var colPrecio = new DataGridViewTextBoxColumn();
+            colPrecio.Name = "Precio";
+            colPrecio.HeaderText = "Precio";
+            colPrecio.DataPropertyName = "PrecioTexto";
+            colPrecio.Visible = true;
+            colPrecio.Width = 100;
+            dgvConsulta.Columns.Add(colPrecio);
 
-            // Configurar columna para Estado
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Estado";
-            columnaNueva.HeaderText = "Estado";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 80;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            // Estado (se formatea en CellFormatting)
+            var colEstado = new DataGridViewTextBoxColumn();
+            colEstado.Name = "Estado";
+            colEstado.HeaderText = "Estado";
+            colEstado.DataPropertyName = "EstadoTexto";
+            colEstado.Visible = true;
+            colEstado.Width = 80;
+            dgvConsulta.Columns.Add(colEstado);
 
-            // Configurar columna para Categoría (Nombre)
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Categoria";
-            columnaNueva.HeaderText = "Categoría";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 150;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            // Categoría (Nombre)
+            var colCategoriaNombre = new DataGridViewTextBoxColumn();
+            colCategoriaNombre.Name = "CategoriaNombre";
+            colCategoriaNombre.HeaderText = "Categoría";
+            colCategoriaNombre.DataPropertyName = "CategoriaNombre"; // usamos CellFormatting
+            colCategoriaNombre.Visible = true;
+            colCategoriaNombre.Width = 150;
+            dgvConsulta.Columns.Add(colCategoriaNombre);
 
-            // Configurar columna para Categoría (Descripción)
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "CategoriaDescripcion";
-            columnaNueva.HeaderText = "Descripción Categoría";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 200;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            // Categoría (Descripción)
+            var colCategoriaDescripcion  = new DataGridViewTextBoxColumn();
+            colCategoriaDescripcion.Name = "CategoriaDescripcion";
+            colCategoriaDescripcion.HeaderText = "Descripción Categoría";
+            colCategoriaDescripcion.DataPropertyName = "CategoriaDescripcion"; // usamos CellFormatting
+            colCategoriaDescripcion.Visible = true;
+            colCategoriaDescripcion.Width = 200;
+            dgvConsulta.Columns.Add(colCategoriaDescripcion);
 
-            // Agregar filas con los datos de los vehículos
-            if (vehiculos != null && vehiculos.Length > 0)
-            {
-                for (int i = 0; i < vehiculos.Length; i++)
-                {
-                    Vehiculo vehiculo = vehiculos[i];
-                    if (vehiculo != null)
-                    {
-                        dgvConsulta.Rows.Add(
-                            vehiculo.IdVehiculo,
-                            vehiculo.Marca,
-                            vehiculo.Modelo,
-                            vehiculo.Anio,
-                            vehiculo.Precio.ToString("C", new System.Globalization.CultureInfo("es-CR")), // [1]
-                            vehiculo.Estado == 'U' ? "Usado" : "Nuevo",
-                            vehiculo.Categoria?.Nombre ?? "N/A",
-                            vehiculo.Categoria?.Descripcion ?? "N/A"
-                        );
-                    }
-                }
-            }
-            // Referencias
-            // [1] - Formato de moneda: https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings#code-example
+            // Asignar la lista como DataSource
+            dgvConsulta.DataSource = vehiculos;
         }
 
         // Evento del botón "Actualizar" para recargar la lista de vehículos y reflejar cualquier cambio reciente en la información disponible.

@@ -48,7 +48,7 @@ namespace CapaLogicaNegocio
         }
 
         // Método para obtener todas las relaciones entre vehículos y sucursales
-        public VehiculoXSucursal[] Consultar()
+        public List<VehiculoXSucursal> Consultar()
         {
             return VehiculoXSucursalAD.Consultar();
         }

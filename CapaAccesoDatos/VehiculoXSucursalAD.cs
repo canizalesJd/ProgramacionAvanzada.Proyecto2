@@ -1,12 +1,23 @@
-﻿using CapaEntidades;
+﻿/*
+ * Universidad Estatal a Distancia (UNED)
+ * Cuatrimestre: I Cuatrimestre 2026
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
+ * Descripción: Programa de gestión de ventas de vehículos
+ * Estudiante: José David Cañizales Azocar
+ * Fecha: Abril 2026
+ */
+
+using CapaEntidades;
+using System.Data;
+using System.Configuration;
+using Microsoft.Data.SqlClient;
 
 namespace CapaAccesoDatos
 {
     public class VehiculoXSucursalAD
     {
-        // Arreglo estático para almacenar las relaciones entre vehículos y sucursales, con una capacidad máxima de 100 registros
-        private static VehiculoXSucursal[] vehiculosXSucursal = new VehiculoXSucursal[100];
-        private static int contador;
+        // Conexión a la base de datos utilizando la cadena de conexión definida en el archivo de configuración
+        private static readonly string cadenaConexion = ConfigurationManager.ConnectionStrings["AutoMarketBD"].ConnectionString;
 
         /// <summary>
         /// Método para guardar una nueva relación entre un vehículo y una sucursal.
@@ -30,7 +41,7 @@ namespace CapaAccesoDatos
                 throw new ArgumentException("La sucursal no puede ser nula.", nameof(vehiculoXSucursal));
             }
 
-            // Validar que la relacion no sea duplicada
+            // Validar que la relación no sea duplicada
             if (VehiculoXSucursalExiste(vehiculoXSucursal.Vehiculo.IdVehiculo, vehiculoXSucursal.Sucursal.IdSucursal))
             {
                 throw new InvalidOperationException("La relación entre el vehículo y la sucursal ya existe.");
@@ -42,13 +53,33 @@ namespace CapaAccesoDatos
                 throw new ArgumentException("La cantidad debe ser un número positivo.");
             }
 
-            // Verificar capacidad: Antes de agregar una nueva relación entre vehículo y sucursal, verificar que el arreglo no haya alcanzado su capacidad máxima de 100 registros. Si se intenta agregar más allá de esta capacidad, lanzar una excepción indicando que no se pueden agregar más relaciones.
-            if (contador >= vehiculosXSucursal.Length)
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
-                throw new InvalidOperationException("No se pueden agregar más relaciones entre vehículos y sucursales, capacidad máxima alcanzada.");
+                string sentencia = @"INSERT INTO dbo.VehiculoxSucursal
+                                     (IdSucursal, IdVehiculo, Cantidad)
+                                     VALUES (@IdSucursal, @IdVehiculo, @Cantidad)";
+
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
+                {
+                    comando.CommandType = CommandType.Text;
+                    comando.Parameters.AddWithValue("@IdSucursal", vehiculoXSucursal.Sucursal.IdSucursal);
+                    comando.Parameters.AddWithValue("@IdVehiculo", vehiculoXSucursal.Vehiculo.IdVehiculo);
+                    comando.Parameters.AddWithValue("@Cantidad", vehiculoXSucursal.Cantidad);
+
+                    try
+                    {
+                        conexion.Open();
+                        int filas = comando.ExecuteNonQuery();
+
+                        if (filas == 0)
+                            throw new InvalidOperationException("No se pudo insertar la relación vehículo-sucursal en la base de datos.");
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al guardar la relación vehículo-sucursal en la base de datos: " + ex.Message, ex);
+                    }
+                }
             }
-            vehiculosXSucursal[contador] = vehiculoXSucursal;
-            contador++;
         }
 
         /// <summary>
@@ -56,26 +87,149 @@ namespace CapaAccesoDatos
         /// </summary>
         public static bool VehiculoXSucursalExiste(int idVehiculo, int idSucursal)
         {
-            for (int i = 0; i < contador; i++)
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
-                if (vehiculosXSucursal[i].Vehiculo.IdVehiculo == idVehiculo 
-                    && vehiculosXSucursal[i].Sucursal.IdSucursal == idSucursal)
+                string sentencia = @"SELECT COUNT(1)
+                             FROM dbo.VehiculoxSucursal
+                             WHERE IdVehiculo = @IdVehiculo
+                             AND IdSucursal = @IdSucursal";
+
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
                 {
-                    return true;
+                    comando.CommandType = CommandType.Text;
+                    comando.Parameters.AddWithValue("@IdVehiculo", idVehiculo);
+                    comando.Parameters.AddWithValue("@IdSucursal", idSucursal);
+
+                    try
+                    {
+                        conexion.Open();
+                        // ExecuteScalar devuelve el primer valor de la primera fila del resultado
+                        int cantidad = (int)comando.ExecuteScalar();
+                        return cantidad > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al verificar la existencia de la relación vehículo-sucursal: " + ex.Message, ex);
+                    }
                 }
             }
-            return false;
         }
 
         /// <summary>
         /// Método para consultar todas las relaciones entre vehículos y sucursales almacenadas en el arreglo.
         /// </summary>
-        public static VehiculoXSucursal[] Consultar()
+        public static List<VehiculoXSucursal> Consultar()
         {
-            // Retornar solo los registros válidos del arreglo, es decir, aquellos que han sido agregados hasta el contador actual. Esto evita retornar elementos nulos o no inicializados.
-            VehiculoXSucursal[] resultado = new VehiculoXSucursal[contador];
-            Array.Copy(vehiculosXSucursal, resultado, contador);
-            return resultado;
+            List<VehiculoXSucursal> lista = new List<VehiculoXSucursal>();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+            string sentencia = @"
+            SELECT  vxs.IdSucursal,
+                    vxs.IdVehiculo,
+                    vxs.Cantidad,
+
+                    s.Nombre,
+                    s.Direccion,
+                    s.Telefono,
+                    s.Activo,
+                    s.IdVendedor,
+
+                    ven.IdVendedor,
+                    ven.Identificacion,
+                    ven.NombreCompleto,
+                    ven.FechaNacimiento,
+                    ven.FechaIngreso,
+                    ven.Telefono,
+
+                    v.Marca,
+                    v.Modelo,
+                    v.Ano,
+                    v.Precio,
+                    v.Estado,
+
+                    c.IdCategoria,
+                    c.NombreCategoria,
+                    c.Descripcion
+            FROM    dbo.VehiculoxSucursal vxs
+            INNER JOIN dbo.Sucursal s           ON vxs.IdSucursal = s.IdSucursal
+            INNER JOIN dbo.Vendedor ven         ON ven.IdVendedor = s.IdVendedor
+            INNER JOIN dbo.Vehiculo v           ON vxs.IdVehiculo = v.IdVehiculo
+            INNER JOIN dbo.CategoriaVehiculo c  ON v.IdCategoria = c.IdCategoria";
+
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
+                {
+                    comando.CommandType = CommandType.Text;
+
+                    try
+                    {
+                        conexion.Open();
+
+                        using (SqlDataReader lector = comando.ExecuteReader())
+                        {
+                            while (lector.Read())
+                            {
+                                // Vendedor encargado de la sucursal
+                                Vendedor vendedor = new Vendedor(
+                                    lector.GetInt32(8),                // IdVendedor
+                                    lector.GetString(9),               // Identificacion
+                                    lector.GetString(10),               // NombreCompleto
+                                    lector.GetDateTime(11),            // FechaNacimiento
+                                    lector.GetDateTime(12),            // FechaIngreso
+                                    lector.GetString(13)                // Telefono vendedor
+                                );
+
+                                // Sucursal
+                                Sucursal sucursal = new Sucursal(
+                                    lector.GetInt32(0),                // IdSucursal
+                                    lector.GetString(3),               // Nombre
+                                    lector.GetString(4),               // Direccion
+                                    lector.GetString(5),                 // Telefono sucursal
+                                    vendedor,                          // VendedorEncargado
+                                    lector.GetBoolean(6)               // Activa
+                                );
+
+                                // Categoría de vehículo
+                                CategoriaVehiculo categoria = new CategoriaVehiculo(
+                                    lector.GetInt32(19),               // IdCategoria
+                                    lector.GetString(20),              // NombreCategoria
+                                    lector.GetString(21)               // Descripcion
+                                );
+
+                                // Vehículo
+                                char estado = lector.GetString(18)[0];
+
+                                Vehiculo vehiculo = new Vehiculo(
+                                    lector.GetInt32(1),                // IdVehiculo (de vxs)
+                                    lector.GetString(14),              // Marca
+                                    lector.GetString(15),              // Modelo
+                                    lector.GetInt32(16),               // Año
+                                    lector.GetDecimal(17),             // Precio
+                                    categoria,                         // Categoria
+                                    estado                             // Estado
+                                );
+
+                                // Relación VehiculoXSucursal
+                                int cantidad = lector.GetInt32(2);
+
+                                VehiculoXSucursal vehiculoXSucursal = new VehiculoXSucursal(
+                                    sucursal,
+                                    vehiculo,
+                                    cantidad
+                                );
+
+                                lista.Add(vehiculoXSucursal);
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al consultar VehiculoXSucursal: " + ex.Message, ex);
+                    }
+                }
+            }
+
+            return lista;
         }
     }
 }

@@ -4,10 +4,10 @@ using CapaLogicaNegocio;
 /*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
- * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: José David Cañizales Azocar
- * Fecha: Febrero 2026
+ * Fecha: Abril 2026
  */
 
 namespace CapaPresentacion
@@ -64,8 +64,8 @@ namespace CapaPresentacion
 
         private void CargarVehiculos()
         {
-            Vehiculo[] vehiculos = vehiculoLN.Consultar();
-            if (vehiculos.Length == 0)
+            List<Vehiculo> vehiculos = vehiculoLN.Consultar();
+            if (vehiculos == null || vehiculos.Count == 0)
             {
                 MessageBox.Show(
                     "No hay vehículos registrados. Debe registrar al menos uno antes de asignar a una sucursal.",

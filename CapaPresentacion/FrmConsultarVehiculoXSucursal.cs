@@ -1,13 +1,14 @@
-﻿using CapaEntidades;
+﻿using CapaAccesoDatos;
+using CapaEntidades;
 using CapaLogicaNegocio;
 
 /*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
- * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: José David Cañizales Azocar
- * Fecha: Febrero 2026
+ * Fecha: Abril 2026
  */
 
 namespace CapaPresentacion
@@ -33,8 +34,8 @@ namespace CapaPresentacion
         // Método para cargar los vehículos disponibles en la sucursal desde la lógica de negocio y mostrarlos en el DataGridView.
         private void CargarVehiculosXSucursal()
         {
-            VehiculoXSucursal[] vehiculosXSucursal = vehiculoXSucursalLN.Consultar();
-            if (vehiculosXSucursal.Length == 0)
+            List<VehiculoXSucursal> vehiculosXSucursal = vehiculoXSucursalLN.Consultar();
+            if (vehiculosXSucursal == null || vehiculosXSucursal.Count == 0)
             {
                 MessageBox.Show(
                     "No hay asociaciones entre vehículos y sucursales disponibles en el sistema.",
@@ -45,93 +46,69 @@ namespace CapaPresentacion
                 this.Close(); // Cerrar el formulario si no hay registros para mostrar
                 return;
             }
-            dgvConsulta.DataSource = null; // Limpiar cualquier fuente de datos previa
-            dgvConsulta.Rows.Clear(); // Limpiar filas existentes
-            dgvConsulta.Columns.Clear(); // Limpiar columnas existentes
 
-            // Configurar las columnas del DataGridView
-            DataGridViewColumn columnaNueva = new DataGridViewColumn();
-            DataGridViewCell celdaNueva = new DataGridViewTextBoxCell();
+            // Limpiar el DataGridView antes de cargar los nuevos datos
+            dgvConsulta.DataSource = null;
+            dgvConsulta.Rows.Clear();
+            dgvConsulta.Columns.Clear();
+            dgvConsulta.AutoGenerateColumns = false;
 
             // Configuración de la columna Sucursal (Nombre)
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Sucursal";
-            columnaNueva.HeaderText = "Sucursal (Nombre)";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 200;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            var colNombreSucursal = new DataGridViewTextBoxColumn();
+            colNombreSucursal.DataPropertyName = "NombreSucursal";
+            colNombreSucursal.Name = "Sucursal";
+            colNombreSucursal.HeaderText = "Sucursal (Nombre)";
+            colNombreSucursal.Visible = true;
+            colNombreSucursal.Width = 200;
+            dgvConsulta.Columns.Add(colNombreSucursal); // Agregar la columna al DataGridView
 
             // Configuración de la columna Vehículo (Año, Marca, Modelo)
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Vehiculo";
-            columnaNueva.HeaderText = "Vehículo";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 300;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            var colDescripcionVehiculo = new DataGridViewTextBoxColumn();
+            colDescripcionVehiculo.DataPropertyName = "DescripcionVehiculo";
+            colDescripcionVehiculo.Name = "Vehiculo";
+            colDescripcionVehiculo.HeaderText = "Vehículo";
+            colDescripcionVehiculo.Visible = true;
+            colDescripcionVehiculo.Width = 300;
+            dgvConsulta.Columns.Add(colDescripcionVehiculo); // Agregar la columna al DataGridView
 
             // Configuración de la columna Vehículo (Estado)
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Estado";
-            columnaNueva.HeaderText = "Vehículo (Estado)";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 100;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            var colEstadoVehiculo = new DataGridViewTextBoxColumn();
+            colEstadoVehiculo.DataPropertyName = "EstadoTexto";
+            colEstadoVehiculo.Name = "Estado";
+            colEstadoVehiculo.HeaderText = "Vehículo (Estado)";
+            colEstadoVehiculo.Visible = true;
+            colEstadoVehiculo.Width = 100;
+            dgvConsulta.Columns.Add(colEstadoVehiculo); // Agregar la columna al DataGridView
 
             // Configuración de la columna Vehiculo (Categoria)
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Categoria";
-            columnaNueva.HeaderText = "Vehículo (Categoría)";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 150;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            var colCategoria = new DataGridViewTextBoxColumn();
+            colCategoria.DataPropertyName = "CategoriaNombre";
+            colCategoria.Name = "Categoria";
+            colCategoria.HeaderText = "Vehículo (Categoría)";
+            colCategoria.Visible = true;
+            colCategoria.Width = 150;
+            dgvConsulta.Columns.Add(colCategoria); // Agregar la columna al DataGridView
 
             // Configuración de la columna Vehículo (Cantidad)
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Cantidad";
-            columnaNueva.HeaderText = "Vehículo (Cantidad)";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 100;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            var colCantidad = new DataGridViewTextBoxColumn();
+            colCantidad.DataPropertyName = "Cantidad";
+            colCantidad.Name = "Cantidad";
+            colCantidad.HeaderText = "Vehículo (Cantidad)";
+            colCantidad.Visible = true;
+            colCantidad.Width = 100;
+            dgvConsulta.Columns.Add(colCantidad); // Agregar la columna al DataGridView
 
             // Configuración de la columna Vehículo (Precio)
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Precio";
-            columnaNueva.HeaderText = "Vehículo (Precio)";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 100;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            var colPrecio = new DataGridViewTextBoxColumn();
+            colPrecio.DataPropertyName = "PrecioTexto";
+            colPrecio.Name = "Precio";
+            colPrecio.HeaderText = "Vehículo (Precio)";
+            colPrecio.Visible = true;
+            colPrecio.Width = 100;
+            dgvConsulta.Columns.Add(colPrecio); // Agregar la columna al DataGridView
 
-            // Agregar filas con los datos de los vehículos
-            if (vehiculosXSucursal != null && vehiculosXSucursal.Length > 0)
-            {              
-                for (int i = 0; i < vehiculosXSucursal.Length; i++)
-                {
-                    VehiculoXSucursal vehiculoXSucursal = vehiculosXSucursal[i];
-                    if (vehiculoXSucursal != null)
-                    {
-                        dgvConsulta.Rows.Add(
-                            vehiculoXSucursal.Sucursal.Nombre,
-                            vehiculoXSucursal.Vehiculo.DisplayMember,
-                            vehiculoXSucursal.Vehiculo.Estado == 'U' ? "Usado" : "Nuevo",
-                            vehiculoXSucursal.Vehiculo.Categoria.Nombre,
-                            vehiculoXSucursal.Cantidad,
-                            vehiculoXSucursal.Vehiculo.Precio.ToString("C", new System.Globalization.CultureInfo("es-CR")) // [1]
-                        );
-                    }
-                }
-            }
-            // Referencias
-            // [1] - Formato de moneda: https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings#code-example
+            // Asignar la lista como DataSource
+            dgvConsulta.DataSource = vehiculosXSucursal;
         }
 
         private void BotonActualizar_Click(object sender, EventArgs e)

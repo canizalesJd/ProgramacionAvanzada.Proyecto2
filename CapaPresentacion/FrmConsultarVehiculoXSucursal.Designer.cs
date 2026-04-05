@@ -40,7 +40,7 @@
             titulo.Anchor = AnchorStyles.Top;
             titulo.AutoSize = true;
             titulo.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titulo.Location = new Point(-15, 12);
+            titulo.Location = new Point(12, 12);
             titulo.Margin = new Padding(4, 0, 4, 0);
             titulo.Name = "titulo";
             titulo.Size = new Size(355, 29);
