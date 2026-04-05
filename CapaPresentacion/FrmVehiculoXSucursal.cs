@@ -36,9 +36,9 @@ namespace CapaPresentacion
 
         private void CargarSucursales()
         {
-            Sucursal[] sucursales = sucursalLN.ConsultarActivas();
+            List<Sucursal> sucursales = sucursalLN.ConsultarActivas();
 
-            if (sucursales.Length == 0)
+            if (sucursales == null || sucursales.Count == 0)
             {
                 MessageBox.Show(
                     "No hay sucursales activas registradas. Solo se pueden asignar vehículos a sucursales activas.",

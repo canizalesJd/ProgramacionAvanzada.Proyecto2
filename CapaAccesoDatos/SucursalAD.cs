@@ -1,13 +1,16 @@
-﻿using CapaEntidades;
-
-/*
+﻿/*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
- * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: José David Cañizales Azocar
- * Fecha: Febrero 2026
+ * Fecha: Abril 2026
  */
+
+using CapaEntidades;
+using System.Data;
+using System.Configuration;
+using Microsoft.Data.SqlClient;
 
 namespace CapaAccesoDatos
 {
@@ -16,9 +19,8 @@ namespace CapaAccesoDatos
     /// </summary>
     public class SucursalAD
     {
-        // Arreglo estático para almacenar sucursales, con una capacidad máxima de 5 registros
-        private static Sucursal[] sucursales = new Sucursal[5];
-        private static int contador;
+        // Conexión a la base de datos utilizando la cadena de conexión definida en el archivo de configuración
+        private static readonly string cadenaConexion = ConfigurationManager.ConnectionStrings["AutoMarketBD"].ConnectionString;
 
         /// <summary>
         /// Método para guardar una nueva sucursal en el arreglo.
@@ -30,13 +32,37 @@ namespace CapaAccesoDatos
             {
                 throw new InvalidOperationException("La sucursal con el ID proporcionado ya existe.");
             }
-            // Verificar capacidad
-            if (contador >= sucursales.Length)
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
-                throw new InvalidOperationException("No se pueden agregar más sucursales, capacidad máxima alcanzada.");
+                string sentencia = @"INSERT INTO dbo.Sucursal
+                                     (IdSucursal, Nombre, Direccion, Telefono, IdVendedor, Activo)
+                                     VALUES (@IdSucursal, @Nombre, @Direccion, @Telefono, @IdVendedor, @Activo)";
+
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
+                {
+                    comando.CommandType = CommandType.Text;
+                    comando.Parameters.AddWithValue("@IdSucursal", sucursal.IdSucursal);
+                    comando.Parameters.AddWithValue("@Nombre", sucursal.Nombre);
+                    comando.Parameters.AddWithValue("@Direccion", sucursal.Direccion);
+                    comando.Parameters.AddWithValue("@Telefono", sucursal.Telefono);
+                    comando.Parameters.AddWithValue("@IdVendedor", sucursal.VendedorEncargado.IdVendedor);
+                    comando.Parameters.AddWithValue("@Activo", sucursal.Activa);
+
+                    try
+                    {
+                        conexion.Open();
+                        int filas = comando.ExecuteNonQuery();
+
+                        if (filas == 0)
+                            throw new InvalidOperationException("No se pudo insertar la sucursal en la base de datos.");
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al guardar la sucursal en la base de datos: " + ex.Message, ex);
+                    }
+                }
             }
-            sucursales[contador] = sucursal;
-            contador++;
         }
 
         /// <summary>
@@ -44,55 +70,169 @@ namespace CapaAccesoDatos
         /// </summary>
         public static bool SucursalExiste(int idSucursal)
         {
-            for (int i = 0; i < contador; i++)
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
-                if (sucursales[i].IdSucursal == idSucursal)
+                string sentencia = @"SELECT COUNT(1)
+                             FROM dbo.Sucursal
+                             WHERE IdSucursal = @IdSucursal";
+
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
                 {
-                    return true;
+                    comando.CommandType = CommandType.Text;
+                    comando.Parameters.AddWithValue("@IdSucursal", idSucursal);
+
+                    try
+                    {
+                        conexion.Open();
+                        // ExecuteScalar devuelve el primer valor de la primera fila del resultado
+                        int cantidad = (int)comando.ExecuteScalar();
+                        return cantidad > 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al verificar la existencia de la sucursal: " + ex.Message, ex);
+                    }
                 }
             }
-            return false;
         }
 
         /// <summary>
         /// Método para obtener todas las sucursales. Retorna solo las sucursales agregadas.
         /// </summary>
-        public static Sucursal[] Consultar()
+        public static List<Sucursal> Consultar()
         {
-            Sucursal[] resultado = new Sucursal[contador];
-            Array.Copy(sucursales, resultado, contador);
-            return resultado;
+            List<Sucursal> lista = new List<Sucursal>();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                string sentencia = @"
+                    SELECT  s.IdSucursal,
+                            s.Nombre,
+                            s.Direccion,
+                            s.Telefono,
+                            s.Activo,
+                            v.IdVendedor,
+                            v.Identificacion,
+                            v.NombreCompleto,
+                            v.FechaNacimiento,
+                            v.FechaIngreso,
+                            v.Telefono
+                    FROM    dbo.Sucursal s
+                    INNER JOIN dbo.Vendedor v ON s.IdVendedor = v.IdVendedor";
+
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
+                {
+                    comando.CommandType = CommandType.Text;
+
+                    try
+                    {
+                        conexion.Open();
+
+                        using (SqlDataReader lector = comando.ExecuteReader())
+                        {
+                            while (lector.Read())
+                            {
+                                // Construir VendedorEncargado
+                                Vendedor vendedor = new Vendedor(
+                                    lector.GetInt32(5),    // IdVendedor
+                                    lector.GetString(6),   // Identificacion
+                                    lector.GetString(7),   // NombreCompleto
+                                    lector.GetDateTime(8), // FechaNacimiento
+                                    lector.GetDateTime(9), // FechaIngreso
+                                    lector.GetString(10)   // Telefono vendedor
+                                );
+                                 
+                                // Construir Sucursal
+                                Sucursal sucursal = new Sucursal(
+                                    lector.GetInt32(0),   // IdSucursal
+                                    lector.GetString(1),  // Nombre
+                                    lector.GetString(2),  // Direccion
+                                    lector.GetString(3),  // Telefono sucursal
+                                    vendedor,             // VendedorEncargado
+                                    lector.GetBoolean(4)  // Activa
+                                );
+
+                                lista.Add(sucursal);
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al consultar las sucursales: " + ex.Message, ex);
+                    }
+                }
+            }
+
+            return lista;
         }
 
         /// <summary>
         /// Método para obtener solo las sucursales activas. Retorna solo las sucursales que tienen el atributo Activa en true.
         /// </summary>
-        public static Sucursal[] ConsultarActivas()
+        public static List<Sucursal> ConsultarActivas()
         {
-            // Contar cuántas sucursales activas hay para crear un arreglo del tamaño correcto
-            int totalActivas = 0;
-            for (int i = 0; i < contador; i++)
+            List<Sucursal> lista = new List<Sucursal>();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
-                if (sucursales[i].Activa) {
-                    totalActivas++;
-                }
-            }
+                string sentencia = @"
+                    SELECT  s.IdSucursal,
+                            s.Nombre,
+                            s.Direccion,
+                            s.Telefono,
+                            s.Activo,
+                            v.IdVendedor,
+                            v.Identificacion,
+                            v.NombreCompleto,
+                            v.FechaNacimiento,
+                            v.FechaIngreso,
+                            v.Telefono
+                    FROM    dbo.Sucursal s
+                    INNER JOIN dbo.Vendedor v ON s.IdVendedor = v.IdVendedor
+                    WHERE s.Activo = 1";
 
-            // Crear el arreglo con el tamaño exacto necesario
-            Sucursal[] resultado = new Sucursal[totalActivas];
-
-            // Llenar el arreglo con las sucursales activas
-            int indice = 0;
-            for (int i = 0; i < contador; i++)
-            {
-                if (sucursales[i].Activa)
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
                 {
-                    resultado[indice] = sucursales[i];
-                    indice++;
+                    comando.CommandType = CommandType.Text;
+
+                    try
+                    {
+                        conexion.Open();
+
+                        using (SqlDataReader lector = comando.ExecuteReader())
+                        {
+                            while (lector.Read())
+                            {
+                                // Construir VendedorEncargado
+                                Vendedor vendedor = new Vendedor(
+                                    lector.GetInt32(5),    // IdVendedor
+                                    lector.GetString(6),   // Identificacion
+                                    lector.GetString(7),   // NombreCompleto
+                                    lector.GetDateTime(8), // FechaNacimiento
+                                    lector.GetDateTime(9), // FechaIngreso
+                                    lector.GetString(10)   // Telefono vendedor
+                                );
+
+                                // Construir Sucursal
+                                Sucursal sucursal = new Sucursal(
+                                    lector.GetInt32(0),   // IdSucursal
+                                    lector.GetString(1),  // Nombre
+                                    lector.GetString(2),  // Direccion
+                                    lector.GetString(3),  // Telefono sucursal
+                                    vendedor,             // VendedorEncargado
+                                    lector.GetBoolean(4)  // Activa
+                                );
+
+                                lista.Add(sucursal);
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al consultar las sucursales activas: " + ex.Message, ex);
+                    }
                 }
             }
-
-            return resultado;
+            return lista;
         }
     }
 }

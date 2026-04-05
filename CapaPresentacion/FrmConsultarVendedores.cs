@@ -1,4 +1,5 @@
-﻿using CapaEntidades;
+﻿using CapaAccesoDatos;
+using CapaEntidades;
 using CapaLogicaNegocio;
 
 /*
@@ -33,8 +34,8 @@ namespace CapaPresentacion
         // Método para cargar la lista de vendedores desde la lógica de negocio y mostrarla en el DataGridView. Configura las columnas del DataGridView y agrega filas con los datos de cada vendedor, incluyendo su fecha de nacimiento e ingreso formateados adecuadamente.
         private void CargarVendedores()
         {
-            Vendedor[] vendedores = vendedorLN.Consultar();
-            if (vendedores.Length == 0)
+            List<Vendedor> vendedores = vendedorLN.Consultar();
+            if (vendedores == null || vendedores.Count == 0)
             {
                 MessageBox.Show(
                     "No hay vendedores registrados.",
@@ -46,87 +47,69 @@ namespace CapaPresentacion
                 return;
             }
 
-            dgvConsulta.DataSource = null; // Limpiar cualquier fuente de datos previa
-            dgvConsulta.Rows.Clear(); // Limpiar filas existentes
-            dgvConsulta.Columns.Clear(); // Limpiar columnas existentes
+            // Asignar directamente la lista como DataSource
+            dgvConsulta.DataSource = null;
+            dgvConsulta.Columns.Clear();
+            dgvConsulta.AutoGenerateColumns = false;
 
-            // Configurar columnas manualmente para asegurar el orden y formato deseado
-            DataGridViewColumn columnaNueva = new DataGridViewColumn();
-            DataGridViewCell celdaNueva = new DataGridViewTextBoxCell();
+
             // Configurar columna para ID Vendedor
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "ID";
-            columnaNueva.HeaderText = "ID Vendedor";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 100;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            var colId = new DataGridViewTextBoxColumn();
+            colId.DataPropertyName = "IdVendedor";
+            colId.Name = "IdVendedor";
+            colId.DataPropertyName = "IdVendedor";
+            colId.HeaderText = "ID Vendedor";
+            colId.Visible = true;
+            colId.Width = 100;
+            dgvConsulta.Columns.Add(colId); // Agregar la columna al DataGridView
 
             // Configurar columna para la Identificación del vendedor
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Identificacion";
-            columnaNueva.HeaderText = "Identificación";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 150;
+            var colIdentificacion = new DataGridViewTextBoxColumn();
+            colIdentificacion.DataPropertyName = "Identificacion";
+            colIdentificacion.Name = "Identificacion";
+            colIdentificacion.HeaderText = "Identificación";
+            colIdentificacion.Visible = true;
+            colIdentificacion.Width = 150;
             // Agregar la columna al DataGridView
-            dgvConsulta.Columns.Add(columnaNueva);
+            dgvConsulta.Columns.Add(colIdentificacion);
 
             // Configurar columna para Nombre
-            columnaNueva = new DataGridViewColumn();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Nombre";
-            columnaNueva.HeaderText = "Nombre";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 150;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            var colNombre = new DataGridViewTextBoxColumn();
+            colNombre.DataPropertyName = "NombreCompleto";
+            colNombre.Name = "Nombre";
+            colNombre.HeaderText = "Nombre";
+            colNombre.Visible = true;
+            colNombre.Width = 150;
+            dgvConsulta.Columns.Add(colNombre); // Agregar la columna al DataGridView
 
             // Configurar columna para Teléfono
-            columnaNueva = new DataGridViewColumn();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Telefono";
-            columnaNueva.HeaderText = "Teléfono";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 120;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            var colTelefono = new DataGridViewTextBoxColumn();
+            colTelefono.DataPropertyName = "Telefono";
+            colTelefono.Name = "Telefono";
+            colTelefono.HeaderText = "Teléfono";
+            colTelefono.Visible = true;
+            colTelefono.Width = 120;
+            dgvConsulta.Columns.Add(colTelefono); // Agregar la columna al DataGridView
 
             // Configurar columna para Fecha de Nacimiento
-            columnaNueva = new DataGridViewColumn();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "FechaNacimiento";
-            columnaNueva.HeaderText = "Fecha de Nacimiento";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 150;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
+            var colFechaNacimiento = new DataGridViewTextBoxColumn();
+            colFechaNacimiento.DataPropertyName = "FechaNacimiento";
+            colFechaNacimiento.Name = "FechaNacimiento";
+            colFechaNacimiento.HeaderText = "Fecha de Nacimiento";
+            colFechaNacimiento.Visible = true;
+            colFechaNacimiento.Width = 150;
+            dgvConsulta.Columns.Add(colFechaNacimiento); // Agregar la columna al DataGridView
 
             // Configurar columna para Fecha de Ingreso
-            columnaNueva = new DataGridViewColumn();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "FechaIngreso";
-            columnaNueva.HeaderText = "Fecha de Ingreso";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 150;
-            dgvConsulta.Columns.Add(columnaNueva); // Agregar la columna al DataGridView
-
-            // Agregar filas con los datos de los vendedores
-            if (vendedores.Length > 0)
-            {
-                for (int i = 0; i < vendedores.Length; i++)
-                {
-                    Vendedor vendedor = vendedores[i];
-                    if (vendedor != null)
-                    {
-                        dgvConsulta.Rows.Add(
-                            vendedor.IdVendedor,
-                            vendedor.Identificacion,
-                            vendedor.NombreCompleto,
-                            vendedor.Telefono,
-                            vendedor.FechaNacimiento.ToString("dd/MM/yyyy"),
-                            vendedor.FechaIngreso.ToString("dd/MM/yyyy")
-                        );
-                    }
-                }
-            }
+            var colFechaIngreso = new DataGridViewTextBoxColumn();
+            colFechaIngreso.DataPropertyName = "FechaIngreso";
+            colFechaIngreso.Name = "FechaIngreso";
+            colFechaIngreso.HeaderText = "Fecha de Ingreso";
+            colFechaIngreso.Visible = true;
+            colFechaIngreso.Width = 150;
+            dgvConsulta.Columns.Add(colFechaIngreso); // Agregar la columna al DataGridView
+            // Usar lista como DataSource para aprovechar el enlace de datos y mostrar los vendedores en el DataGridView.
+            dgvConsulta.DataSource = vendedores;
         }
 
         // Evento que se ejecuta al hacer clic en el botón de actualizar, encargado de recargar la lista de vendedores para reflejar cualquier cambio reciente en la información disponible.

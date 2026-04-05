@@ -50,13 +50,9 @@ namespace CapaPresentacion
             dgvConsulta.Columns.Clear();
             dgvConsulta.AutoGenerateColumns = false;
 
-            // Configurar las columnas del DataGridView
-            DataGridViewColumn columnaNueva = new DataGridViewColumn();
-            DataGridViewCell celdaNueva = new DataGridViewTextBoxCell();
-
             // Columna ID
             var colId = new DataGridViewTextBoxColumn();
-            colId.DataPropertyName = "IdCategoria";   // nombre de la propiedad en la entidad
+            colId.DataPropertyName = "IdCategoria";
             colId.Name = "IdCategoria";
             colId.HeaderText = "ID Categoría";
             colId.Width = 100;
@@ -77,8 +73,7 @@ namespace CapaPresentacion
             colDescripcion.HeaderText = "Descripción";
             colDescripcion.Width = 250;
             dgvConsulta.Columns.Add(colDescripcion);
-
-            // Aquí es donde cumples el enunciado:
+            // Usar lista como DataSource para aprovechar el enlace de datos y mostrar las categorías en el DataGridView.
             dgvConsulta.DataSource = categorias;
         }
 

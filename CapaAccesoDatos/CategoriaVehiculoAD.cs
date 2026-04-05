@@ -4,11 +4,10 @@
  * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: José David Cañizales Azocar
- * Fecha: Marzo 2026
+ * Fecha: Abril 2026
  */
 
 using CapaEntidades;
-using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
 using Microsoft.Data.SqlClient;
@@ -20,9 +19,7 @@ namespace CapaAccesoDatos
     /// </summary>
     public class CategoriaVehiculoAD
     {
-        // Arreglo estático para almacenar categorías de vehículos, con una capacidad máxima de 20 registros
-        private static CategoriaVehiculo[] categorias = new CategoriaVehiculo[20];
-        private static int contador;
+        // Conexión a la base de datos utilizando la cadena de conexión definida en el archivo de configuración
         private static readonly string cadenaConexion = ConfigurationManager.ConnectionStrings["AutoMarketBD"].ConnectionString;
 
         /// <summary>
@@ -121,9 +118,9 @@ namespace CapaAccesoDatos
                             while (lector.Read())
                             {
                                 CategoriaVehiculo categoria = new CategoriaVehiculo(
-                                    lector.GetInt32(0),
-                                    lector.GetString(1),
-                                    lector.GetString(2)
+                                    lector.GetInt32(0), // IdCategoria
+                                    lector.GetString(1), // NombreCategoria
+                                    lector.GetString(2) // Descripcion
                                 );
 
                                 lista.Add(categoria);

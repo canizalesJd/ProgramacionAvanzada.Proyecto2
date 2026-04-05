@@ -1,10 +1,10 @@
 ﻿/*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
- * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: José David Cañizales Azocar
- * Fecha: Febrero 2026
+ * Fecha: Abril 2026
  */
 
 
@@ -19,6 +19,10 @@ namespace CapaEntidades
         public int IdCliente { get; private set; }
         public DateTime FechaRegistro { get; set; }
         public bool Activo { get; set; }
+
+        // Propiedad solo para mostrar en UI
+        public string ActivoTexto => Activo ? "Sí" : "No";
+
 
         // Constructor que inicializa las propiedades de Cliente, incluyendo las propiedades heredadas de Persona
         public Cliente(int idCliente, string identificacion,

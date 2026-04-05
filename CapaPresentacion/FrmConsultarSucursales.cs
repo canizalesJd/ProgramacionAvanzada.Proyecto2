@@ -1,4 +1,5 @@
-﻿using CapaEntidades;
+﻿using CapaAccesoDatos;
+using CapaEntidades;
 using CapaLogicaNegocio;
 
 /*
@@ -33,8 +34,8 @@ namespace CapaPresentacion
         // Método encargado de cargar las sucursales desde la lógica de negocio y mostrarlas en el DataGridView. Configura las columnas del DataGridView para mostrar la información relevante de cada sucursal, incluyendo el ID, nombre, dirección, teléfono y detalles del vendedor encargado. Si no hay sucursales registradas, muestra un mensaje informativo y cierra el formulario.
         private void CargarSucursales()
         {
-            Sucursal[] sucursales = sucursalLN.Consultar();
-            if (sucursales.Length == 0)
+            List<Sucursal> sucursales = sucursalLN.Consultar();
+            if (sucursales == null || sucursales.Count == 0)
             {
                 MessageBox.Show(
                     "No hay sucursales registradas.",
@@ -46,109 +47,82 @@ namespace CapaPresentacion
                 return;
             }
 
-            dgvConsulta.DataSource = null; // Limpiar cualquier fuente de datos previa
-            dgvConsulta.Rows.Clear(); // Limpiar filas existentes
-            dgvConsulta.Columns.Clear(); // Limpiar columnas existentes
-
-            // Configurar columnas manualmente para asegurar el orden y formato deseado
-            DataGridViewColumn columnaNueva = new DataGridViewColumn();
-            DataGridViewCell celdaNueva = new DataGridViewTextBoxCell();
+            // Asignar directamente la lista como DataSource
+            dgvConsulta.DataSource = null;
+            dgvConsulta.Columns.Clear();
+            dgvConsulta.AutoGenerateColumns = false;
 
             // Configurar columna para ID Sucursal
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "ID";
-            columnaNueva.HeaderText = "ID Sucursal";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 100;
+            var colId = new DataGridViewTextBoxColumn();
+            colId.DataPropertyName = "IdSucursal";
+            colId.Name = "IdSucursal";
+            colId.HeaderText = "ID Sucursal";
+            colId.Visible = true;
+            colId.Width = 100;
             // Agregar la columna al DataGridView
-            dgvConsulta.Columns.Add(columnaNueva);
+            dgvConsulta.Columns.Add(colId);
 
             // Configurar columna para Nombre
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Nombre";
-            columnaNueva.HeaderText = "Nombre";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 200;
+            var colNombre = new DataGridViewTextBoxColumn();
+            colNombre.DataPropertyName = "Nombre";
+            colNombre.Name = "Nombre";
+            colNombre.HeaderText = "Nombre";
+            colNombre.Visible = true;
+            colNombre.Width = 200;
             // Agregar la columna al DataGridView
-            dgvConsulta.Columns.Add(columnaNueva);
+            dgvConsulta.Columns.Add(colNombre);
 
             // Configurar columna para Dirección
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Direccion";
-            columnaNueva.HeaderText = "Dirección";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 300;
+            var colDireccion = new DataGridViewTextBoxColumn();
+            colDireccion.DataPropertyName = "Direccion";
+            colDireccion.Name = "Direccion";
+            colDireccion.HeaderText = "Dirección";
+            colDireccion.Visible = true;
+            colDireccion.Width = 300;
             // Agregar la columna al DataGridView
-            dgvConsulta.Columns.Add(columnaNueva);
+            dgvConsulta.Columns.Add(colDireccion);
 
             // Configurar columna para Teléfono
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Telefono";
-            columnaNueva.HeaderText = "Teléfono";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 150;
+            var colTelefono = new DataGridViewTextBoxColumn();
+            colTelefono.DataPropertyName = "Telefono";
+            colTelefono.Name = "Telefono";
+            colTelefono.HeaderText = "Teléfono";
+            colTelefono.Visible = true;
+            colTelefono.Width = 150;
             // Agregar la columna al DataGridView
-            dgvConsulta.Columns.Add(columnaNueva);
+            dgvConsulta.Columns.Add(colTelefono);
 
             // Configurar columna para Vendedor (Nombre)
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "NombreVendedor";
-            columnaNueva.HeaderText = "Vendedor (Nombre)";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 200;
+            var colVendedorNombre = new DataGridViewTextBoxColumn();
+            colVendedorNombre.DataPropertyName = "VendedorNombre";
+            colVendedorNombre.Name = "NombreVendedor";
+            colVendedorNombre.HeaderText = "Vendedor (Nombre)";
+            colVendedorNombre.Visible = true;
+            colVendedorNombre.Width = 200;
             // Agregar la columna al DataGridView
-            dgvConsulta.Columns.Add(columnaNueva);
+            dgvConsulta.Columns.Add(colVendedorNombre);
 
             // Configurar columna para Vendedor (Identificación)
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "IdentificacionVendedor";
-            columnaNueva.HeaderText = "Vendedor (Identificación)";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 200;
+            var colVendedorIdentificacion = new DataGridViewTextBoxColumn();
+            colVendedorIdentificacion.DataPropertyName = "VendedorIdentificacion";
+            colVendedorIdentificacion.Name = "IdentificacionVendedor";
+            colVendedorIdentificacion.HeaderText = "Vendedor (Identificación)";
+            colVendedorIdentificacion.Visible = true;
+            colVendedorIdentificacion.Width = 200;
             // Agregar la columna al DataGridView
-            dgvConsulta.Columns.Add(columnaNueva);
+            dgvConsulta.Columns.Add(colVendedorIdentificacion);
 
             // Configurar columna para Activa
-            columnaNueva = new DataGridViewColumn();
-            celdaNueva = new DataGridViewTextBoxCell();
-            columnaNueva.CellTemplate = celdaNueva;
-            columnaNueva.Name = "Activa";
-            columnaNueva.HeaderText = "Activa";
-            columnaNueva.Visible = true;
-            columnaNueva.Width = 100;
+            var colActiva = new DataGridViewTextBoxColumn();
+            colActiva.DataPropertyName = "ActivaTexto";
+            colActiva.Name = "Activa";
+            colActiva.HeaderText = "Activa";
+            colActiva.Visible = true;
+            colActiva.Width = 100;
             // Agregar la columna al DataGridView
-            dgvConsulta.Columns.Add(columnaNueva);
-
-            // Agregar filas con los datos de las sucursales
-            if (sucursales != null && sucursales.Length > 0)
-            {
-                for (int i = 0; i < sucursales.Length; i++)
-                {
-                    Sucursal sucursal = sucursales[i];
-                    if (sucursal != null)
-                    {
-                        dgvConsulta.Rows.Add(
-                            sucursal.IdSucursal,
-                            sucursal.Nombre,
-                            sucursal.Direccion,
-                            sucursal.Telefono,
-                            sucursal.VendedorEncargado != null ? sucursal.VendedorEncargado.NombreCompleto : "N/A",
-                            sucursal.VendedorEncargado != null ? sucursal.VendedorEncargado.Identificacion : "N/A",
-                            sucursal.Activa ? "Sí" : "No"
-                        );
-                    }
-                }
-            }
+            dgvConsulta.Columns.Add(colActiva);
+            // Usar lista como DataSource para aprovechar el enlace de datos y mostrar las sucursales en el DataGridView.
+            dgvConsulta.DataSource = sucursales;
         }
 
         // Evento del botón "Actualizar" que se ejecuta al hacer clic. Llama al método para cargar las sucursales nuevamente, permitiendo al usuario actualizar la información mostrada en el DataGridView para reflejar cualquier cambio reciente en las sucursales registradas.

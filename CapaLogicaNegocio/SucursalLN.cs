@@ -60,13 +60,13 @@ namespace CapaLogicaNegocio
         }
 
         // Método para obtener todas las sucursales
-        public Sucursal[] Consultar()
+        public List<Sucursal> Consultar()
         {
             return SucursalAD.Consultar();
         }
 
         // Método para obtener las sucursales activas
-        public Sucursal[] ConsultarActivas()
+        public List<Sucursal> ConsultarActivas()
         {
             return SucursalAD.ConsultarActivas();
         }

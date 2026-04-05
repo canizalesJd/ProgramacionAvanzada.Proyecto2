@@ -4,10 +4,10 @@ using CapaEntidades;
 /*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
- * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: José David Cañizales Azocar
- * Fecha: Febrero 2026
+ * Fecha: Abril 2026
  */
 
 namespace CapaLogicaNegocio
@@ -76,7 +76,7 @@ namespace CapaLogicaNegocio
         }
 
         // Método para obtener todos los vendedores
-        public Vendedor[] Consultar()
+        public List<Vendedor> Consultar()
         {
             return VendedorAD.Consultar();
         }

@@ -39,9 +39,9 @@ namespace CapaPresentacion
         // Método para cargar los vendedores disponibles en el sistema y mostrarlos en el combo box para seleccionar el encargado de la sucursal. Si no hay vendedores registrados, se muestra un mensaje informativo y se deshabilita la opción de guardar.
         private void CargarVendedores()
         {
-            Vendedor[] vendedores = vendedorLN.Consultar();
+            List<Vendedor> vendedores = vendedorLN.Consultar();
 
-            if (vendedores.Length == 0)
+            if (vendedores == null || vendedores.Count == 0)
             {
                 MessageBox.Show(
                     "No hay vendedores registrados. Debe registrar al menos uno antes de crear una sucursal.",

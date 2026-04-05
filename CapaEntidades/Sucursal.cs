@@ -1,10 +1,10 @@
 ﻿/*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
- * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: José David Cañizales Azocar
- * Fecha: Febrero 2026
+ * Fecha: Abril 2026
  */
 
 namespace CapaEntidades
@@ -22,6 +22,11 @@ namespace CapaEntidades
         public Vendedor VendedorEncargado { get; set; }
 
         public bool Activa { get; set; } = true;
+
+        // Propiedades solo para mostrar en UI
+        public string ActivaTexto => Activa ? "Sí" : "No";
+        public string VendedorNombre => VendedorEncargado.NombreCompleto;
+        public string VendedorIdentificacion => VendedorEncargado.Identificacion;
 
         /// <summary>
         /// Constructor para inicializar los atributos de la sucursal
