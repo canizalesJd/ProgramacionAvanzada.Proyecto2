@@ -3,10 +3,10 @@
 /*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
- * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: José David Cañizales Azocar
- * Fecha: Febrero 2026
+ * Fecha: Abril 2026
  */
 
 namespace CapaPresentacion
@@ -48,8 +48,9 @@ namespace CapaPresentacion
                     string nombre = nombreCompleto.Text.Trim();
                     DateTime fechaNacimientoCliente = fechaNacimiento.Value;
                     DateTime fechaRegistroCliente = fechaRegistro.Value;
+                    bool activo = clienteActivo.Checked;
 
-                    clienteLN.RegistrarCliente(id, identificacion, nombre, fechaNacimientoCliente, fechaRegistroCliente);
+                    clienteLN.RegistrarCliente(id, identificacion, nombre, fechaNacimientoCliente, fechaRegistroCliente, activo);
 
                     MessageBox.Show("Cliente registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

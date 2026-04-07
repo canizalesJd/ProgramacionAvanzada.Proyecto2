@@ -15,7 +15,7 @@ using Microsoft.Data.SqlClient;
 namespace CapaAccesoDatos
 {
     /// <summary>
-    /// Clase de acceso a datos para la entidad Cliente. Esta clase proporciona métodos para almacenar y consultar clientes en un arreglo estático.
+    /// Clase de acceso a datos para la entidad Cliente. Esta clase proporciona métodos para almacenar y consultar clientes en una base de datos.
     /// </summary>
     public class ClienteAD
     {
