@@ -1,11 +1,13 @@
 /*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
- * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: Jose David Canizales Azocar
- * Fecha: Febrero 2026
+ * Fecha: Abril 2026
  */
+
+using Servidor;
 
 namespace CapaPresentacion
 {
@@ -15,7 +17,7 @@ namespace CapaPresentacion
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new FrmMenu());
+            Application.Run(new FrmServidor());
         }
     }
 }

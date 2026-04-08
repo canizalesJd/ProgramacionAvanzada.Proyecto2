@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CapaLogicaNegocio\CapaLogicaNegocio.csproj" />
+    <ProjectReference Include="..\Servidor.Comunicacion\Servidor.Comunicacion.csproj" />
   </ItemGroup>
 
   <ItemGroup>

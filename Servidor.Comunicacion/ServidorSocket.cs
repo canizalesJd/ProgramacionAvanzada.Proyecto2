@@ -34,7 +34,7 @@ namespace Servidor.Comunicacion
 
     }
 
-    public class Socket
+    public class ServidorSocket
     {
         // Configuracion Servidor
         private const string IP_SERVIDOR = "127.0.0.1"; // LOCALHOST
@@ -53,7 +53,7 @@ namespace Servidor.Comunicacion
         public event Action<string>? ClienteDesconectado;
 
         // Constructor
-        public Socket()
+        public ServidorSocket()
         {
             clientesConectados = new List<InfoCliente>();
         }
@@ -210,9 +210,45 @@ namespace Servidor.Comunicacion
                         return new Mensaje("ERROR", "RESPUESTA", "Acción no reconocida");
                 }
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 return new Mensaje("ERROR", "RESPUESTA", $"Error al procesar el mensaje: {ex.Message}");
             }
         }
+
+        // Metodo para detener el servidor
+        public void Detener()
+        {
+            try
+            {
+                servidorActivo = false; // Detener el ciclo de escucha
+                foreach (InfoCliente info in clientesConectados)
+                {
+                    info.Conexion.Close(); // Cerrar la conexión de cada cliente conectado
+                }
+                servidor?.Stop(); // Detener el servidor TCP
+                NuevaBitacora?.Invoke("Servidor detenido."); // Notificar que el servidor se ha detenido
+            }
+            catch (Exception ex)
+            {
+                NuevaBitacora?.Invoke($"Error al detener el servidor: {ex.Message}");
+            }
+        }
+
+        // ========================================================
+        //                  METODOS INFORMATIVOS
+        // ========================================================
+
+        public int ObtenerCantidadClientes()
+        {
+            return clientesConectados.Count; // Retornar la cantidad de clientes conectados
+        }
+
+        // Metodo para obtener la IP del servidor
+        public string ObtenerIP() => IP_SERVIDOR; // Retornar la IP del servidor
+        // Metodo para obtener el puerto del servidor
+        public int ObtenerPuerto() => PUERTO_SERVIDOR; // Retornar el puerto del servidor
+        // Metodo para obtener el máximo de clientes permitidos
+        public int ObtenerMaxClientes() => MAX_CLIENTES; // Retornar el máximo de clientes permitidos
     }
 }
