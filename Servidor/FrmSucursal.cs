@@ -10,7 +10,7 @@ using CapaEntidades;
  * Fecha: Febrero 2026
  */
 
-namespace CapaPresentacion
+namespace Servidor
 {
     // Formulario para registrar una nueva sucursal en el sistema.
     public partial class FrmSucursal : Form

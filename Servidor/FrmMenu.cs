@@ -7,7 +7,7 @@
  * Fecha: Febrero 2026
  */
 
-namespace CapaPresentacion
+namespace Servidor
 {
     // Formulario principal del sistema, que sirve como menú de navegación para acceder a las diferentes funcionalidades de registro y consulta de información.
     public partial class FrmMenu : Form

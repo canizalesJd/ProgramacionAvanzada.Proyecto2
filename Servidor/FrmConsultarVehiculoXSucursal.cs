@@ -11,7 +11,7 @@ using CapaLogicaNegocio;
  * Fecha: Abril 2026
  */
 
-namespace CapaPresentacion
+namespace Servidor
 {
     // Formulario para consultar los vehículos disponibles en una sucursal específica.
     public partial class FrmConsultarVehiculoXSucursal : Form

@@ -10,7 +10,7 @@ using CapaLogicaNegocio;
  * Fecha: Abril 2026
  */
 
-namespace CapaPresentacion
+namespace Servidor
 {
     // Formulario para consultar la lista de clientes registrados en el sistema
     public partial class FrmConsultarClientes : Form

@@ -10,7 +10,7 @@
 using CapaEntidades;
 using CapaLogicaNegocio;
 
-namespace CapaPresentacion
+namespace Servidor
 {
     // Formulario para consultar la lista de vehículos registrados en el sistema
     public partial class FrmConsultarVehiculos : Form

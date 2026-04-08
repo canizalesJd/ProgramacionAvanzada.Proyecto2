@@ -1,4 +1,4 @@
-﻿namespace CapaPresentacion
+﻿namespace Servidor
 {
     partial class FrmVehiculoXSucursal
     {

@@ -9,7 +9,7 @@
  * Fecha: Abril 2026
  */
 
-namespace CapaPresentacion
+namespace Servidor
 {
     // Formulario para registrar un nuevo cliente en el sistema.
     public partial class FrmCliente : Form

@@ -10,7 +10,7 @@ using CapaLogicaNegocio;
  * Fecha: Marzo 2026
  */
 
-namespace CapaPresentacion
+namespace Servidor
 {
     // Formulario para consultar las categorías de vehículos registradas en el sistema.
     public partial class FrmConsultarCategorias : Form

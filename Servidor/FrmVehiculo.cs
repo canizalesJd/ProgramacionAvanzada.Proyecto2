@@ -11,7 +11,7 @@ using CapaEntidades;
  */
 
 
-namespace CapaPresentacion
+namespace Servidor
 {
     // Formulario para registrar un nuevo vehículo en el sistema.
     public partial class FrmVehiculo : Form

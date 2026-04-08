@@ -10,7 +10,7 @@
  */
 
 
-namespace CapaPresentacion
+namespace Servidor
 {
     // Formulario para registrar una nueva categoría de vehículo en el sistema.
     public partial class FrmCategoria : Form

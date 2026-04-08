@@ -9,7 +9,7 @@
  * Fecha: Febrero 2026
  */
 
-namespace CapaPresentacion
+namespace Servidor
 {
     // Formulario para registrar un nuevo vendedor en el sistema.
     public partial class FrmVendedor : Form

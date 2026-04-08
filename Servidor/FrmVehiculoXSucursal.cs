@@ -10,7 +10,7 @@ using CapaLogicaNegocio;
  * Fecha: Abril 2026
  */
 
-namespace CapaPresentacion
+namespace Servidor
 {
     // Formulario para mostrar los vehículos disponibles en cada sucursal.
     public partial class FrmVehiculoXSucursal : Form
