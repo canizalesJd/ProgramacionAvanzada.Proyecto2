@@ -42,12 +42,12 @@ namespace Servidor
             detallesServidorLbl = new Label();
             botonEncender = new Button();
             botonApagar = new Button();
-            clientesConectadosBox = new RichTextBox();
             clientesConectadosLbl = new Label();
-            bitacoraBox = new RichTextBox();
             bitacoraLbl = new Label();
             botonLimpiarBitacora = new Button();
             botonAdministracion = new Button();
+            bitacoraLv = new ListView();
+            clientesLv = new ListView();
             SuspendLayout();
             // 
             // titulo
@@ -100,14 +100,6 @@ namespace Servidor
             botonApagar.UseVisualStyleBackColor = false;
             botonApagar.Click += botonApagar_Click;
             // 
-            // clientesConectadosBox
-            // 
-            clientesConectadosBox.Location = new Point(13, 166);
-            clientesConectadosBox.Name = "clientesConectadosBox";
-            clientesConectadosBox.Size = new Size(498, 100);
-            clientesConectadosBox.TabIndex = 22;
-            clientesConectadosBox.Text = "";
-            // 
             // clientesConectadosLbl
             // 
             clientesConectadosLbl.AutoSize = true;
@@ -121,14 +113,6 @@ namespace Servidor
             clientesConectadosLbl.TabIndex = 23;
             clientesConectadosLbl.Text = "Clientes Conectados: 0 de 5";
             clientesConectadosLbl.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // bitacoraBox
-            // 
-            bitacoraBox.Location = new Point(14, 335);
-            bitacoraBox.Name = "bitacoraBox";
-            bitacoraBox.Size = new Size(497, 198);
-            bitacoraBox.TabIndex = 24;
-            bitacoraBox.Text = "";
             // 
             // bitacoraLbl
             // 
@@ -149,7 +133,7 @@ namespace Servidor
             // 
             botonLimpiarBitacora.BackColor = Color.Gray;
             botonLimpiarBitacora.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            botonLimpiarBitacora.Location = new Point(343, 280);
+            botonLimpiarBitacora.Location = new Point(359, 280);
             botonLimpiarBitacora.Name = "botonLimpiarBitacora";
             botonLimpiarBitacora.Size = new Size(149, 37);
             botonLimpiarBitacora.TabIndex = 26;
@@ -169,23 +153,41 @@ namespace Servidor
             botonAdministracion.UseVisualStyleBackColor = false;
             botonAdministracion.Click += botonAdministracion_Click;
             // 
+            // bitacoraLv
+            // 
+            bitacoraLv.Location = new Point(15, 328);
+            bitacoraLv.Name = "bitacoraLv";
+            bitacoraLv.Size = new Size(493, 243);
+            bitacoraLv.TabIndex = 28;
+            bitacoraLv.UseCompatibleStateImageBehavior = false;
+            bitacoraLv.View = View.List;
+            // 
+            // clientesLv
+            // 
+            clientesLv.Location = new Point(15, 166);
+            clientesLv.Name = "clientesLv";
+            clientesLv.Size = new Size(493, 98);
+            clientesLv.TabIndex = 29;
+            clientesLv.UseCompatibleStateImageBehavior = false;
+            // 
             // FrmServidor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(520, 583);
+            Controls.Add(clientesLv);
+            Controls.Add(bitacoraLv);
             Controls.Add(botonAdministracion);
             Controls.Add(botonLimpiarBitacora);
             Controls.Add(bitacoraLbl);
-            Controls.Add(bitacoraBox);
             Controls.Add(clientesConectadosLbl);
-            Controls.Add(clientesConectadosBox);
             Controls.Add(botonApagar);
             Controls.Add(botonEncender);
             Controls.Add(detallesServidorLbl);
             Controls.Add(titulo);
             Name = "FrmServidor";
             Text = "AutoMarket - Servidor";
+            FormClosed += FrmServidor_FormClosed;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -196,11 +198,11 @@ namespace Servidor
         private Label detallesServidorLbl;
         private Button botonEncender;
         private Button botonApagar;
-        private RichTextBox clientesConectadosBox;
         private Label clientesConectadosLbl;
-        private RichTextBox bitacoraBox;
         private Label bitacoraLbl;
         private Button botonLimpiarBitacora;
         private Button botonAdministracion;
+        private ListView bitacoraLv;
+        private ListView clientesLv;
     }
 }

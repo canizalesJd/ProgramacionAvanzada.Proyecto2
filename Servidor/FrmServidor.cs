@@ -25,43 +25,195 @@ namespace Servidor
         // Constructor para inicializar el formulario
         public FrmServidor()
         {
+            // Inicializar componentes
             InitializeComponent();
-            // Crear instancia del servidor y suscribirse a los eventos de actualización
+
+            // Crear instancia del servidor
             servidor = new ServidorSocket();
 
-            servidor.NuevaBitacora += AgregarBitacora;
+            // Suscribirse al evento de bitácora
+            servidor.NuevaBitacora += (mensaje) =>
+            {
+                AgregarBitacora(mensaje);
+            };
+
+            // Suscribirse al evento de cliente conectado
+            servidor.ClienteConectado += (nombreCliente) =>
+            {
+                AgregarClienteALista(nombreCliente);
+            };
+
+            // Suscribirse al evento de cliente desconectado
+            servidor.ClienteDesconectado += (nombreCliente) =>
+            {
+                RemoverClienteDeLista(nombreCliente);
+            };
+
+            // Mostrar información del servidor en el label
+            detallesServidorLbl.Text = $"IP: {servidor.ObtenerIP()}  |  Puerto: {servidor.ObtenerPuerto()}  |  Máx Clientes: {servidor.ObtenerMaxClientes()}";
         }
 
         // Metodo para agregar un mensaje a la bitácora del servidor
-        public void AgregarBitacora(string mensaje)
+        private void AgregarBitacora(string mensaje)
         {
-            DateTime fechaActual = DateTime.Now;
-
-            if (bitacoraBox.InvokeRequired)
+            // Los eventos de hilos no pueden modificar la UI directamente
+            // Usamos Invoke para ejecutar el código en el hilo de la UI
+            if (bitacoraLv.InvokeRequired)
             {
-                bitacoraBox.Invoke(new Action(() => AgregarBitacora(mensaje)));
-                return;
-            }
+                bitacoraLv.Invoke(new Action(() =>
+                {
+                    // Agregar el mensaje con fecha/hora
+                    string mensajeConHora = $"[{DateTime.Now:HH:mm:ss}] {mensaje}";
+                    bitacoraLv.Items.Add(mensajeConHora);
 
-            bitacoraBox.AppendText($"{fechaActual:yyyy-MM-dd HH:mm:ss} - {mensaje}{Environment.NewLine}");
+                    // Hacer scroll automático al último elemento
+                    bitacoraLv.EnsureVisible(bitacoraLv.Items.Count - 1);
+
+                    // Actualizar contador de clientes
+                    ActualizarContadorClientes();
+                }));
+            }
+            else
+            {
+                string mensajeConHora = $"[{DateTime.Now:HH:mm:ss}] {mensaje}";
+                bitacoraLv.Items.Add(mensajeConHora);
+                bitacoraLv.EnsureVisible(bitacoraLv.Items.Count - 1);
+                ActualizarContadorClientes();
+            }
+        }
+
+        /// <summary>
+        /// Agrega un cliente al ListView de clientes
+        /// </summary>
+        private void AgregarClienteALista(string nombreCliente)
+        {
+            if (clientesLv.InvokeRequired)
+            {
+                clientesLv.Invoke(new Action(() =>
+                {
+                    clientesLv.Items.Add(nombreCliente);
+                    ActualizarContadorClientes();
+                }));
+            }
+            else
+            {
+                clientesLv.Items.Add(nombreCliente);
+                ActualizarContadorClientes();
+            }
+        }
+
+
+        /// <summary>
+        /// Remueve un cliente del ListView de clientes
+        /// </summary>
+        private void RemoverClienteDeLista(string nombreCliente)
+        {
+            if (clientesLv.InvokeRequired)
+            {
+                clientesLv.Invoke(new Action(() =>
+                {
+                    // Buscar el item con ese nombre y removerlo
+                    foreach (ListViewItem item in clientesLv.Items)
+                    {
+                        if (item.Text == nombreCliente)
+                        {
+                            clientesLv.Items.Remove(item);
+                            break;
+                        }
+                    }
+                    ActualizarContadorClientes();
+                }));
+            }
+            else
+            {
+                foreach (ListViewItem item in clientesLv.Items)
+                {
+                    if (item.Text == nombreCliente)
+                    {
+                        clientesLv.Items.Remove(item);
+                        break;
+                    }
+                }
+                ActualizarContadorClientes();
+            }
+        }
+
+        // Metodo para actualizar el contador de clientes conectados en la etiqueta lblClientes
+        private void ActualizarContadorClientes()
+        {
+            int cantidadClientes = servidor.ObtenerCantidadClientes();
+            int maxClientes = servidor.ObtenerMaxClientes();
+            clientesConectadosLbl.Text = $"Clientes Conectados: {cantidadClientes} de {maxClientes}";
+
+            // Cambiar color según la cantidad
+            if (cantidadClientes == maxClientes)
+            {
+                clientesConectadosLbl.ForeColor = Color.Red; // Máximo alcanzado
+            }
+            else if (cantidadClientes > 0)
+            {
+                clientesConectadosLbl.ForeColor = Color.DarkOrange; // Hay clientes
+            }
+            else
+            {
+                clientesConectadosLbl.ForeColor = Color.Gray; // No hay clientes
+            }
         }
 
         // Boton para encender el servidor
         private void botonEncender_Click(object sender, EventArgs e)
         {
-            servidor.Iniciar();
+            try
+            {
+                // Iniciar el servidor
+                servidor.Iniciar();
+
+                // Deshabilitar botón Encender
+                botonEncender.Enabled = false;
+
+                // Habilitar botón Apagar
+                botonApagar.Enabled = true;
+
+                // Agregar mensaje a la bitácora
+                AgregarBitacora("=== SERVIDOR ENCENDIDO ===");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al iniciar servidor: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Boton para apagar el servidor
         private void botonApagar_Click(object sender, EventArgs e)
         {
-            servidor.Detener();
+            try
+            {
+                // Detener el servidor
+                servidor.Detener();
+
+                // Habilitar botón Encender
+                botonEncender.Enabled = true;
+
+                // Deshabilitar botón Apagar
+                botonApagar.Enabled = false;
+
+                // Limpiar lista de clientes
+                clientesLv.Items.Clear();
+                clientesConectadosLbl.Text = "Clientes Conectados: 0 de 5";
+
+                // Agregar mensaje a la bitácora
+                AgregarBitacora("=== SERVIDOR APAGADO ===");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al detener servidor: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Boton para limpiar la bitácora del servidor
         private void botonLimpiarBitacora_Click(object sender, EventArgs e)
         {
-            bitacoraBox.Clear();
+            bitacoraLv.Clear();
         }
 
         // Boton para abrir FrmMenu
@@ -69,6 +221,23 @@ namespace Servidor
         {
             FrmMenu frmMenu = new FrmMenu();
             frmMenu.Show();
+        }
+
+        // Evento para manejar el cierre del formulario
+        private void FrmServidor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                // Si el servidor está activo, detenerlo
+                if (botonApagar.Enabled)
+                {
+                    servidor.Detener();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cerrar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
