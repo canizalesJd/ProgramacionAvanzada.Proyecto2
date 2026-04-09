@@ -25,8 +25,16 @@ namespace Cliente
 
             cliente = new ClienteSocket();
             nombreCliente = string.Empty;
-
+            // Textos dinámicos
             detallesServidorLbl.Text = $"Servidor: {cliente.ObtenerIP()}  |  Puerto: {cliente.ObtenerPuerto()}";
+            lblBienvenida.Text = "Por favor, ingrese su identificación para conectarse.";
+
+            // Botones de gestión de ventas y consulta deshabilitados inicialmente
+            botonConsultar.Enabled = false;
+            botonGestionVentas.Enabled = false;
+
+            // Boton de desconectar deshabilitado inicialmente
+            botonDesconectar.Enabled = true;
         }
 
         // Evento del botón de conectar
@@ -49,9 +57,7 @@ namespace Cliente
                 if (conectado)
                 {
                     nombreCliente = cliente.NombreCliente;
-
-                    MessageBox.Show($"Bienvenido {nombreCliente}", "Éxito",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    lblBienvenida.Text = $"¡Bienvenido, {nombreCliente}!";
 
                     ActualizarEstadoConectado();
                 }
@@ -63,7 +69,7 @@ namespace Cliente
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al conectar: {ex.Message}", "Error",
+                MessageBox.Show($"Error al conectarse al sistema de ventas: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -75,7 +81,7 @@ namespace Cliente
             {
                 cliente.Desconectar();
 
-                MessageBox.Show("Desconectado del servidor.", "Información",
+                MessageBox.Show("Desconectado del sistema de ventas.", "Información",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 ActualizarEstadoDesconectado();
@@ -97,6 +103,9 @@ namespace Cliente
             botonConectar.Enabled = false;
             botonDesconectar.Enabled = true;
 
+            botonConsultar.Enabled = true;
+            botonGestionVentas.Enabled = true;
+
         }
 
         // Método para actualizar la interfaz al estar desconectado
@@ -107,8 +116,12 @@ namespace Cliente
 
             idCliente.Enabled = true;
             botonConectar.Enabled = true;
-
             botonDesconectar.Enabled = false;
+
+            botonConsultar.Enabled = false;
+            botonGestionVentas.Enabled = false;
+
+            lblBienvenida.Text = "Por favor, ingrese su identificación para conectarse.";
         }
 
         // Evento de cerrar el formulario

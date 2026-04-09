@@ -48,6 +48,7 @@ namespace Cliente
             botonGestionVentas = new Button();
             botonConsultar = new Button();
             grupoOpciones = new GroupBox();
+            lblBienvenida = new Label();
             grupoOpciones.SuspendLayout();
             SuspendLayout();
             // 
@@ -188,11 +189,22 @@ namespace Cliente
             grupoOpciones.TabIndex = 29;
             grupoOpciones.TabStop = false;
             // 
+            // lblBienvenida
+            // 
+            lblBienvenida.AutoSize = true;
+            lblBienvenida.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblBienvenida.Location = new Point(13, 239);
+            lblBienvenida.Name = "lblBienvenida";
+            lblBienvenida.Size = new Size(327, 19);
+            lblBienvenida.TabIndex = 30;
+            lblBienvenida.Text = "Por favor, ingrese su identificación para conectarse";
+            // 
             // FrmConexion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(359, 472);
+            Controls.Add(lblBienvenida);
             Controls.Add(grupoOpciones);
             Controls.Add(estadoLbl);
             Controls.Add(botonDesconectar);
@@ -223,5 +235,6 @@ namespace Cliente
         private Button botonGestionVentas;
         private Button botonConsultar;
         private GroupBox grupoOpciones;
+        private Label lblBienvenida;
     }
 }

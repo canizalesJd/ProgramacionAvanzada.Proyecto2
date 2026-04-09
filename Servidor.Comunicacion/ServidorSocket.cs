@@ -51,6 +51,9 @@ namespace Servidor.Comunicacion
         // Instancia de la lógica de negocio para gestionar clientes
         private readonly ClienteLN clienteLN;
 
+        // Variable para el nombre del cliente
+        private string nombreCliente = string.Empty;
+
         // Constructor
         public ServidorSocket()
         {
@@ -145,9 +148,9 @@ namespace Servidor.Comunicacion
 
                         if (clienteDatos != null && clienteDatos.Activo)
                         {
-                            string nombreCliente = clienteDatos.NombreCompleto;
+                            nombreCliente = clienteDatos.NombreCompleto.Trim();
                             // Crear un objeto InfoCliente para almacenar la información del cliente conectado
-                            infoCliente = new InfoCliente(cliente, identificacion);
+                            infoCliente = new InfoCliente(cliente, nombreCliente);
                             clientesConectados.Add(infoCliente); // Agregar el cliente a la lista de clientes conectados
                             respuestaBienvenida = new("OK", "Conexion", clienteDatos.NombreCompleto);
                             // Notificar que un nuevo cliente se ha conectado
@@ -165,9 +168,9 @@ namespace Servidor.Comunicacion
                             NuevaBitacora?.Invoke($"Intento de conexión fallido con identificación: {identificacion}"); // Notificar en la bitácora
 
                             string respuestaJson = JsonConvert.SerializeObject(respuestaBienvenida); // Serializar el mensaje de error
-                            writer.WriteLine(respuestaJson); 
-                            writer.Flush(); // Asegurar que el mensaje se envíe al cliente
-                            cliente.Close(); // Cerrar la conexión del cliente no válido
+                            writer.WriteLine(respuestaJson);
+                            writer.Flush();
+                            cliente.Close();
                             return;
                         }
 
@@ -207,13 +210,12 @@ namespace Servidor.Comunicacion
                 if (infoCliente != null)
                 {
                     clientesConectados.Remove(infoCliente); // Remover el cliente de la lista de clientes conectados
-                    NuevaBitacora?.Invoke($"Cliente desconectado con identificación: {identificacion}. Total: {clientesConectados.Count} de {MAX_CLIENTES}"); // Notificar que el cliente se ha desconectado
-                    ClienteDesconectado?.Invoke(identificacion); // Notificar a la interfaz de usuario
+                    NuevaBitacora?.Invoke($"Cliente desconectado: {nombreCliente}. Total: {clientesConectados.Count} de {MAX_CLIENTES}"); // Notificar que el cliente se ha desconectado
+                    ClienteDesconectado?.Invoke(infoCliente.Nombre); // Notificar a la interfaz de usuario
                 }
 
                 cliente.Close(); // Cerrar la conexión con el cliente
-                NuevaBitacora?.Invoke($"Conexión cerrada con {identificacion}"); // Notificar que la conexión con el cliente se ha cerrado
-                ClienteDesconectado?.Invoke(identificacion); // Notificar a la interfaz de usuario que el cliente se ha desconectado
+                NuevaBitacora?.Invoke($"Conexión cerrada con {nombreCliente}"); // Notificar que la conexión con el cliente se ha cerrado
             }
         }
 
