@@ -169,6 +169,7 @@ namespace Servidor
             clientesLv.Size = new Size(493, 98);
             clientesLv.TabIndex = 29;
             clientesLv.UseCompatibleStateImageBehavior = false;
+            clientesLv.View = View.List;
             // 
             // FrmServidor
             // 

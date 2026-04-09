@@ -34,33 +34,31 @@ namespace Cliente
         {
             try
             {
-                // VALIDAR: El ID del cliente no puede estar vacío
                 if (string.IsNullOrWhiteSpace(idCliente.Text))
                 {
-                    MessageBox.Show("Por favor, ingrese su Identificación de cliente.", "Advertencia",
+                    MessageBox.Show("Por favor, ingrese su identificación.", "Advertencia",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     idCliente.Focus();
                     return;
                 }
 
-                // Guardar el ID del cliente
                 string identificacion = idCliente.Text.Trim();
 
-                // Intentar conectar al servidor
                 bool conectado = cliente.Conectar(identificacion);
 
                 if (conectado)
                 {
-                    MessageBox.Show($"Conectado al servidor como '{identificacion}'", "Éxito",
+                    nombreCliente = cliente.NombreCliente;
+
+                    MessageBox.Show($"Bienvenido {nombreCliente}", "Éxito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     ActualizarEstadoConectado();
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo conectar al servidor.\n\n" +
-                        "Verifique que el servidor esté encendido.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se pudo validar el cliente.\nVerifique que exista y esté activo.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

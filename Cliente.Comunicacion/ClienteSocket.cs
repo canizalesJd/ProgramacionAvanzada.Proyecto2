@@ -35,29 +35,35 @@ namespace Cliente.Comunicacion
             get { return conectado; }
         }
 
+        public string NombreCliente { get; private set; } = string.Empty;
+
         // Constructor
         public ClienteSocket()
         {
         }
 
         // Metodo para conectar al servidor
-        public bool Conectar(string nombreCliente)
+        public bool Conectar(string identificacion)
         {
             try
             {
                 // Crear el TcpClient y conectarse al servidor
                 cliente = new TcpClient();
                 cliente.Connect(IPAddress.Parse(IP_SERVIDOR), PUERTO_SERVIDOR);
+
                 // Obtener el stream de comunicación
                 stream = cliente.GetStream();
+
                 // Crear reader y writer para enviar y recibir datos
                 reader = new StreamReader(stream, Encoding.UTF8);
                 writer = new StreamWriter(stream, Encoding.UTF8);
-                // Enviar nombre al servidor (mensaje de bienvenida)
-                Mensaje mensajeBienvenida = new("CONECTAR", "Cliente", nombreCliente);
+
+                // Enviar identificacion al servidor (mensaje de bienvenida)
+                Mensaje mensajeBienvenida = new("CONECTAR", "Cliente", identificacion);
                 string bienvenidaJson = JsonConvert.SerializeObject(mensajeBienvenida);
                 writer.WriteLine(bienvenidaJson);
                 writer.Flush();
+
                 // Esperar confirmacion del servidor
                 string? respuestaJson = reader.ReadLine();
                 if (!string.IsNullOrEmpty(respuestaJson))
@@ -65,6 +71,7 @@ namespace Cliente.Comunicacion
                     Mensaje? respuesta = JsonConvert.DeserializeObject<Mensaje>(respuestaJson);
                     if (respuesta != null && respuesta.Accion == "OK")
                     {
+                        NombreCliente = respuesta.Datos;
                         // Conexion exitosa
                         conectado = true;
                         return true;

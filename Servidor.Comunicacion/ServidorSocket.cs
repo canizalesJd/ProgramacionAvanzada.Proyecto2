@@ -7,11 +7,12 @@
  * Fecha: Abril 2026
  */
 
+using CapaEntidades;
+using CapaLogicaNegocio;
 using Newtonsoft.Json;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using CapaEntidades;
 namespace Servidor.Comunicacion
 {
     // Clase para almacenar información de cada cliente conectado
@@ -47,10 +48,14 @@ namespace Servidor.Comunicacion
         public event Action<string>? ClienteConectado;
         public event Action<string>? ClienteDesconectado;
 
+        // Instancia de la lógica de negocio para gestionar clientes
+        private readonly ClienteLN clienteLN;
+
         // Constructor
         public ServidorSocket()
         {
             clientesConectados = new List<InfoCliente>();
+            clienteLN = new ClienteLN();
         }
 
         // Metodo para iniciar el servidor
@@ -111,8 +116,9 @@ namespace Servidor.Comunicacion
         {
             // Inicializar variables para manejar la comunicación con el cliente
             NetworkStream? stream = null;
-            string nombreCliente = "Desconocido";
+            string identificacion = string.Empty;
             InfoCliente? infoCliente = null;
+            Cliente? clienteDatos = null;
             try
             {
                 // Obtener el stream de comunicación con el cliente
@@ -129,21 +135,42 @@ namespace Servidor.Comunicacion
 
                     if (mensajeBienvenida != null && mensajeBienvenida.Accion == "CONECTAR")
                     {
-                        nombreCliente = mensajeBienvenida.Datos; // Obtener el nombre del cliente desde el mensaje de bienvenida
+                        identificacion = mensajeBienvenida.Datos; // Obtener la identificación del cliente desde el mensaje de bienvenida
 
-                        // Crear un objeto InfoCliente para almacenar la información del cliente conectado
-                        infoCliente = new InfoCliente(cliente, nombreCliente);
-                        clientesConectados.Add(infoCliente); // Agregar el cliente a la lista de clientes conectados
+                        // Validar el cliente utilizando la lógica de negocio
+                        clienteDatos = clienteLN.ConsultarPorIdentificacion(identificacion);
 
-                        // Notificar que un nuevo cliente se ha conectado
-                        NuevaBitacora?.Invoke($"Cliente conectado: {nombreCliente}. Total: {clientesConectados.Count} de {MAX_CLIENTES}"); // Notificar en la bitácora
-                        ClienteConectado?.Invoke(nombreCliente); // Notificar a la interfaz de usuario
+                        // Inicializar Mensaje
+                        Mensaje respuestaBienvenida = new();
 
-                        // Enviar un mensaje de bienvenida al cliente
-                        Mensaje respuestaBienvenida = new("OK", "Conexion", $"Bienvenido, {nombreCliente}");
-                        string respuestaJson = JsonConvert.SerializeObject(respuestaBienvenida); // Serializar el mensaje de bienvenida
-                        writer.WriteLine(respuestaJson);
-                        writer.Flush(); // Asegurar que el mensaje se envíe al cliente
+                        if (clienteDatos != null && clienteDatos.Activo)
+                        {
+                            string nombreCliente = clienteDatos.NombreCompleto;
+                            // Crear un objeto InfoCliente para almacenar la información del cliente conectado
+                            infoCliente = new InfoCliente(cliente, identificacion);
+                            clientesConectados.Add(infoCliente); // Agregar el cliente a la lista de clientes conectados
+                            respuestaBienvenida = new("OK", "Conexion", clienteDatos.NombreCompleto);
+                            // Notificar que un nuevo cliente se ha conectado
+                            NuevaBitacora?.Invoke($"Cliente conectado: {nombreCliente}. Total: {clientesConectados.Count} de {MAX_CLIENTES}"); // Notificar en la bitácora
+                            ClienteConectado?.Invoke(nombreCliente); // Notificar a la interfaz de usuario
+
+                            string respuestaJson = JsonConvert.SerializeObject(respuestaBienvenida); // Serializar el mensaje de bienvenida
+                            writer.WriteLine(respuestaJson);
+                            writer.Flush(); // Asegurar que el mensaje se envíe al cliente
+                        } else
+                        {
+                            // Si el cliente no es válido o no está activo, enviar un mensaje de error y cerrar la conexión
+                            respuestaBienvenida = new("ERROR", "Conexion", $"Identificación no válida o cliente inactivo.");
+                            // Notificar que un cliente ha intentado conectarse con una identificación no válida o inactiva
+                            NuevaBitacora?.Invoke($"Intento de conexión fallido con identificación: {identificacion}"); // Notificar en la bitácora
+
+                            string respuestaJson = JsonConvert.SerializeObject(respuestaBienvenida); // Serializar el mensaje de error
+                            writer.WriteLine(respuestaJson); 
+                            writer.Flush(); // Asegurar que el mensaje se envíe al cliente
+                            cliente.Close(); // Cerrar la conexión del cliente no válido
+                            return;
+                        }
+
                     }
                 }
 
@@ -151,6 +178,7 @@ namespace Servidor.Comunicacion
                 while (cliente.Connected && servidorActivo)
                 {
                     string? mensajeJson = reader.ReadLine(); // Leer un mensaje del cliente (JSON)
+                    string nombreCliente = clienteDatos != null ? clienteDatos.NombreCompleto : identificacion; // Obtener el nombre del cliente para la bitácora
 
                     if (string.IsNullOrEmpty(mensajeJson))
                         break; // Si el mensaje es nulo o vacío, salir del ciclo (cliente desconectado)
@@ -171,7 +199,7 @@ namespace Servidor.Comunicacion
             }
             catch (Exception ex)
             {
-                NuevaBitacora?.Invoke($"Error en la comunicación con {nombreCliente}: {ex.Message}");
+                NuevaBitacora?.Invoke($"Error en la comunicación con Cliente con identificación {identificacion}: {ex.Message}");
             }
             finally
             {
@@ -179,13 +207,13 @@ namespace Servidor.Comunicacion
                 if (infoCliente != null)
                 {
                     clientesConectados.Remove(infoCliente); // Remover el cliente de la lista de clientes conectados
-                    NuevaBitacora?.Invoke($"Cliente desconectado: {nombreCliente}. Total: {clientesConectados.Count} de {MAX_CLIENTES}"); // Notificar que el cliente se ha desconectado
-                    ClienteDesconectado?.Invoke(nombreCliente); // Notificar a la interfaz de usuario
+                    NuevaBitacora?.Invoke($"Cliente desconectado con identificación: {identificacion}. Total: {clientesConectados.Count} de {MAX_CLIENTES}"); // Notificar que el cliente se ha desconectado
+                    ClienteDesconectado?.Invoke(identificacion); // Notificar a la interfaz de usuario
                 }
 
                 cliente.Close(); // Cerrar la conexión con el cliente
-                NuevaBitacora?.Invoke($"Conexión cerrada con {nombreCliente}"); // Notificar que la conexión con el cliente se ha cerrado
-                ClienteConectado?.Invoke(nombreCliente); // Notificar a la interfaz de usuario que el cliente se ha desconectado
+                NuevaBitacora?.Invoke($"Conexión cerrada con {identificacion}"); // Notificar que la conexión con el cliente se ha cerrado
+                ClienteDesconectado?.Invoke(identificacion); // Notificar a la interfaz de usuario que el cliente se ha desconectado
             }
         }
 

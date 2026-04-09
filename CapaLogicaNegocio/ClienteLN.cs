@@ -61,5 +61,14 @@ namespace CapaLogicaNegocio
         {
             return ClienteAD.Consultar();
         }
+
+        // Método para obtener un cliente por su identificación
+        public Cliente ConsultarPorIdentificacion(string identificacion)
+        {
+            if (string.IsNullOrWhiteSpace(identificacion)) {
+                throw new ArgumentException("La identificación no puede estar vacía.");
+            }
+            return ClienteAD.ConsultarPorIdentificacion(identificacion);
+        }
     }
 }

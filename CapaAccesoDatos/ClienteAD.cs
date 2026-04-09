@@ -173,5 +173,55 @@ namespace CapaAccesoDatos
             }
             return lista;
         }
+
+
+        /// <summary>
+        /// Método para consultar un cliente por su identificación
+        /// </summary>
+        public static Cliente ConsultarPorIdentificacion(string identificacion)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                string sentencia = @"SELECT IdCliente,
+                                    Identificacion,
+                                    NombreCompleto,
+                                    FechaNacimiento,
+                                    FechaRegistro,
+                                    Activo
+                    FROM dbo.Cliente
+                    WHERE Identificacion = @Identificacion";
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
+                {
+                    comando.CommandType = CommandType.Text;
+                    comando.Parameters.AddWithValue("@Identificacion", identificacion);
+                    try
+                    {
+                        conexion.Open();
+                        using (SqlDataReader lector = comando.ExecuteReader())
+                        {
+                            if (lector.Read())
+                            {
+                                return new Cliente(
+                                    lector.GetInt32(0),          // IdCliente
+                                    lector.GetString(1),         // Identificacion
+                                    lector.GetString(2),         // NombreCompleto
+                                    lector.GetDateTime(3),       // FechaNacimiento
+                                    lector.GetDateTime(4),       // FechaRegistro
+                                    lector.GetBoolean(5)         // Activo
+                                );
+                            }
+                            else
+                            {
+                                throw new KeyNotFoundException("No se encontró un cliente con la identificación proporcionada.");
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al consultar el cliente: " + ex.Message, ex);
+                    }
+                }
+            }
+        }
     }
 }
