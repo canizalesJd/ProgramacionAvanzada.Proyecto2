@@ -7,7 +7,7 @@
  * Fecha: Abril 2026
  */
 
-namespace Servidor.Comunicacion
+namespace CapaEntidades
 {
     public class Mensaje
     {
@@ -17,7 +17,8 @@ namespace Servidor.Comunicacion
         public string Datos { get; set; }
 
         // Constructor vacio
-        public Mensaje() { 
+        public Mensaje()
+        {
             Accion = string.Empty;
             Tipo = string.Empty;
             Datos = string.Empty;

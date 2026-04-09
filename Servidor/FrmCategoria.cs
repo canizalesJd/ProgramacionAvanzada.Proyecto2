@@ -1,6 +1,4 @@
-﻿using CapaLogicaNegocio;
-
-/*
+﻿/*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
  * Proyecto: Proyecto 1 - Programación Avanzada | AutoMarket
@@ -9,7 +7,7 @@
  * Fecha: Febrero 2026
  */
 
-
+using CapaLogicaNegocio;
 namespace Servidor
 {
     // Formulario para registrar una nueva categoría de vehículo en el sistema.

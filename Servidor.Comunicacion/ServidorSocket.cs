@@ -8,15 +8,10 @@
  */
 
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-
+using CapaEntidades;
 namespace Servidor.Comunicacion
 {
     // Clase para almacenar información de cada cliente conectado
