@@ -141,11 +141,11 @@ namespace CapaAccesoDatos
                                 char estado = lector.GetString(6)[0];
 
                                 Vehiculo vehiculo = new Vehiculo(
-                                    lector.GetInt32(0),
-                                    lector.GetString(1),
-                                    lector.GetString(2),
-                                    lector.GetInt32(3),
-                                    lector.GetDecimal(4),
+                                    lector.GetInt32(0), // IdVehiculo
+                                    lector.GetString(1), // Marca
+                                    lector.GetString(2), // Modelo
+                                    lector.GetInt32(3), // Anio
+                                    lector.GetDecimal(4), // Precio
                                     categoriaVehiculo,
                                     estado
                                 );

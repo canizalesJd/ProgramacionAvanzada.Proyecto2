@@ -124,7 +124,7 @@ namespace CapaAccesoDatos
 
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
-            string sentencia = @"
+                string sentencia = @"
             SELECT  vxs.IdSucursal,
                     vxs.IdVehiculo,
                     vxs.Cantidad,
@@ -230,6 +230,73 @@ namespace CapaAccesoDatos
             }
 
             return lista;
+        }
+
+        // Metodo para consultar la cantidad disponible de un vehículo en una sucursal específica
+        public static int ConsultarCantidad(int idSucursal, int idVehiculo)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                string sentencia = @"SELECT Cantidad
+                             FROM dbo.VehiculoxSucursal
+                             WHERE IdSucursal = @IdSucursal
+                             AND IdVehiculo = @IdVehiculo";
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
+                {
+                    comando.CommandType = CommandType.Text;
+                    comando.Parameters.AddWithValue("@IdSucursal", idSucursal);
+                    comando.Parameters.AddWithValue("@IdVehiculo", idVehiculo);
+                    try
+                    {
+                        conexion.Open();
+                        object resultado = comando.ExecuteScalar();
+                        if (resultado != null && resultado != DBNull.Value)
+                        {
+                            return Convert.ToInt32(resultado);
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException("No se encontró la relación entre el vehículo y la sucursal.");
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al consultar la cantidad disponible: " + ex.Message, ex);
+                    }
+                }
+            }
+        }
+
+        // Metodo para actualizar la cantidad disponible de un vehículo en una sucursal específica
+        public static void ActualizarCantidad(int idSucursal, int idVehiculo, int nuevaCantidad)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                string sentencia = @"UPDATE dbo.VehiculoxSucursal
+                             SET Cantidad = @NuevaCantidad
+                             WHERE IdSucursal = @IdSucursal
+                             AND IdVehiculo = @IdVehiculo";
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
+                {
+                    comando.CommandType = CommandType.Text;
+                    comando.Parameters.AddWithValue("@NuevaCantidad", nuevaCantidad);
+                    comando.Parameters.AddWithValue("@IdSucursal", idSucursal);
+                    comando.Parameters.AddWithValue("@IdVehiculo", idVehiculo);
+                    try
+                    {
+                        conexion.Open();
+                        int filasAfectadas = comando.ExecuteNonQuery();
+                        if (filasAfectadas == 0)
+                        {
+                            throw new InvalidOperationException("No se encontró la relación entre el vehículo y la sucursal para actualizar la cantidad.");
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al actualizar la cantidad disponible: " + ex.Message, ex);
+                    }
+                }
+            }
         }
     }
 }
