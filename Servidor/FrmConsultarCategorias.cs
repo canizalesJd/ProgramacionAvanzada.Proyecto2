@@ -7,7 +7,7 @@ using CapaLogicaNegocio;
  * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
  * Descripción: Programa de gestión de ventas de vehículos
  * Estudiante: José David Cañizales Azocar
- * Fecha: Marzo 2026
+ * Fecha: Abril 2026
  */
 
 namespace Servidor

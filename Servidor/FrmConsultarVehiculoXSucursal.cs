@@ -1,8 +1,4 @@
-﻿using CapaAccesoDatos;
-using CapaEntidades;
-using CapaLogicaNegocio;
-
-/*
+﻿/*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
  * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
@@ -10,6 +6,9 @@ using CapaLogicaNegocio;
  * Estudiante: José David Cañizales Azocar
  * Fecha: Abril 2026
  */
+
+using CapaEntidades;
+using CapaLogicaNegocio;
 
 namespace Servidor
 {
