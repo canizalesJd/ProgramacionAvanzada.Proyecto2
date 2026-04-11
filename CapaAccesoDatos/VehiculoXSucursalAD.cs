@@ -232,6 +232,68 @@ namespace CapaAccesoDatos
             return lista;
         }
 
+        // Metodo para obtener solo vehículos disponibles en una sucursal específica
+        public static List<Vehiculo> ObtenerVehiculosPorSucursal(int idSucursal)
+        {
+            List<Vehiculo> lista = new List<Vehiculo>();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                string sentencia = @"
+                SELECT  v.IdVehiculo,
+                        v.Marca,
+                        v.Modelo,
+                        v.Ano,
+                        v.Precio,
+                        v.Estado,
+                        c.IdCategoria,
+                        c.NombreCategoria,
+                        c.Descripcion
+                FROM    dbo.VehiculoxSucursal vxs
+                INNER JOIN dbo.Vehiculo v           ON vxs.IdVehiculo = v.IdVehiculo
+                INNER JOIN dbo.CategoriaVehiculo c  ON v.IdCategoria = c.IdCategoria
+                WHERE   vxs.IdSucursal = @IdSucursal
+                AND     vxs.Cantidad > 0";
+                using (SqlCommand comando = new SqlCommand(sentencia, conexion))
+                {
+                    comando.CommandType = CommandType.Text;
+                    comando.Parameters.AddWithValue("@IdSucursal", idSucursal);
+                    try
+                    {
+                        conexion.Open();
+                        using (SqlDataReader lector = comando.ExecuteReader())
+                        {
+                            while (lector.Read())
+                            {
+                                // Categoría de vehículo
+                                CategoriaVehiculo categoria = new CategoriaVehiculo(
+                                    lector.GetInt32(6),               // IdCategoria
+                                    lector.GetString(7),              // NombreCategoria
+                                    lector.GetString(8)               // Descripcion
+                                );
+                                // Vehículo
+                                char estado = lector.GetString(5)[0];
+                                Vehiculo vehiculo = new Vehiculo(
+                                    lector.GetInt32(0),                // IdVehiculo
+                                    lector.GetString(1),              // Marca
+                                    lector.GetString(2),              // Modelo
+                                    lector.GetInt32(3),               // Año
+                                    lector.GetDecimal(4),             // Precio
+                                    categoria,                         // Categoria
+                                    estado                             // Estado
+                                );
+                                lista.Add(vehiculo);
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error al consultar vehículos disponibles: " + ex.Message, ex);
+                    }
+                }
+            }
+            return lista;
+        }
+
         // Metodo para consultar la cantidad disponible de un vehículo en una sucursal específica
         public static int ConsultarCantidad(int idSucursal, int idVehiculo)
         {

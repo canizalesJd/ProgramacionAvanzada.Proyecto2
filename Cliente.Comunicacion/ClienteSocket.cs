@@ -42,6 +42,8 @@ namespace Cliente.Comunicacion
         {
         }
 
+        // METODOS PUBLICOS
+
         // Metodo para conectar al servidor
         public bool Conectar(string identificacion)
         {
@@ -106,6 +108,65 @@ namespace Cliente.Comunicacion
                 Console.WriteLine($"Error al desconectar: {ex.Message}");
             }
         }
+
+        // Metodo para obtener la lista de vehículos disponibles de una sucursal especifica
+        public List<Vehiculo> ObtenerVehiculosPorSucursal(int idSucursal)
+        {
+            try
+            {
+                Mensaje mensaje = new Mensaje("OBTENER_VEHICULOS_POR_SUCURSAL", "SUCURSAL", idSucursal.ToString());
+                Mensaje? respuesta = EnviarYRecibir(mensaje);
+                if (respuesta != null && respuesta.Accion == "OK")
+                {
+                    List<Vehiculo>? vehiculos = JsonConvert.DeserializeObject<List<Vehiculo>>(respuesta.Datos);
+                    return vehiculos ?? new List<Vehiculo>();
+                }
+                return new List<Vehiculo>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener vehículos: {ex.Message}");
+                return new List<Vehiculo>();
+            }
+        }
+
+        // Metodo para obtener sucursales activas
+        public List<Sucursal> ObtenerSucursalesActivas()
+        {
+            try
+            {
+                Mensaje mensaje = new Mensaje("OBTENER_SUCURSALES_ACTIVAS", "SUCURSAL", "");
+                Mensaje? respuesta = EnviarYRecibir(mensaje);
+                if (respuesta != null && respuesta.Accion == "OK")
+                {
+                    List<Sucursal>? sucursales = JsonConvert.DeserializeObject<List<Sucursal>>(respuesta.Datos);
+                    return sucursales ?? new List<Sucursal>();
+                }
+                return new List<Sucursal>();
+            } catch (Exception ex) {
+                Console.WriteLine($"Error al obtener sucursales: {ex.Message}");
+                return new List<Sucursal>();
+            }
+        }
+
+        // Metodo para registrar una venta
+        public bool RegistrarVenta(Venta venta)
+        {
+            try
+            {
+                string ventaJson = JsonConvert.SerializeObject(venta);
+                Mensaje mensaje = new Mensaje("REGISTRAR_VENTA", "VENTA", ventaJson);
+                Mensaje? respuesta = EnviarYRecibir(mensaje);
+                return respuesta != null && respuesta.Accion == "OK";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al registrar venta: {ex.Message}");
+                return false;
+            }
+        }
+
+        // METODOS PRIVADOS
 
         // Metodo para enviar un mensaje al servidor y recibir respuesta
         private Mensaje? EnviarYRecibir(Mensaje mensaje)

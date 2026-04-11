@@ -50,5 +50,21 @@ namespace CapaLogicaNegocio
         {
             return VehiculoXSucursalAD.Consultar();
         }
+
+        // Metodo para obtener los vehículos disponibles en una sucursal específica
+        public List<Vehiculo> ObtenerVehiculosPorSucursal(int idSucursal)
+        {
+            if (idSucursal <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(idSucursal), "El ID de la sucursal debe ser mayor que cero.");
+            }
+
+            if (!SucursalAD.SucursalExiste(idSucursal))
+            {
+                throw new InvalidOperationException("La sucursal no existe, ingrese un ID válido.");
+            }
+
+            return VehiculoXSucursalAD.ObtenerVehiculosPorSucursal(idSucursal);
+        }
     }
 }

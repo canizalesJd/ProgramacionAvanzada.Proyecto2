@@ -7,6 +7,7 @@
  * Fecha: Abril 2026
  */
 
+using CapaAccesoDatos;
 using CapaEntidades;
 using CapaLogicaNegocio;
 using Newtonsoft.Json;
@@ -51,6 +52,12 @@ namespace Servidor.Comunicacion
         // Instancia de la lógica de negocio para gestionar clientes
         private readonly ClienteLN clienteLN;
 
+        // Instancia de la lógica de negocio para gestionar sucursales
+        private readonly SucursalLN sucursalLN;
+
+        // Instancia de la lógica de negocio para gestionar ventas
+        private readonly VentaLN ventaLN;
+
         // Variable para el nombre del cliente
         private string nombreCliente = string.Empty;
 
@@ -59,6 +66,8 @@ namespace Servidor.Comunicacion
         {
             clientesConectados = new List<InfoCliente>();
             clienteLN = new ClienteLN();
+            sucursalLN = new SucursalLN();
+            ventaLN = new VentaLN();
         }
 
         // Metodo para iniciar el servidor
@@ -219,26 +228,87 @@ namespace Servidor.Comunicacion
             }
         }
 
+        // Metodo para obtener los vehículos disponibles por sucursal
+        public Mensaje ObtenerVehiculosPorSucursal(Mensaje mensaje)
+        {
+            try
+            {
+                int idSucursal = int.Parse(mensaje.Datos); // Obtener el ID de la sucursal desde el mensaje
+                List<Vehiculo> vehiculos = VehiculoXSucursalAD.ObtenerVehiculosPorSucursal(idSucursal); // Obtener los vehículos disponibles desde la capa de acceso a datos
+                string datosJson = JsonConvert.SerializeObject(vehiculos); // Serializar la lista de vehículos a JSON
+                return new Mensaje("OK", "OBTENER_VEHICULOS_POR_SUCURSAL", datosJson); // Retornar un mensaje con la lista de vehículos disponibles
+            }
+            catch (Exception ex)
+            {
+                return new Mensaje("ERROR", "OBTENER_VEHICULOS_POR_SUCURSAL", $"Error al obtener vehículos por sucursal: {ex.Message}"); // Retornar un mensaje de error si ocurre una excepción
+            }
+        }
+
+        // Metodo para obtener las sucursales activas
+        public Mensaje ObtenerSucursalesActivas()
+        {
+            try
+            {
+                List<Sucursal> sucursales = sucursalLN.ConsultarActivas(); // Obtener la lista de sucursales activas desde la lógica de negocio
+                string datosJson = JsonConvert.SerializeObject(sucursales); // Serializar la lista de sucursales a JSON
+                return new Mensaje("OK", "SUCURSALES_ACTIVAS", datosJson); // Retornar un mensaje con la lista de sucursales activas
+            }
+            catch (Exception ex)
+            {
+                return new Mensaje("ERROR", "SUCURSALES_ACTIVAS", $"Error al obtener sucursales activas: {ex.Message}"); // Retornar un mensaje de error si ocurre una excepción
+            }
+        }
+
+        // Metodo para registrar una venta
+        public Mensaje RegistrarVenta(Mensaje mensaje)
+        {
+            try
+            {
+                Venta venta = JsonConvert.DeserializeObject<Venta>(mensaje.Datos)!;
+                ventaLN.RegistrarVenta(
+                    venta.Cliente,
+                    venta.Sucursal,
+                    venta.Vehiculo,
+                    venta.FechaVenta,
+                    venta.Monto
+                );
+
+                return new Mensaje("OK", "REGISTRAR_VENTA", "Venta registrada exitosamente.");
+            }
+            catch (Exception ex)
+            {
+                return new Mensaje("ERROR", "REGISTRAR_VENTA", $"Error al registrar la venta: {ex.Message}");
+            }
+        }
+
         // Metodo para procesar un mensaje recibido del cliente y generar una respuesta
         public Mensaje ProcesarMensaje(Mensaje mensaje)
         {
             Mensaje respuesta = new();
-
             try
             {
-                switch (mensaje.Accion)
+                switch (mensaje.Tipo)
                 {
-                    case "PING":
-                        return new Mensaje("PONG", "RESPUESTA", "OK");
-
+                    case "SUCURSAL":
+                        if (mensaje.Accion == "OBTENER_SUCURSALES_ACTIVAS")
+                            return ObtenerSucursalesActivas();
+                        if (mensaje.Accion == "OBTENER_VEHICULOS_POR_SUCURSAL")
+                            return ObtenerVehiculosPorSucursal(mensaje);
+                        break;
+                    case "VENTA":
+                        if (mensaje.Accion == "REGISTRAR_VENTA")
+                            return RegistrarVenta(mensaje);
+                        break;
                     default:
-                        return new Mensaje("ERROR", "RESPUESTA", "Acción no reconocida");
+                        respuesta = new Mensaje("ERROR", "RESPUESTA", "Tipo de mensaje no reconocido");
+                        break;
                 }
             }
             catch (Exception ex)
             {
                 return new Mensaje("ERROR", "RESPUESTA", $"Error al procesar el mensaje: {ex.Message}");
             }
+            return respuesta;
         }
 
         // Metodo para detener el servidor
