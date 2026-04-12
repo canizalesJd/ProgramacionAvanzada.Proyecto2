@@ -54,5 +54,17 @@ namespace CapaLogicaNegocio
                 VentaAD.Guardar(nuevaVenta);
             }
         }
+
+        // Metodo para consultar ventas por cliente
+        public List<Venta> ConsultarVentasPorCliente(int idCliente)
+        {
+            if (idCliente <= 0)
+                throw new ArgumentException("El ID del cliente debe ser un número positivo.");
+            if (ClienteAD.ConsultarPorIdentificacion(idCliente.ToString()) == null)
+            {
+                throw new InvalidOperationException("El cliente no existe.");
+            }
+            return VentaAD.ConsultarVentasPorCliente(idCliente);
+        }
     }
 }

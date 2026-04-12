@@ -163,5 +163,29 @@ namespace Cliente
                 MessageBox.Show($"Error: {ex.Message}", "Error");
             }
         }
+
+        private void botonConsultar_Click(object sender, EventArgs e)
+        {
+            // Abrir Formulario de Consultar Ventas
+            try
+            {
+                // Verificar la conexión con el servidor antes
+                if (!cliente.VerificarConexion())
+                {
+                    MessageBox.Show("El servidor no está disponible.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cliente.Desconectar(); // Desconectar y actualizar estado
+                    ActualizarEstadoDesconectado();
+                    return;
+                }
+
+                FrmConsultarVentas frmConsultarVentas = new FrmConsultarVentas(cliente);
+                frmConsultarVentas.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error");
+            }
+        }
     }
 }

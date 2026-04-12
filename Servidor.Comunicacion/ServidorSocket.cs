@@ -282,6 +282,22 @@ namespace Servidor.Comunicacion
             }
         }
 
+        // Metodo para obtener las ventas por cliente
+        public Mensaje ObtenerVentasPorCliente(Mensaje mensaje)
+        {
+            try
+            {
+                int idCliente = int.Parse(mensaje.Datos); // Obtener el ID del cliente desde el mensaje
+                List<Venta> ventas = ventaLN.ConsultarVentasPorCliente(idCliente); // Obtener la lista de ventas del cliente desde la lógica de negocio
+                string datosJson = JsonConvert.SerializeObject(ventas); // Serializar la lista de ventas a JSON
+                return new Mensaje("OK", "OBTENER_VENTAS_POR_CLIENTE", datosJson); // Retornar un mensaje con la lista de ventas del cliente
+            }
+            catch (Exception ex)
+            {
+                return new Mensaje("ERROR", "OBTENER_VENTAS_POR_CLIENTE", $"Error al obtener las ventas por cliente: {ex.Message}"); // Retornar un mensaje de error si ocurre una excepción
+            }
+        }
+
         // Metodo para procesar un mensaje recibido del cliente y generar una respuesta
         public Mensaje ProcesarMensaje(Mensaje mensaje)
         {
@@ -303,6 +319,8 @@ namespace Servidor.Comunicacion
                     case "VENTA":
                         if (mensaje.Accion == "REGISTRAR_VENTA")
                             return RegistrarVenta(mensaje);
+                        if (mensaje.Accion == "OBTENER_VENTAS_POR_CLIENTE")
+                            return ObtenerVentasPorCliente(mensaje);
                         break;
                     default:
                         respuesta = new Mensaje("ERROR", "RESPUESTA", "Tipo de mensaje no reconocido");

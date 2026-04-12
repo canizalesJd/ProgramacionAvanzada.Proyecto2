@@ -1,0 +1,121 @@
+﻿/*
+ * Universidad Estatal a Distancia (UNED)
+ * Cuatrimestre: I Cuatrimestre 2026
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
+ * Descripción: Programa de gestión de ventas de vehículos
+ * Estudiante: José David Cañizales Azocar
+ * Fecha: Abril 2026
+ */
+
+namespace Cliente
+{
+    partial class FrmConsultarVentas
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            titulo = new Label();
+            botonActualizar = new Button();
+            dgvConsulta = new DataGridView();
+            footer = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvConsulta).BeginInit();
+            SuspendLayout();
+            // 
+            // titulo
+            // 
+            titulo.Anchor = AnchorStyles.Top;
+            titulo.AutoSize = true;
+            titulo.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            titulo.Location = new Point(13, 9);
+            titulo.Margin = new Padding(4, 0, 4, 0);
+            titulo.Name = "titulo";
+            titulo.Size = new Size(194, 29);
+            titulo.TabIndex = 5;
+            titulo.Text = "Consultar Ventas";
+            // 
+            // botonActualizar
+            // 
+            botonActualizar.AutoSize = true;
+            botonActualizar.BackColor = SystemColors.Info;
+            botonActualizar.Location = new Point(849, 6);
+            botonActualizar.Margin = new Padding(4, 3, 4, 3);
+            botonActualizar.Name = "botonActualizar";
+            botonActualizar.Size = new Size(128, 37);
+            botonActualizar.TabIndex = 19;
+            botonActualizar.Text = "Actualizar";
+            botonActualizar.UseVisualStyleBackColor = false;
+            botonActualizar.Click += this.botonActualizar_Click;
+            // 
+            // dgvConsulta
+            // 
+            dgvConsulta.AllowUserToAddRows = false;
+            dgvConsulta.AllowUserToDeleteRows = false;
+            dgvConsulta.AllowUserToOrderColumns = true;
+            dgvConsulta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvConsulta.Location = new Point(12, 52);
+            dgvConsulta.Name = "dgvConsulta";
+            dgvConsulta.ReadOnly = true;
+            dgvConsulta.Size = new Size(966, 372);
+            dgvConsulta.TabIndex = 22;
+            // 
+            // footer
+            // 
+            footer.Anchor = AnchorStyles.Bottom;
+            footer.AutoSize = true;
+            footer.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            footer.ImageAlign = ContentAlignment.BottomCenter;
+            footer.Location = new Point(350, 440);
+            footer.Margin = new Padding(4, 0, 4, 0);
+            footer.Name = "footer";
+            footer.Size = new Size(273, 15);
+            footer.TabIndex = 21;
+            footer.Text = "AutoMarket ©  - Todos los Derechos Resevados  ";
+            footer.TextAlign = ContentAlignment.BottomCenter;
+            // 
+            // FrmConsultarVentas
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(990, 464);
+            Controls.Add(dgvConsulta);
+            Controls.Add(footer);
+            Controls.Add(botonActualizar);
+            Controls.Add(titulo);
+            Name = "FrmConsultarVentas";
+            Text = "AutoMarket - Consultar Ventas";
+            ((System.ComponentModel.ISupportInitialize)dgvConsulta).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private Label titulo;
+        private Button botonActualizar;
+        private DataGridView dgvConsulta;
+        private Label footer;
+    }
+}

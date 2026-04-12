@@ -178,6 +178,7 @@ namespace Cliente
             botonConsultar.TabIndex = 28;
             botonConsultar.Text = "CONSULTA DE INFORMACIÓN";
             botonConsultar.UseVisualStyleBackColor = false;
+            botonConsultar.Click += botonConsultar_Click;
             // 
             // grupoOpciones
             // 

@@ -114,7 +114,7 @@ namespace CapaAccesoDatos
                     ve.Estado AS VehiculoEstado,
 
                     cat.IdCategoria,
-                    cat.Nombre AS CategoriaNombre,
+                    cat.NombreCategoria AS CategoriaNombre,
                     cat.Descripcion AS CategoriaDescripcion
 
                 FROM dbo.Venta v

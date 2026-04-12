@@ -140,7 +140,7 @@ namespace Cliente.Comunicacion
                 if (respuesta != null && respuesta.Accion == "OK")
                 {
                     List<Vehiculo>? vehiculos = JsonConvert.DeserializeObject<List<Vehiculo>>(respuesta.Datos);
-                    return vehiculos ?? new List<Vehiculo>();
+                    return vehiculos ?? new List<Vehiculo>(); // ?? null-coalescing: Si la deserialización falla, devuelve una lista vacía en lugar de null
                 }
                 return new List<Vehiculo>();
             }
@@ -161,7 +161,7 @@ namespace Cliente.Comunicacion
                 if (respuesta != null && respuesta.Accion == "OK")
                 {
                     List<Sucursal>? sucursales = JsonConvert.DeserializeObject<List<Sucursal>>(respuesta.Datos);
-                    return sucursales ?? new List<Sucursal>();
+                    return sucursales ?? new List<Sucursal>(); // ?? null-coalescing: Si la deserialización falla, devuelve una lista vacía en lugar de null
                 }
                 return new List<Sucursal>();
             } catch (Exception ex) {
@@ -184,6 +184,27 @@ namespace Cliente.Comunicacion
             {
                 Console.WriteLine($"Error al registrar venta: {ex.Message}");
                 return false;
+            }
+        }
+
+        // Metodo para consultar las ventas realizadas por el cliente
+        public List<Venta> ConsultarVentasPorCliente(int idCliente)
+        {
+            try
+            {
+                Mensaje mensaje = new Mensaje("OBTENER_VENTAS_POR_CLIENTE", "VENTA", idCliente.ToString());
+                Mensaje? respuesta = EnviarYRecibir(mensaje);
+                if (respuesta != null && respuesta.Accion == "OK")
+                {
+                    List<Venta>? ventas = JsonConvert.DeserializeObject<List<Venta>>(respuesta.Datos);
+                    return ventas ?? new List<Venta>(); // ?? null-coalescing: Si la deserialización falla, devuelve una lista vacía en lugar de null
+                }
+                return new List<Venta>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener ventas: {ex.Message}");
+                return new List<Venta>();
             }
         }
 
