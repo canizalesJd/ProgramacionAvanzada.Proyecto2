@@ -36,6 +36,7 @@ namespace Cliente.Comunicacion
         }
 
         public string NombreCliente { get; private set; } = string.Empty;
+        public CapaEntidades.Cliente? ClienteAutenticado { get; private set; }
 
         // Constructor
         public ClienteSocket()
@@ -61,7 +62,7 @@ namespace Cliente.Comunicacion
                 writer = new StreamWriter(stream, Encoding.UTF8);
 
                 // Enviar identificacion al servidor (mensaje de bienvenida)
-                Mensaje mensajeBienvenida = new("CONECTAR", "Cliente", identificacion);
+                Mensaje mensajeBienvenida = new("CONECTAR", "CLIENTE", identificacion);
                 string bienvenidaJson = JsonConvert.SerializeObject(mensajeBienvenida);
                 writer.WriteLine(bienvenidaJson);
                 writer.Flush();
@@ -73,8 +74,8 @@ namespace Cliente.Comunicacion
                     Mensaje? respuesta = JsonConvert.DeserializeObject<Mensaje>(respuestaJson);
                     if (respuesta != null && respuesta.Accion == "OK")
                     {
-                        NombreCliente = respuesta.Datos;
-                        // Conexion exitosa
+                        ClienteAutenticado = JsonConvert.DeserializeObject<CapaEntidades.Cliente>(respuesta.Datos);
+                        NombreCliente = ClienteAutenticado?.NombreCompleto ?? string.Empty;
                         conectado = true;
                         return true;
                     }

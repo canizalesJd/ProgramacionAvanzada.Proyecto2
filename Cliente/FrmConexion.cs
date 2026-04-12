@@ -139,5 +139,20 @@ namespace Cliente
                 MessageBox.Show($"Error al cerrar: {ex.Message}", "Error");
             }
         }
+
+        private void botonGestionVentas_Click(object sender, EventArgs e)
+        {
+            // Abrir Formulario de Gestión de Ventas
+            try
+            {
+
+                FrmVenta frmVenta = new FrmVenta(cliente);
+                frmVenta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error");
+            }
+        }
     }
 }

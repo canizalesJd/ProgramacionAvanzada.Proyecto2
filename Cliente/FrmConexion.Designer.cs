@@ -166,6 +166,7 @@ namespace Cliente
             botonGestionVentas.TabIndex = 27;
             botonGestionVentas.Text = "GESTIÓN DE VENTAS";
             botonGestionVentas.UseVisualStyleBackColor = false;
+            botonGestionVentas.Click += botonGestionVentas_Click;
             // 
             // botonConsultar
             // 

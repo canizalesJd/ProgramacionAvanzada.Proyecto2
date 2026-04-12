@@ -158,21 +158,22 @@ namespace Servidor.Comunicacion
                         if (clienteDatos != null && clienteDatos.Activo)
                         {
                             nombreCliente = clienteDatos.NombreCompleto.Trim();
-                            // Crear un objeto InfoCliente para almacenar la información del cliente conectado
                             infoCliente = new InfoCliente(cliente, nombreCliente);
-                            clientesConectados.Add(infoCliente); // Agregar el cliente a la lista de clientes conectados
-                            respuestaBienvenida = new("OK", "Conexion", clienteDatos.NombreCompleto);
+                            clientesConectados.Add(infoCliente); // Agregar el clienta a la lista de clientes conectados
+                            // Crear un objeto InfoCliente para almacenar la información del cliente conectado
+                            string clienteJson = JsonConvert.SerializeObject(clienteDatos);
+                            respuestaBienvenida = new("OK", "Conexion", clienteJson);
                             // Notificar que un nuevo cliente se ha conectado
-                            NuevaBitacora?.Invoke($"Cliente conectado: {nombreCliente}. Total: {clientesConectados.Count} de {MAX_CLIENTES}"); // Notificar en la bitácora
-                            ClienteConectado?.Invoke(nombreCliente); // Notificar a la interfaz de usuario
-
-                            string respuestaJson = JsonConvert.SerializeObject(respuestaBienvenida); // Serializar el mensaje de bienvenida
+                            NuevaBitacora?.Invoke($"Cliente conectado: {nombreCliente}. Total: {clientesConectados.Count} de {MAX_CLIENTES}");
+                            ClienteConectado?.Invoke(nombreCliente);
+                            // Enviar la respuesta de bienvenida al cliente
+                            string respuestaJson = JsonConvert.SerializeObject(respuestaBienvenida);
                             writer.WriteLine(respuestaJson);
-                            writer.Flush(); // Asegurar que el mensaje se envíe al cliente
+                            writer.Flush();
                         } else
                         {
                             // Si el cliente no es válido o no está activo, enviar un mensaje de error y cerrar la conexión
-                            respuestaBienvenida = new("ERROR", "Conexion", $"Identificación no válida o cliente inactivo.");
+                            respuestaBienvenida = new("ERROR", "CONEXION", $"Identificación no válida o cliente inactivo.");
                             // Notificar que un cliente ha intentado conectarse con una identificación no válida o inactiva
                             NuevaBitacora?.Invoke($"Intento de conexión fallido con identificación: {identificacion}"); // Notificar en la bitácora
 
