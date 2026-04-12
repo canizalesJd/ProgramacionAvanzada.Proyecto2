@@ -126,7 +126,10 @@ namespace Cliente
 
             CapaEntidades.Cliente clienteAutenticado = cliente.ClienteAutenticado!; // ! para indicar que se asume que el cliente autenticado no es nulo
 
+            int idVenta = 0; // idVenta en 0, ya que se genera automaticamente por la BD
+
             Venta nuevaVenta = new Venta(
+                idVenta,
                 clienteAutenticado,
                 sucursalSeleccionada,
                 vehiculoSeleccionado,

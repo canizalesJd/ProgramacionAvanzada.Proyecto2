@@ -50,7 +50,8 @@ namespace CapaLogicaNegocio
 
                 VehiculoXSucursalAD.ActualizarCantidad(sucursal.IdSucursal, vehiculo.IdVehiculo, cantidadDisponible - 1);
 
-                Venta nuevaVenta = new Venta(cliente, sucursal, vehiculo, fechaVenta, monto);
+                int idVenta = 0; // idVenta en 0, ya que se genera automaticamente por la BD
+                Venta nuevaVenta = new Venta(idVenta, cliente, sucursal, vehiculo, fechaVenta, monto);
                 VentaAD.Guardar(nuevaVenta);
             }
         }
@@ -60,10 +61,6 @@ namespace CapaLogicaNegocio
         {
             if (idCliente <= 0)
                 throw new ArgumentException("El ID del cliente debe ser un número positivo.");
-            if (ClienteAD.ConsultarPorIdentificacion(idCliente.ToString()) == null)
-            {
-                throw new InvalidOperationException("El cliente no existe.");
-            }
             return VentaAD.ConsultarVentasPorCliente(idCliente);
         }
     }

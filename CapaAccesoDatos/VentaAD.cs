@@ -68,7 +68,11 @@ namespace CapaAccesoDatos
                     }
                     catch (SqlException ex)
                     {
-                        throw new Exception("Error al registrar la venta en la base de datos: " + ex.Message, ex);
+                        throw new Exception("Error al consultar las ventas del cliente en la base de datos: " + ex.Message, ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Error inesperado al consultar las ventas del cliente: " + ex.Message, ex);
                     }
                 }
             }
@@ -83,6 +87,7 @@ namespace CapaAccesoDatos
             {
                 string sentencia = @"
                 SELECT
+                    v.IdVenta,
                     v.FechaVenta,
                     v.Monto,
 
@@ -183,6 +188,7 @@ namespace CapaAccesoDatos
                                 );
 
                                 Venta venta = new Venta(
+                                    reader.GetInt32(reader.GetOrdinal("IdVenta")),
                                     cliente,
                                     sucursal,
                                     vehiculo,
@@ -196,6 +202,10 @@ namespace CapaAccesoDatos
                     catch (SqlException ex)
                     {
                         throw new Exception("Error al consultar las ventas del cliente en la base de datos: " + ex.Message, ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Error inesperado al consultar las ventas del cliente: " + ex.Message, ex);
                     }
                 }
             }

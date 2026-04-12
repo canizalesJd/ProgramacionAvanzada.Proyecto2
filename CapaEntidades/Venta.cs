@@ -29,17 +29,25 @@ namespace CapaEntidades
 
         // Propiedades solo para mostrar en UI
         public string ClienteNombre => Cliente.NombreCompleto;
+        public string ClienteIdentificacion => Cliente.Identificacion;
         public string SucursalNombre => Sucursal.Nombre;
         public string VehiculoDescripcion => Vehiculo.DisplayMember;
         public string VendedorNombre => Sucursal.VendedorEncargado.NombreCompleto;
         public string VehiculoPrecioTexto => Vehiculo.Precio.ToString("C", new CultureInfo("es-CR")); // [1]
         public string MontoTexto => Monto.ToString("C", new CultureInfo("es-CR")); // [1]
+        
+        public string FechaVentaTexto => FechaVenta.ToString("dd/MM/yyyy HH:mm");
+        public string CategoriaNombre => Vehiculo.CategoriaNombre;
+        public string VehiculoMarca => Vehiculo.Marca;
+        public string VehiculoModelo => Vehiculo.Modelo;
+        public string VehiculoEstadoTexto => Vehiculo.EstadoTexto;
 
         /// <summary>
         /// Constructor para inicializar los atributos de la venta.
         /// </summary>
-        public Venta(Cliente cliente, Sucursal sucursal, Vehiculo vehiculo, DateTime fechaVenta, decimal monto)
+        public Venta(int idVenta, Cliente cliente, Sucursal sucursal, Vehiculo vehiculo, DateTime fechaVenta, decimal monto)
         {
+            IdVenta = idVenta;
             Cliente = cliente;
             Sucursal = sucursal;
             Vehiculo = vehiculo;
