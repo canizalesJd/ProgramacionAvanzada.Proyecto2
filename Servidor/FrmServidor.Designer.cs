@@ -126,7 +126,7 @@ namespace Servidor
             bitacoraLbl.Name = "bitacoraLbl";
             bitacoraLbl.Size = new Size(76, 20);
             bitacoraLbl.TabIndex = 25;
-            bitacoraLbl.Text = "Bitacora";
+            bitacoraLbl.Text = "Bitácora";
             bitacoraLbl.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // botonLimpiarBitacora
