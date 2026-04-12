@@ -1,4 +1,13 @@
-﻿namespace Cliente
+﻿/*
+ * Universidad Estatal a Distancia (UNED)
+ * Cuatrimestre: I Cuatrimestre 2026
+ * Proyecto: Proyecto 2 - Programación Avanzada | AutoMarket
+ * Descripción: Programa de gestión de ventas de vehículos
+ * Estudiante: José David Cañizales Azocar
+ * Fecha: Abril 2026
+ */
+
+namespace Cliente
 {
     partial class FrmVenta
     {
@@ -68,13 +77,13 @@
             // comboSucursal
             // 
             comboSucursal.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboSucursal.DropDownStyle = ComboBoxStyle.DropDownList;
             comboSucursal.FormattingEnabled = true;
             comboSucursal.Location = new Point(17, 88);
             comboSucursal.Name = "comboSucursal";
             comboSucursal.Size = new Size(292, 23);
             comboSucursal.Sorted = true;
             comboSucursal.TabIndex = 34;
-            comboSucursal.Text = " Seleccione una sucursal";
             comboSucursal.SelectedIndexChanged += comboSucursal_SelectedIndexChanged;
             // 
             // vehiculoLbl
@@ -93,13 +102,13 @@
             // comboVehiculo
             // 
             comboVehiculo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            comboVehiculo.DropDownStyle = ComboBoxStyle.DropDownList;
             comboVehiculo.FormattingEnabled = true;
             comboVehiculo.Location = new Point(15, 143);
             comboVehiculo.Name = "comboVehiculo";
             comboVehiculo.Size = new Size(294, 23);
             comboVehiculo.Sorted = true;
             comboVehiculo.TabIndex = 36;
-            comboVehiculo.Text = " Seleccione un vehículo";
             comboVehiculo.SelectedIndexChanged += comboVehiculo_SelectedIndexChanged;
             // 
             // precioLbl
@@ -152,6 +161,7 @@
             botonCancelar.TabIndex = 46;
             botonCancelar.Text = "Cancelar";
             botonCancelar.UseVisualStyleBackColor = false;
+            botonCancelar.Click += botonCancelar_Click;
             // 
             // botonGuardar
             // 
@@ -183,6 +193,7 @@
             Controls.Add(titulo);
             Name = "FrmVenta";
             Text = "AutoMarket - Registrar Venta ";
+            Load += FrmVenta_Load;
             ResumeLayout(false);
             PerformLayout();
         }

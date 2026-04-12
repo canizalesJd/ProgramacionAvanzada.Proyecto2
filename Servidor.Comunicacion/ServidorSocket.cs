@@ -290,6 +290,10 @@ namespace Servidor.Comunicacion
             {
                 switch (mensaje.Tipo)
                 {
+                    case "SERVIDOR":
+                        if (mensaje.Accion == "PING")
+                            return new Mensaje("OK", "SERVIDOR", "Servidor activo");
+                        break;
                     case "SUCURSAL":
                         if (mensaje.Accion == "OBTENER_SUCURSALES_ACTIVAS")
                             return ObtenerSucursalesActivas();

@@ -145,6 +145,15 @@ namespace Cliente
             // Abrir Formulario de Gestión de Ventas
             try
             {
+                // Verificar la conexión con el servidor antes
+                if (!cliente.VerificarConexion())
+                {
+                    MessageBox.Show("El servidor no está disponible.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cliente.Desconectar(); // Desconectar y actualizar estado
+                    ActualizarEstadoDesconectado();
+                    return;
+                }
 
                 FrmVenta frmVenta = new FrmVenta(cliente);
                 frmVenta.ShowDialog();

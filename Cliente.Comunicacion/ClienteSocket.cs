@@ -110,6 +110,26 @@ namespace Cliente.Comunicacion
             }
         }
 
+        // Metodo para verificar la conexión con el servidor
+        public bool VerificarConexion()
+        {
+            try
+            {
+                if (!conectado || cliente == null || !cliente.Connected)
+                    return false;
+
+                Mensaje mensaje = new Mensaje("PING", "SERVIDOR", "");
+                Mensaje? respuesta = EnviarYRecibir(mensaje);
+
+                return respuesta != null && respuesta.Accion == "OK";
+            }
+            catch
+            {
+                Desconectar();
+                return false;
+            }
+        }
+
         // Metodo para obtener la lista de vehículos disponibles de una sucursal especifica
         public List<Vehiculo> ObtenerVehiculosPorSucursal(int idSucursal)
         {
