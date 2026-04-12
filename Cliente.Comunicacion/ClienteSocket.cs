@@ -19,7 +19,7 @@ namespace Cliente.Comunicacion
     public class ClienteSocket
     {
         // Constantes
-        private const int PUERTO_SERVIDOR = 5000;
+        private const int PUERTO_SERVIDOR = 15500;
         private const string IP_SERVIDOR = "127.0.0.1"; // LOCALHOST
 
         // Variables de instancia

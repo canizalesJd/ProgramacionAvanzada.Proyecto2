@@ -35,7 +35,7 @@ namespace Servidor.Comunicacion
     {
         // Configuracion Servidor
         private const string IP_SERVIDOR = "127.0.0.1"; // LOCALHOST
-        private const int PUERTO_SERVIDOR = 5000;
+        private const int PUERTO_SERVIDOR = 15500;
         private const int MAX_CLIENTES = 5;
 
         // Atributos
