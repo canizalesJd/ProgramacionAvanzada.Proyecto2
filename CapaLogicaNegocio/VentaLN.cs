@@ -48,11 +48,20 @@ namespace CapaLogicaNegocio
                 if (cantidadDisponible <= 0)
                     throw new InvalidOperationException("No hay stock disponible para este vehículo en la sucursal seleccionada.");
 
-                VehiculoXSucursalAD.ActualizarCantidad(sucursal.IdSucursal, vehiculo.IdVehiculo, cantidadDisponible - 1);
+                try
+                {
+                    VehiculoXSucursalAD.ActualizarCantidad(sucursal.IdSucursal, vehiculo.IdVehiculo, cantidadDisponible - 1);
 
-                int idVenta = 0; // idVenta en 0, ya que se genera automaticamente por la BD
-                Venta nuevaVenta = new Venta(idVenta, cliente, sucursal, vehiculo, fechaVenta, monto);
-                VentaAD.Guardar(nuevaVenta);
+                    int idVenta = 0;
+                    Venta nuevaVenta = new Venta(idVenta, cliente, sucursal, vehiculo, fechaVenta, monto);
+                    VentaAD.Guardar(nuevaVenta);
+                }
+                catch
+                {
+                    // intentar revertir el stock si algo falla
+                    VehiculoXSucursalAD.ActualizarCantidad(sucursal.IdSucursal, vehiculo.IdVehiculo, cantidadDisponible);
+                    throw;
+                }
             }
         }
 
